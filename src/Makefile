@@ -14,7 +14,7 @@ BINPATH=../bin/
 
 all: linkPrediction
 
-linkPrediction: main.o utility.o fileHandler.o
+linkPrediction: main.o utility.o graphHandler.o fileHandler.o
 	$(CC) $(CFLAGS) $(INCLUDE) $(LIB_PATH) $(LIB_FLAGS) $^ -o $(BINPATH)$@ 
 
 %.o: %.cpp

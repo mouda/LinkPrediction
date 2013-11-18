@@ -23,6 +23,8 @@ int main( int argc, char* argv[] )
     return 1;
   }
 
+  FileHandler fileHandler(inputFileName, outputFileName);
+
 
 
   return 0;
