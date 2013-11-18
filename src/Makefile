@@ -16,7 +16,7 @@ BIN_PATH=../bin/
 all: linkPrediction
 
 linkPrediction: main.o utility.o graphHandler.o fileHandler.o
-	$(CC)  $^ $(CFLAGS) $(INCLUDE) $(LIB_PATH)  $(LIB_FLAGS) -o $(BIN_PATH)$@ 
+	$(CC)  $^ $(CFLAGS) $(INCLUDE) $(LIB_PATH) $(LIB_FLAGS) -o $(BIN_PATH)$@ 
 
 %.o: %.cpp
 	$(CC)  $< $(CFLAGS) $(INCLUDE) $(LIB_PATH) $(LIB_FLAGS) -c -o $@
