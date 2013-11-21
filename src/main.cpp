@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#include "fileHandler.h"
+#include "socialSystem.h"
 #include "utility.h"
 
 using namespace std;
@@ -21,7 +21,7 @@ int main( int argc, char* argv[] )
     return 1;
   }
 
-  FileHandler fileHandler(inputFileName, outputFileName);
+  FileAdapter fileAdapter(inputFileName, outputFileName);
 
 
 
