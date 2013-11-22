@@ -1,21 +1,25 @@
 #include "socialSystem.h"
+#include "graphFactory.h"
+#include "attributeFactory.h"
+#include "problemFactory.h"
+#include "solverFactory.h"
 
 SocialSystem::SocialSystem(const string& inputFileName, const string& outputFileName)
 {
-  m_ptrFileAdapter = new FileAdapter(inputFileName, outputFileName);
-  m_ptrGraphAdapter = new GraphAdapter;
-  m_ptrAttributeGen = new AttributeGenerator;
-  m_ptrProblemGen = new ProblemGenerator;
-  m_ptrSolver = new Solver;
+  m_ptrFileUtility = new FileUtility(inputFileName, outputFileName);
+  m_ptrGraph =      new GraphFactory;
+  m_ptrAttribute =  new AttributeFactory;
+  m_ptrProblem =    new ProblemFactory;
+  m_ptrSolver =     new SolverFactory;
 
 }
 
 SocialSystem::~SocialSystem()
 {
-  delete m_ptrFileAdapter;
-  delete m_ptrGraphAdapter;
-  delete m_ptrAttributeGen;
-  delete m_ptrProblemGen;
+  delete m_ptrFileUtility;
+  delete m_ptrGraph;
+  delete m_ptrAttribute;
+  delete m_ptrProblem;
   delete m_ptrSolver;
 
 }

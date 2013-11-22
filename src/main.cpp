@@ -21,7 +21,7 @@ int main( int argc, char* argv[] )
     return 1;
   }
 
-  //FileAdapter fileAdapter(inputFileName, outputFileName);
+  //FileUtility FileUtility(inputFileName, outputFileName);
   SocialSystem(inputFileName, outputFileName);
 
 

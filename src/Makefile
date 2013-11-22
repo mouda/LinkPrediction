@@ -1,9 +1,12 @@
 CC=g++
 CFLAGS=
-SOURCES=main.cpp utility.cpp socialSystem.cpp graphAdapter.cpp fileAdapter.cpp problemGenerator.cpp attributeGenerator.cpp solver.cpp
+SOURCES=main.cpp utility.cpp socialSystem.cpp graph.cpp graphFactory.cpp \
+	fileUtility.cpp problem.cpp problemFactory.cpp \
+	attribute.cpp attributeFactory.cpp \
+	solver.cpp solverFactory.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
-#PREFIX=/home/share
-PREFIX=/opt
+PREFIX=/home/share
+#PREFIX=/opt
 INCLUDE=-I$(PREFIX)/armadillo39202/include/ \
 	-I$(PREFIX)/boost1550/include/
 

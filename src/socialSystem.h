@@ -1,10 +1,10 @@
-#include "fileAdapter.h"
-#include "graphAdapter.h"
-#include "problemGenerator.h"
-#include "attributeGenerator.h"
-#include "solver.h"
-
 #include <string>
+
+#include "fileUtility.h"
+#include "graph.h"
+#include "attribute.h"
+#include "problem.h"
+#include "solver.h"
 
 class SocialSystem
 {
@@ -13,9 +13,9 @@ class SocialSystem
     ~SocialSystem();
 
   private:
-    FileAdapter         *m_ptrFileAdapter;
-    GraphAdapter        *m_ptrGraphAdapter;
-    AttributeGenerator  *m_ptrAttributeGen;
-    ProblemGenerator    *m_ptrProblemGen;
-    Solver              *m_ptrSolver;
+    FileUtility       *m_ptrFileUtility;
+    Graph             *m_ptrGraph;
+    Attribute         *m_ptrAttribute;
+    Problem           *m_ptrProblem;
+    Solver            *m_ptrSolver;
 };
