@@ -12,8 +12,12 @@ class Graph;
 class GraphFactory: public Graph
 {
   public:
-    GraphFactory();
+    GraphFactory(const string& inputFileName, const string& outputFileName);
     ~GraphFactory();
 
-//private:
+  private:
+    FileUtility *m_ptrFileUtility;
+    /* adjency list */
+    /* vertex list */
+    /* some label for record */
 };

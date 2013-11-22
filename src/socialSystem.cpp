@@ -6,8 +6,7 @@
 
 SocialSystem::SocialSystem(const string& inputFileName, const string& outputFileName)
 {
-  m_ptrFileUtility = new FileUtility(inputFileName, outputFileName);
-  m_ptrGraph =      new GraphFactory;
+  m_ptrGraph =      new GraphFactory(inputFileName, outputFileName);
   m_ptrAttribute =  new AttributeFactory;
   m_ptrProblem =    new ProblemFactory;
   m_ptrSolver =     new SolverFactory;
@@ -16,7 +15,6 @@ SocialSystem::SocialSystem(const string& inputFileName, const string& outputFile
 
 SocialSystem::~SocialSystem()
 {
-  delete m_ptrFileUtility;
   delete m_ptrGraph;
   delete m_ptrAttribute;
   delete m_ptrProblem;

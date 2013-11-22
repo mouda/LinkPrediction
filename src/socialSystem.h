@@ -1,6 +1,5 @@
 #include <string>
 
-#include "fileUtility.h"
 #include "graph.h"
 #include "attribute.h"
 #include "problem.h"
@@ -13,7 +12,6 @@ class SocialSystem
     ~SocialSystem();
 
   private:
-    FileUtility       *m_ptrFileUtility;
     Graph             *m_ptrGraph;
     Attribute         *m_ptrAttribute;
     Problem           *m_ptrProblem;
