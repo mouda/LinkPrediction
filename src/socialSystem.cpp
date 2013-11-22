@@ -7,6 +7,8 @@
 SocialSystem::SocialSystem(const string& inputFileName, const string& outputFileName)
 {
   m_ptrGraph =      new GraphFactory(inputFileName, outputFileName);
+
+
   m_ptrAttribute =  new AttributeFactory;
   m_ptrProblem =    new ProblemFactory;
   m_ptrSolver =     new SolverFactory;

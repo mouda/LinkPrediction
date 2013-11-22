@@ -1,5 +1,6 @@
-CC=g++
+CC=mpiCC
 CFLAGS=
+MPI=1
 SOURCES=main.cpp utility.cpp socialSystem.cpp graph.cpp graphFactory.cpp \
 	fileUtility.cpp problem.cpp problemFactory.cpp \
 	attribute.cpp attributeFactory.cpp \
@@ -13,7 +14,8 @@ INCLUDE=-I$(PREFIX)/armadillo39202/include/ \
 LIB_PATH=-L$(PREFIX)/armadillo39202/lib/ \
 	 -L$(PREFIX)/boost1550/lib
 
-LIB_FLAGS=-larmadillo -lboost_graph -lboost_regex -lboost_filesystem -lboost_system
+#LIB_FLAGS=-larmadillo -lboost_regex -lboost_filesystem -lboost_system -lboost_graph 
+LIB_FLAGS=-larmadillo  -lboost_regex -lboost_filesystem -lboost_system -lboost_graph_parallel -lboost_graph -lboost_serialization
 
 BIN_PATH=../bin/
 

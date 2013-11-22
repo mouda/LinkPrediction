@@ -21,7 +21,6 @@ int main( int argc, char* argv[] )
     return 1;
   }
 
-  //FileUtility FileUtility(inputFileName, outputFileName);
   SocialSystem(inputFileName, outputFileName);
 
 
