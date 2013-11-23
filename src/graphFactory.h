@@ -31,7 +31,6 @@
 
 #include "graph.h"
 
-typedef  
 class Graph;
 class GraphFactory: public Graph
 {
