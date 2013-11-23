@@ -31,16 +31,28 @@
 
 #include "graph.h"
 
+using namespace boost;
+using boost::graph::distributed::mpi_process_group;
+
+
+typedef adjacency_list<vecS, distributedS<mpi_process_group, vecS>, undirectedS,
+        /* Vertex properties=*/
+        property<vertex_distance_t, std::size_t> >
+        BglGraph;
+
 class Graph;
 class GraphFactory: public Graph
 {
   public:
-    GraphFactory(const string& inputFileName, const string& outputFileName);
+    GraphFactory(const string& inputFileName, const string& outputFileName, const int& wordId);
     ~GraphFactory();
 
   private:
     FileUtility *m_ptrFileUtility;
     /* adjency list */
+    BglGraph    *m_ptrBglGraph;
     /* vertex list */
     /* some label for record */
 };
+
+
