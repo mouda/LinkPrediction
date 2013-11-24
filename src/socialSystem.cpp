@@ -6,16 +6,20 @@
 
 SocialSystem::SocialSystem(const string& inputFileName, 
     const string& outputFileName,
-    const int& in_wordID)
+    const int& in_worldID):m_worldId(in_worldID)
 {
-  m_ptrGraph =      new GraphFactory(inputFileName, outputFileName, in_wordID);
+  m_ptrGraph =      new GraphFactory(inputFileName, outputFileName, in_worldID);
 
+#ifdef DEBUG
+  if ( m_worldId == 0) {
+    cout << m_ptrGraph->GetVertexId(10) << endl;
+  }
+#endif
 
   m_ptrAttribute =  new AttributeFactory;
   m_ptrProblem =    new ProblemFactory;
   m_ptrSolver =     new SolverFactory;
 
-  m_wordId = in_wordID;
 
 }
 

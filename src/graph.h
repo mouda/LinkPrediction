@@ -11,8 +11,9 @@ class Graph
   public:
     /* let a graph object handle a description file and an output file*/
     Graph();
-
-    ~Graph();
+    virtual ~Graph() = 0;
+    virtual int GetVertexId(const int& ) = 0;
+    
   private:
 
 };

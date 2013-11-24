@@ -21,5 +21,5 @@ class SocialSystem
     Problem           *m_ptrProblem;
     Solver            *m_ptrSolver;
 
-    int               m_wordId;
+    const int         m_worldId;
 };

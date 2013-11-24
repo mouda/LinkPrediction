@@ -57,10 +57,24 @@ struct EdgeProperty
 };
 
 
+//typedef adjacency_list<vecS, distributedS<mpi_process_group, vecS>, undirectedS,
+//        /* Vertex properties=*/
+//        VertexProperty, EdgeProperty>
+//        BglGraph;
+//typedef graph_traits<BglGraph>::vertex_descriptor     BglVertex;
+//typedef graph_traits<BglGraph>::edge_descriptor       BglEdge;
+//typedef property_map<BglGraph, VertexProperty>::type  BglVertexMap;
+//typedef property_map<BglGraph, EdgeProperty>::type    BglEdgeMap; 
+//
+
 typedef adjacency_list<vecS, distributedS<mpi_process_group, vecS>, undirectedS,
         /* Vertex properties=*/
-        VertexProperty, EdgeProperty>
+        property<vertex_index_t, int> >
         BglGraph;
+typedef graph_traits<BglGraph>::vertex_descriptor     BglVertex;
+typedef graph_traits<BglGraph>::edge_descriptor       BglEdge;
+typedef property_map<BglGraph, vertex_index_t>::type  BglVertexMap;
+
 
 class Graph;
 class GraphFactory: public Graph
@@ -69,12 +83,12 @@ class GraphFactory: public Graph
     GraphFactory(const string& inputFileName, const string& outputFileName, const int& wordId);
     ~GraphFactory();
 
+    int GetVertexId(const int& index);
+    void BFS(const)
+
   private:
     FileUtility *m_ptrFileUtility;
-    /* adjency list */
     BglGraph    *m_ptrBglGraph;
-    /* vertex list */
-    /* some label for record */
 
 
     const int   m_wordId;
