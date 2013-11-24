@@ -1,4 +1,15 @@
+#ifndef _UTILITY_
+#define _UTILITY_
+
 #include <string>
+#include <fstream>
 #include <boost/filesystem.hpp>
 
 bool FileExist( const std::string& Name);
+
+/* file operations */
+
+std::istream& Ignoreline(std::ifstream& in, std::ifstream::pos_type& pos);
+std::string GetLastLine(std::ifstream& in);
+
+#endif

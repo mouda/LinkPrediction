@@ -34,10 +34,32 @@
 using namespace boost;
 using boost::graph::distributed::mpi_process_group;
 
+struct VertexProperty 
+{
+  VertexProperty(){ }
+  VertexProperty(const int& id):m_nodeId(id){ }
+  int m_nodeId;
+
+  template<typename Archiver>
+    void serialize(Archiver& ar, const unsigned int /* version*/) {
+      ar & m_nodeId;
+    }
+};
+
+struct EdgeProperty
+{
+  EdgeProperty(){ }
+  template<typename Archiver>
+    void serialize(Archiver& ar, const unsigned int /* version*/) {
+      ar ;
+    }
+
+};
+
 
 typedef adjacency_list<vecS, distributedS<mpi_process_group, vecS>, undirectedS,
         /* Vertex properties=*/
-        property<vertex_distance_t, std::size_t> >
+        VertexProperty, EdgeProperty>
         BglGraph;
 
 class Graph;
@@ -53,6 +75,9 @@ class GraphFactory: public Graph
     BglGraph    *m_ptrBglGraph;
     /* vertex list */
     /* some label for record */
+
+
+    const int   m_wordId;
 };
 
 

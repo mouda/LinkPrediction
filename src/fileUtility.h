@@ -9,6 +9,8 @@
 #include <utility>
 #include <set>
 
+#include "utility.h"
+
 using namespace std;
 
 class FileUtility
@@ -21,12 +23,12 @@ class FileUtility
     void ParseInput();
     pair<int, int> GetEdgePair();
     unsigned int GetVertex();
-    unsigned int GetVertexNum();
+    int GetVertexNum();
 
 
   private:
-    fstream m_inputFile;
-    fstream m_outputFile; 
+    ifstream m_inputFile;
+    ofstream m_outputFile; 
     set<set<int> > m_edgeSet;
 
     const int      m_wordId;

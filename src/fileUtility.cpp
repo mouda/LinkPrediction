@@ -3,8 +3,10 @@
 FileUtility::FileUtility( const string& m_inputFileName, const string& m_outputFileName, const int& wordId):
   m_wordId(wordId)
 {
-  m_inputFile.open(m_inputFileName.c_str(), ios::in);
-  m_outputFile.open(m_outputFileName.c_str(), ios::out); 
+  m_inputFile.open(m_inputFileName.c_str());
+  m_outputFile.open(m_outputFileName.c_str()); 
+
+#ifdef DEBUG
   string s;
   int col_1, col_2;
   while(!m_inputFile.eof()){
@@ -17,7 +19,6 @@ FileUtility::FileUtility( const string& m_inputFileName, const string& m_outputF
     m_edgeSet.insert(tmpSet);
   }
 
-#ifdef DEBUG
   if (m_wordId == 0) {
     set<set<int> >::iterator itUSet = m_edgeSet.begin();
     for (; itUSet != m_edgeSet.end(); ++itUSet) {
@@ -49,9 +50,9 @@ FileUtility::ParseInput()
 pair<int, int> FileUtility::GetEdgePair()
 {
   string s;
-  unsigned int col_1, col_2;
-  if (!m_inputFile.eof()) { 
-    getline(m_inputFile,s);
+  int col_1, col_2;
+  if (m_inputFile.good()) { 
+    getline(m_inputFile,s,'\n');
     stringstream ss(s);
     ss >> col_1 >> col_2;
     return pair<int, int>(col_1, col_2);
@@ -67,7 +68,12 @@ unsigned int FileUtility::GetVertex()
   return 0;
 }
 
-unsigned int FileUtility::GetVertexNum()
+int FileUtility::GetVertexNum()
 {
-  return 0;
+  string line = GetLastLine(m_inputFile);
+  int maxNum;
+  stringstream ss(line);
+  ss >> maxNum;
+  return maxNum;
 }
+
