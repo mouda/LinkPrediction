@@ -69,7 +69,8 @@ struct EdgeProperty
 
 typedef adjacency_list<vecS, distributedS<mpi_process_group, vecS>, undirectedS,
         /* Vertex properties=*/
-        property<vertex_index_t, int> >
+        property<vertex_index_t, int, 
+        property<vertex_distance_t, int> >, no_property >
         BglGraph;
 typedef graph_traits<BglGraph>::vertex_descriptor     BglVertex;
 typedef graph_traits<BglGraph>::edge_descriptor       BglEdge;
@@ -84,7 +85,7 @@ class GraphFactory: public Graph
     ~GraphFactory();
 
     int GetVertexId(const int& index);
-    void BFS(const)
+    void BFS(const int& );
 
   private:
     FileUtility *m_ptrFileUtility;

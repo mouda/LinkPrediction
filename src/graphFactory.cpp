@@ -41,3 +41,10 @@ int GraphFactory::GetVertexId( const int& index)
   BglVertex source = vertex(index,*m_ptrBglGraph);
   return indices[source];
 } 
+
+void GraphFactory::BFS( const int& index)
+{
+  property_map<BglGraph, vertex_distance_t>::type distance =
+    get(vertex_distance, *m_ptrBglGraph);
+
+}
