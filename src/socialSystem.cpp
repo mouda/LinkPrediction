@@ -10,11 +10,9 @@ SocialSystem::SocialSystem(const string& inputFileName,
 {
   m_ptrGraph =      new GraphFactory(inputFileName, outputFileName, in_worldID);
 
-#ifdef DEBUG
   if ( m_worldId == 0) {
     cout << m_ptrGraph->GetVertexId(10) << endl;
   }
-#endif
 
   m_ptrAttribute =  new AttributeFactory;
   m_ptrProblem =    new ProblemFactory;

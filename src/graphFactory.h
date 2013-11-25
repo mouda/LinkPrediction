@@ -16,6 +16,8 @@
 
 // Communicate via MPI
 #include <boost/graph/distributed/mpi_process_group.hpp>
+// Dijkstra's single-source shortest paths algorithm
+#include <boost/graph/dijkstra_shortest_paths.hpp>
 
 // Breadth-first search algorithm
 #include <boost/graph/breadth_first_search.hpp>
@@ -25,6 +27,8 @@
 
 // For choose_min_reducer
 #include <boost/graph/distributed/distributed_graph_utility.hpp>
+
+#include <boost/graph/visitors.hpp>
 
 
 
@@ -67,14 +71,28 @@ struct EdgeProperty
 //typedef property_map<BglGraph, EdgeProperty>::type    BglEdgeMap; 
 //
 
-typedef adjacency_list<vecS, distributedS<mpi_process_group, vecS>, undirectedS,
+//typedef adjacency_list<vecS, distributedS<mpi_process_group, vecS>, undirectedS,
+//        /* Vertex properties=*/
+//        property<vertex_index_t, int, 
+//        property<vertex_distance_t, int,
+//        property<vertex_color_t, boost::default_color_type> > >, 
+//        /* Edge properties */
+//        property<edge_weight_t, float> 
+//        > BglGraph;
+typedef adjacency_list<vecS, vecS, undirectedS,
         /* Vertex properties=*/
         property<vertex_index_t, int, 
-        property<vertex_distance_t, int> >, no_property >
-        BglGraph;
+        property<vertex_distance_t, int,
+        property<vertex_color_t, boost::default_color_type> > >, 
+        /* Edge properties */
+        property<edge_weight_t, float> 
+        > BglGraph;
 typedef graph_traits<BglGraph>::vertex_descriptor     BglVertex;
 typedef graph_traits<BglGraph>::edge_descriptor       BglEdge;
+typedef graph_traits<BglGraph>::out_edge_iterator     OutEdgeIter;
 typedef property_map<BglGraph, vertex_index_t>::type  BglVertexMap;
+typedef property_map<BglGraph, vertex_index_t>::type  BglVertexMap;
+typedef property_map<BglGraph, vertex_color_t>::type  BglColorMap;
 
 
 class Graph;
@@ -86,6 +104,8 @@ class GraphFactory: public Graph
 
     int GetVertexId(const int& index);
     void BFS(const int& );
+    void djkstra();
+    void GetNeighbors( std::vector<int>& );
 
   private:
     FileUtility *m_ptrFileUtility;
