@@ -5,8 +5,8 @@ Link Prediction
 
 TODO list:
 
-1. common frients
-2. dijkstra algorithm
+1. common friends
+2. dijkstra algorithm /* shortest path */
 3. random work algorithm
 4. classification algorithm
 
