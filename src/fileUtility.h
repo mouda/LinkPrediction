@@ -3,18 +3,33 @@
  * 
  * */
 #include <fstream>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <utility>
+#include <set>
+
+#include "utility.h"
 
 using namespace std;
 
 class FileUtility
 {
   public:
-    FileUtility( const string& inputFileName, const string& outputFileName );
+    FileUtility( const string& inputFileName, const string& outputFileName, 
+        const int& wordId);
     ~FileUtility();
 
-    void parseInput();
+    void ParseInput();
+    pair<int, int> GetEdgePair();
+    unsigned int GetVertex();
+    int GetVertexNum();
+
 
   private:
-    fstream m_inputFile;
-    fstream m_outputFile; 
+    ifstream m_inputFile;
+    ofstream m_outputFile; 
+    set<set<int> > m_edgeSet;
+
+    const int      m_wordId;
 };
