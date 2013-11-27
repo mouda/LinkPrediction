@@ -1,4 +1,5 @@
 CC=mpiCC
+#CC=mpic++.mpich2
 CFLAGS=
 MPI=1
 SOURCES=main.cpp utility.cpp socialSystem.cpp graph.cpp graphFactory.cpp \
@@ -25,10 +26,11 @@ BIN_PATH=../bin/
 all: linkPrediction
 
 linkPrediction: $(OBJECTS)
-	$(CC)  $^ $(CFLAGS) $(INCLUDE) $(LIB_PATH) -o $(BIN_PATH)$@ $(LIB_FLAGS) 
+	@echo Building $@
+	@-$(CC)  $^ $(CFLAGS) $(INCLUDE) $(LIB_PATH) -o $(BIN_PATH)$@ $(LIB_FLAGS) 
 
 %.o: %.cpp
-	$(CC)  $< $(CFLAGS) $(INCLUDE) $(LIB_PATH)  -c -o $@ $(LIB_FLAGS)
-
+	@echo Making $@
+	@-$(CC)  $< $(CFLAGS) $(INCLUDE) $(LIB_PATH)  -c -o $@ $(LIB_FLAGS)
 clean:
 	rm $(BIN_PATH)linkPrediction *.o
