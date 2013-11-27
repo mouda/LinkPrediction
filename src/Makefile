@@ -6,15 +6,15 @@ SOURCES=main.cpp utility.cpp socialSystem.cpp graph.cpp graphFactory.cpp \
 	attribute.cpp attributeFactory.cpp \
 	solver.cpp solverFactory.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
-#PREFIX=/home/share
-PREFIX=/opt
+PREFIX=/home/share
+#PREFIX=/opt
 INCLUDE=-I$(PREFIX)/armadillo39202/include/ \
 	-I$(PREFIX)/boost1550/include/ \
-	-I../lib/libsvm-3.17/
+	-I$(PREFIX)/libsvm-3.17/
 
 LIB_PATH=-L$(PREFIX)/armadillo39202/lib/ \
 	 -L$(PREFIX)/boost1550/lib \
-	 -L../lib/libsvm-3.17/
+	 -L$(PREFIX)/libsvm-3.17/
 
 #LIB_FLAGS=-lsvm -larmadillo  -lboost_regex -lboost_filesystem -lboost_system -lboost_graph -lboost_graph_parallel -lboost_serialization 
 LIB_FLAGS=-lsvm -larmadillo  -lboost_regex -lboost_filesystem -lboost_system -lboost_graph -lboost_graph_parallel -lboost_serialization -lboost_mpi 
