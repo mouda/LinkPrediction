@@ -5,13 +5,13 @@
 #include "utility.h"
 
 
-#include <boost/mpi.hpp>
+//#include <boost/mpi.hpp>
 
-// Enable PBGL interfaces to BGL algorithms
-#include <boost/graph/use_mpi.hpp>
-
-// Communicate via MPI
-#include <boost/graph/distributed/mpi_process_group.hpp>
+//// Enable PBGL interfaces to BGL algorithms
+//#include <boost/graph/use_mpi.hpp>
+//
+//// Communicate via MPI
+//#include <boost/graph/distributed/mpi_process_group.hpp>
 
 
 using namespace std;
@@ -23,8 +23,8 @@ int main( int argc, char* argv[] )
     cout << "Usage: [input] [output] [percentage]" << endl;
     return 1;
   }
-  boost::mpi::environment env(argc,argv);
-  boost::mpi::communicator world;
+//  boost::mpi::environment env(argc,argv);
+//  boost::mpi::communicator world;
 
   string inputFileName(argv[1]);
   string outputFileName(argv[2]);
@@ -34,6 +34,6 @@ int main( int argc, char* argv[] )
     return 1;
   }
 
-  SocialSystem(inputFileName, outputFileName, world.rank());
+  SocialSystem(inputFileName, outputFileName, 0);
   return 0;
 }

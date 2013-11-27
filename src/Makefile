@@ -1,4 +1,4 @@
-CC=mpiCC
+CC=g++
 #CC=mpic++.mpich2
 CFLAGS=
 MPI=1

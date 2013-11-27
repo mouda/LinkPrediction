@@ -13,6 +13,8 @@ SocialSystem::SocialSystem(const string& inputFileName,
   if ( m_worldId == 0) {
     cout << m_ptrGraph->GetVertexId(10) << endl;
   }
+  //m_ptrGraph->BFS(0);
+  m_ptrGraph->dijkstra(0);
 
   m_ptrAttribute =  new AttributeFactory;
   m_ptrProblem =    new ProblemFactory;
@@ -29,3 +31,4 @@ SocialSystem::~SocialSystem()
   delete m_ptrSolver;
 
 }
+

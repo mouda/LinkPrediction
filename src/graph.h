@@ -13,6 +13,8 @@ class Graph
     Graph();
     virtual ~Graph() = 0;
     virtual int GetVertexId(const int& ) = 0;
+    virtual void BFS(const int& id) = 0;
+    virtual void dijkstra(const int& startIdx) = 0;
     
   private:
 

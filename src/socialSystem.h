@@ -1,9 +1,9 @@
 #include <string>
 
-// Enable PBGL interfaces to BGL algorithms
-#include <boost/graph/use_mpi.hpp>
-// Communicate via MPI
-#include <boost/graph/distributed/mpi_process_group.hpp>
+//// Enable PBGL interfaces to BGL algorithms
+//#include <boost/graph/use_mpi.hpp>
+//// Communicate via MPI
+//#include <boost/graph/distributed/mpi_process_group.hpp>
 #include "graph.h"
 #include "attribute.h"
 #include "problem.h"

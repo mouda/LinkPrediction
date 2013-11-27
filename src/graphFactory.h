@@ -11,22 +11,22 @@
 
 /* parallel graph */
 
-// Enable PBGL interfaces to BGL algorithms
-#include <boost/graph/use_mpi.hpp>
-
-// Communicate via MPI
-#include <boost/graph/distributed/mpi_process_group.hpp>
+//// Enable PBGL interfaces to BGL algorithms
+//#include <boost/graph/use_mpi.hpp>
+//
+//// Communicate via MPI
+//#include <boost/graph/distributed/mpi_process_group.hpp>
 // Dijkstra's single-source shortest paths algorithm
 #include <boost/graph/dijkstra_shortest_paths.hpp>
 
 // Breadth-first search algorithm
 #include <boost/graph/breadth_first_search.hpp>
 
-// Distributed adjacency list
-#include <boost/graph/distributed/adjacency_list.hpp>
-
-// For choose_min_reducer
-#include <boost/graph/distributed/distributed_graph_utility.hpp>
+//// Distributed adjacency list
+//#include <boost/graph/distributed/adjacency_list.hpp>
+//
+//// For choose_min_reducer
+//#include <boost/graph/distributed/distributed_graph_utility.hpp>
 
 #include <boost/graph/visitors.hpp>
 
@@ -36,7 +36,7 @@
 #include "graph.h"
 
 using namespace boost;
-using boost::graph::distributed::mpi_process_group;
+//using boost::graph::distributed::mpi_process_group;
 
 struct VertexProperty 
 {
@@ -85,7 +85,7 @@ typedef adjacency_list<vecS, vecS, undirectedS,
         property<vertex_distance_t, int,
         property<vertex_color_t, boost::default_color_type> > >, 
         /* Edge properties */
-        property<edge_weight_t, float> 
+        property<edge_weight_t, int> 
         > BglGraph;
 typedef graph_traits<BglGraph>::vertex_descriptor     BglVertex;
 typedef graph_traits<BglGraph>::edge_descriptor       BglEdge;
@@ -93,6 +93,8 @@ typedef graph_traits<BglGraph>::out_edge_iterator     OutEdgeIter;
 typedef property_map<BglGraph, vertex_index_t>::type  BglVertexMap;
 typedef property_map<BglGraph, vertex_index_t>::type  BglVertexMap;
 typedef property_map<BglGraph, vertex_color_t>::type  BglColorMap;
+
+typedef BglGraph::edge_property_type BglEdgeWeight;
 
 
 class Graph;
@@ -103,8 +105,8 @@ class GraphFactory: public Graph
     ~GraphFactory();
 
     int GetVertexId(const int& index);
-    void BFS(const int& );
-    void djkstra();
+    void BFS(const int& startIdx);
+    void dijkstra( const int& startIdx);
     void GetNeighbors( std::vector<int>& );
 
   private:

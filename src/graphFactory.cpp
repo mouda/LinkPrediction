@@ -13,11 +13,19 @@ GraphFactory::GraphFactory(const string& inputFileName,
     pair<int, int> edgePair;
     edgePair = m_ptrFileUtility->GetEdgePair();
 
-    add_edge(vertex(edgePair.first,*m_ptrBglGraph), vertex(edgePair.second,*m_ptrBglGraph), *m_ptrBglGraph);
+    add_edge(
+        vertex(edgePair.first,*m_ptrBglGraph), 
+        vertex(edgePair.second,*m_ptrBglGraph),
+        BglEdgeWeight(1), 
+        *m_ptrBglGraph);
 
     while (edgePair.first >= 0 && edgePair.first < vertexNum ) {
       edgePair = m_ptrFileUtility->GetEdgePair();
-      add_edge(vertex(edgePair.first,*m_ptrBglGraph), vertex(edgePair.second,*m_ptrBglGraph), *m_ptrBglGraph);
+      add_edge(
+          vertex(edgePair.first,*m_ptrBglGraph), 
+          vertex(edgePair.second,*m_ptrBglGraph), 
+          BglEdgeWeight(1),
+          *m_ptrBglGraph);
     } 
   //}
   //synchronize(m_ptrBglGraph->process_group());
@@ -61,7 +69,7 @@ void GraphFactory::BFS( const int& index)
 
 }
 
-void GraphFactory::djkstra()
+void GraphFactory::dijkstra( const int& startIdx)
 {
   BglVertex start = vertex(0,*m_ptrBglGraph);
   // Compute shortest paths from vertex 0
