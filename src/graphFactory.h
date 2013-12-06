@@ -107,7 +107,8 @@ class GraphFactory: public Graph
     int GetVertexId(const int& index);
     void BFS(const int& startIdx);
     void dijkstra( const int& startIdx);
-    void GetNeighbors( std::vector<int>& );
+    void GetNeighbors( const int& idx, std::vector<int>& );
+    void PrintNeighbors( const int& idx );
 
   private:
     FileUtility *m_ptrFileUtility;

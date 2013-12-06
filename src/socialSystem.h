@@ -15,11 +15,14 @@ class SocialSystem
     SocialSystem(const string& inputFileName, const string& outputFileName, const int& in_wordID);
     ~SocialSystem();
 
+    void SetAttribute();
+
   private:
     Graph             *m_ptrGraph;
     Attribute         *m_ptrAttribute;
     Problem           *m_ptrProblem;
     Solver            *m_ptrSolver;
 
+    /* const values */
     const int         m_worldId;
 };

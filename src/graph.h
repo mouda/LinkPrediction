@@ -1,6 +1,7 @@
 #ifndef _GRAPH_
 #define _GRAPH_
 #include <string>
+#include <vector>
 
 #include "fileUtility.h"
 
@@ -13,6 +14,7 @@ class Graph
     Graph();
     virtual ~Graph() = 0;
     virtual int GetVertexId(const int& ) = 0;
+    virtual void GetNeighbors(const int&, vector<int>& neigbors) = 0;
     virtual void BFS(const int& id) = 0;
     virtual void dijkstra(const int& startIdx) = 0;
     

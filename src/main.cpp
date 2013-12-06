@@ -34,6 +34,7 @@ int main( int argc, char* argv[] )
     return 1;
   }
 
-  SocialSystem(inputFileName, outputFileName, 0);
+  SocialSystem mySocialSystem(inputFileName, outputFileName, 0);
+  mySocialSystem.SetAttribute();
   return 0;
 }
