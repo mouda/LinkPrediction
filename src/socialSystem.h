@@ -5,6 +5,7 @@
 //// Communicate via MPI
 //#include <boost/graph/distributed/mpi_process_group.hpp>
 #include "graph.h"
+#include "graphFactory.h"
 #include "attribute.h"
 #include "problem.h"
 #include "solver.h"
@@ -18,7 +19,7 @@ class SocialSystem
     void SetAttribute();
 
   private:
-    Graph             *m_ptrGraph;
+    GraphFactory      *m_ptrGraph;
     Attribute         *m_ptrAttribute;
     Problem           *m_ptrProblem;
     Solver            *m_ptrSolver;

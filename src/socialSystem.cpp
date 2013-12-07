@@ -11,7 +11,8 @@ SocialSystem::SocialSystem(const string& inputFileName,
     const int& in_worldID):m_worldId(in_worldID)
 {
   m_ptrGraph =      new GraphFactory(inputFileName, outputFileName, in_worldID);
-  m_ptrAttribute =  new AttributeFactory(m_ptrGraph, m_ptrGraph->GetVertexNum(), m_ptrGraph->GetEdgeNum());
+  m_ptrAttribute =  new AttributeFactory(m_ptrGraph->GetBglGraph(),
+      m_ptrGraph->GetVertexNum(), m_ptrGraph->GetEdgeNum());
   m_ptrProblem =    new ProblemFactory;
   m_ptrSolver =     new SolverFactory;
 }

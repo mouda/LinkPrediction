@@ -76,9 +76,10 @@ typedef graph_traits<BglGraph>::out_edge_iterator     OutEdgeIter;
 typedef property_map<BglGraph, vertex_index_t>::type  BglVertexMap;
 typedef property_map<BglGraph, vertex_index_t>::type  BglVertexMap;
 typedef property_map<BglGraph, vertex_color_t>::type  BglColorMap;
-
-typedef BglGraph::edge_property_type BglEdgeWeight;
-
+typedef BglGraph::edge_property_type                  BglEdgeWeight;
+typedef graph_traits<BglGraph>::edge_iterator         EdgeIter;
+typedef graph_traits<BglGraph>::vertex_iterator       VertexIter;
+typedef std::pair<EdgeIter,EdgeIter>                  EdgePair;
 
 class Graph;
 class GraphFactory: public Graph
@@ -90,6 +91,7 @@ class GraphFactory: public Graph
     int GetVertexId(const int& index);
     int GetVertexNum(){ return m_numVertex; }
     int GetEdgeNum(){ return m_numEdge; }
+    BglGraph * GetBglGraph(){ return m_ptrBglGraph; }
 
 
     void BFS(const int& startIdx);

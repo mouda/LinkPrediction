@@ -1,5 +1,5 @@
 #include "attribute.h"
-#include "graph.h"
+#include "graphFactory.h"
 
 #include <Eigen/Core>
 
@@ -7,13 +7,18 @@ class Attribute;
 class AttributeFactory: public Attribute
 {
   public:
-    AttributeFactory( Graph const * const ptrGraph, 
+    AttributeFactory( BglGraph const * const ptrGraph, 
         const int& numVertex, const int& numEdge);
     ~AttributeFactory();
-    void SetAttribute();
 
   private:
-    Graph const * const m_ptrGraph;
+    void GetNeighbors(const BglVertex& , std::vector<int>& vecNeighbors); 
+    int  GetNumCommNeighbors( const BglVertex&, 
+        const std::vector<int>& vecNeighbors);
+    void SetLinkedAttribute();
+    void SetUnLinkedAttribute();
+
+    BglGraph const * const m_ptrGraph;
     const int           m_numVertex;
     const int           m_numEdge;
     Eigen::RowVectorXi  m_vecAttri; 
