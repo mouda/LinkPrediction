@@ -2,7 +2,9 @@
 #include <utility>
 
 GraphFactory::GraphFactory(const string& inputFileName, 
-    const string& outputFileName, const int& wordId):m_wordId(wordId)
+    const string& outputFileName, const int& wordId):
+  m_wordId(wordId), m_numEdge(0)
+
 {
   m_ptrFileUtility = new FileUtility(inputFileName, outputFileName, wordId);
 
@@ -18,6 +20,7 @@ GraphFactory::GraphFactory(const string& inputFileName,
         vertex(edgePair.second,*m_ptrBglGraph),
         BglEdgeWeight(1), 
         *m_ptrBglGraph);
+    ++m_numEdge;
 
     while (edgePair.first >= 0 && edgePair.first < vertexNum ) {
       edgePair = m_ptrFileUtility->GetEdgePair();
@@ -29,6 +32,7 @@ GraphFactory::GraphFactory(const string& inputFileName,
             vertex(edgePair.second,*m_ptrBglGraph), 
             BglEdgeWeight(1),
             *m_ptrBglGraph);
+        ++m_numEdge;
       }
     } 
 
@@ -86,7 +90,6 @@ void GraphFactory::GetNeighbors( const int& idx, std::vector<int>& neighbors )
   for (tie(p, p_end) = out_edges(testVertex,*m_ptrBglGraph) ; p != p_end; ++p) {
     BglVertex sou = source(*p,*m_ptrBglGraph);
     BglVertex tar = target(*p,*m_ptrBglGraph);
-    //cout << indices[sou] << ' ' << indices[tar] << endl;
     neighbors.push_back(indices[tar]);
   }
 } 

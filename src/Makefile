@@ -12,7 +12,8 @@ PREFIX=/opt
 INCLUDE=-I$(PREFIX)/armadillo39202/include/ \
 	-I$(PREFIX)/boost1550/include/ \
 	-I$(PREFIX)/libsvm-3.17/ \
-	-I$(PREFIX)/openblas/include 
+	-I$(PREFIX)/openblas/include \
+	-I$(PREFIX)/eigen320/include/eigen3
 
 LIB_PATH=-L$(PREFIX)/armadillo39202/lib/ \
 	 -L$(PREFIX)/boost1550/lib \

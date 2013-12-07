@@ -89,6 +89,9 @@ class GraphFactory: public Graph
 
     int GetVertexId(const int& index);
     int GetVertexNum(){ return m_numVertex; }
+    int GetEdgeNum(){ return m_numEdge; }
+
+
     void BFS(const int& startIdx);
     void dijkstra( const int& startIdx);
     void GetNeighbors( const int& idx, std::vector<int>& );
@@ -97,9 +100,8 @@ class GraphFactory: public Graph
   private:
     FileUtility *m_ptrFileUtility;
     BglGraph    *m_ptrBglGraph;
-    int m_numVertex;
-
-
+    int         m_numVertex;
+    int         m_numEdge;
     const int   m_wordId;
 };
 
