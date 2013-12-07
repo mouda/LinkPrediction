@@ -41,9 +41,6 @@ GraphFactory::GraphFactory(const string& inputFileName,
     cout << GetVertexId(10) << endl;
   }
 #endif
-
-  
-
 }
 
 GraphFactory::~GraphFactory()

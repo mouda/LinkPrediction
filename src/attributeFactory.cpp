@@ -12,12 +12,12 @@ AttributeFactory::AttributeFactory( BglGraph const * const ptrGraph,
     << "m_numEdge: " << m_numEdge << endl;
 #endif
   /* set attribute(link) up to double of linkage */
-  m_vecAttri = Eigen::RowVectorXi::Zero(2*m_numEdge); 
+  //m_vecAttri = Eigen::RowVectorXi::Zero(2*m_numEdge); 
+  m_vecAttri.resize(2*m_numEdge);
   /* construct linked edges' attribute */
   SetLinkedAttribute();
   /* construct un-linked edges' attribute */
   SetUnLinkedAttribute();
-  
    
 }
 
