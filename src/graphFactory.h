@@ -62,25 +62,6 @@ struct EdgeProperty
 
 };
 
-
-//typedef adjacency_list<vecS, distributedS<mpi_process_group, vecS>, undirectedS,
-//        /* Vertex properties=*/
-//        VertexProperty, EdgeProperty>
-//        BglGraph;
-//typedef graph_traits<BglGraph>::vertex_descriptor     BglVertex;
-//typedef graph_traits<BglGraph>::edge_descriptor       BglEdge;
-//typedef property_map<BglGraph, VertexProperty>::type  BglVertexMap;
-//typedef property_map<BglGraph, EdgeProperty>::type    BglEdgeMap; 
-//
-
-//typedef adjacency_list<vecS, distributedS<mpi_process_group, vecS>, undirectedS,
-//        /* Vertex properties=*/
-//        property<vertex_index_t, int, 
-//        property<vertex_distance_t, int,
-//        property<vertex_color_t, boost::default_color_type> > >, 
-//        /* Edge properties */
-//        property<edge_weight_t, float> 
-//        > BglGraph;
 typedef adjacency_list<vecS, vecS, undirectedS,
         /* Vertex properties=*/
         property<vertex_index_t, int, 
@@ -107,6 +88,7 @@ class GraphFactory: public Graph
     ~GraphFactory();
 
     int GetVertexId(const int& index);
+    int GetVertexNum(){ return m_numVertex; }
     void BFS(const int& startIdx);
     void dijkstra( const int& startIdx);
     void GetNeighbors( const int& idx, std::vector<int>& );
@@ -115,6 +97,7 @@ class GraphFactory: public Graph
   private:
     FileUtility *m_ptrFileUtility;
     BglGraph    *m_ptrBglGraph;
+    int m_numVertex;
 
 
     const int   m_wordId;

@@ -7,6 +7,7 @@ GraphFactory::GraphFactory(const string& inputFileName,
   m_ptrFileUtility = new FileUtility(inputFileName, outputFileName, wordId);
 
   int vertexNum = m_ptrFileUtility->GetVertexNum();
+  m_numVertex = vertexNum;
   m_ptrBglGraph = new BglGraph(vertexNum);
   
     pair<int, int> edgePair;
