@@ -2,7 +2,7 @@ CC=g++
 #CC=mpic++.mpich2
 CFLAGS=
 MPI=1
-SOURCES=main.cpp utility.cpp socialSystem.cpp graph.cpp graphFactory.cpp \
+SOURCES=main.cpp utility.cpp socialSystem.cpp graphFactory.cpp \
 	fileUtility.cpp problem.cpp problemFactory.cpp \
 	attribute.cpp attributeFactory.cpp \
 	solver.cpp solverFactory.cpp

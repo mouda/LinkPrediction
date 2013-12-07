@@ -31,14 +31,11 @@
 //#include <boost/graph/distributed/distributed_graph_utility.hpp>
 
 #include <boost/graph/visitors.hpp>
-
-
-
-
-#include "graph.h"
+#include "fileUtility.h"
 
 using namespace boost;
 //using boost::graph::distributed::mpi_process_group;
+using std::string;
 
 struct VertexProperty 
 {
@@ -81,8 +78,7 @@ typedef graph_traits<BglGraph>::edge_iterator         EdgeIter;
 typedef graph_traits<BglGraph>::vertex_iterator       VertexIter;
 typedef std::pair<EdgeIter,EdgeIter>                  EdgePair;
 
-class Graph;
-class GraphFactory: public Graph
+class GraphFactory 
 {
   public:
     GraphFactory(const string& inputFileName, const string& outputFileName, const int& wordId);

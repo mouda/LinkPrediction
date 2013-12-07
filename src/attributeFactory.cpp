@@ -93,7 +93,10 @@ AttributeFactory::SetUnLinkedAttribute()
       if (!edge(*vp,*ivp,*m_ptrGraph).second) {
         lhsNeighbors.clear();
         GetNeighbors(*vp,lhsNeighbors);
+#ifdef DEBUG
         cout << GetNumCommNeighbors(*ivp,lhsNeighbors) << endl;
+#endif
+        m_vecAttri[m_numEdge+counter] = GetNumCommNeighbors(*ivp,lhsNeighbors);
         ++counter;
       }
     }

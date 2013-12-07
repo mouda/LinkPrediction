@@ -4,12 +4,12 @@
 //#include <boost/graph/use_mpi.hpp>
 //// Communicate via MPI
 //#include <boost/graph/distributed/mpi_process_group.hpp>
-#include "graph.h"
 #include "graphFactory.h"
 #include "attribute.h"
 #include "problem.h"
 #include "solver.h"
 
+using std::string;
 class SocialSystem 
 {
   public:
