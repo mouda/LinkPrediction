@@ -1,6 +1,8 @@
 #include "attributeFactory.h"
 
-AttributeFactory::AttributeFactory()
+
+AttributeFactory::AttributeFactory( Graph const * const ptrGraph):
+  m_ptrGraph(ptrGraph)
 {
 
 }

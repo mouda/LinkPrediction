@@ -3,8 +3,6 @@
  * 
  * */
 
-#ifndef _GRAPHFACTORY_
-#define _GRAPHFACTORY_ 
 #include <boost/graph/adjacency_list.hpp> 
 // for customizable graphs
 #include <boost/graph/directed_graph.hpp> 
@@ -120,5 +118,4 @@ class GraphFactory: public Graph
     const int   m_wordId;
 };
 
-#endif
 
