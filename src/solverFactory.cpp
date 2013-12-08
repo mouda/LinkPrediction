@@ -10,7 +10,7 @@ using std::string;
 SolverFactory::SolverFactory()
 {
   // default values
-  m_param.svm_type = ONE_CLASS;
+  m_param.svm_type = C_SVC;
   m_param.kernel_type = RBF;
   m_param.degree = 3;
   m_param.gamma = 0;	// 1/num_features

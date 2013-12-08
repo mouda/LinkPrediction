@@ -2,12 +2,12 @@
 #include <stdio.h>
 #include <vector>
 #include <algorithm>
-#include "solver.h"
+#include "linkPredictSolver.h"
 #define Malloc(type,n) (type *)malloc((n)*sizeof(type))
 
 using std::vector;
-class Solver;
-class SolverFactory: public Solver
+class LinkPredictSolver;
+class SolverFactory: public LinkPredictSolver
 {
   public:
     SolverFactory();

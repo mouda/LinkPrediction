@@ -8,7 +8,7 @@
 #include "attributeFactory.h"
 #include "attribute.h"
 #include "problem.h"
-#include "solver.h"
+#include "linkPredictSolver.h"
 
 using std::string;
 class SocialSystem 
@@ -23,7 +23,7 @@ class SocialSystem
     GraphFactory      *m_ptrGraph;
     AttributeFactory  *m_ptrAttributeFactory;
     Problem           *m_ptrProblem;
-    Solver            *m_ptrSolver;
+    LinkPredictSolver *m_ptrSolver;
 
     /* const values */
     const int         m_worldId;
