@@ -2,7 +2,8 @@
 
 CommomFriendsAttribute::CommomFriendsAttribute( BglGraph const * const ptrGraph, 
    const int& numVertex, const int& numEdge )
- :m_ptrGraph(ptrGraph), m_numVertex(numVertex), m_numEdge(numEdge) 
+ :m_ptrGraph(ptrGraph), m_numVertex(numVertex), m_numEdge(numEdge), 
+  m_maxCommNeighbors(0) 
 {
 
 }
@@ -21,6 +22,17 @@ CommomFriendsAttribute::GetAttributeByEdge( vector<int>& vecAttributes )
   SetLinkedAttribute(vecAttributes);
   /* construct un-linked edges' attribute */
   SetUnLinkedAttribute(vecAttributes);
+}
+
+void
+CommomFriendsAttribute::GetLabelByEdge( vector<int>& vecLabels)
+{
+  vecLabels.resize(2*m_numEdge);
+  vector<int>::iterator vecIter = vecLabels.begin();
+  for (int i = 0; i < m_numEdge; ++i) ++vecIter;
+  fill(vecLabels.begin(),vecIter,1);
+  ++vecIter;
+  fill(vecIter,vecLabels.end(),2);
 }
 
 void 

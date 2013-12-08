@@ -35,5 +35,7 @@ int main( int argc, char* argv[] )
   }
 
   SocialSystem mySocialSystem(inputFileName, outputFileName, 0);
+  mySocialSystem.SetRemovedEdgeRatio(5.0);
+  mySocialSystem.ReportCorrectRatio();
   return 0;
 }

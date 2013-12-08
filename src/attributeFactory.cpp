@@ -14,17 +14,23 @@ AttributeFactory::AttributeFactory( BglGraph const * const ptrGraph,
 
 AttributeFactory::~AttributeFactory()
 {
-
+  for (int i = 0; i < m_vecPtrAttributes.size(); i++) {
+    delete m_vecPtrAttributes[i];
+  }
 }
 
-vector<vector<int> >& 
+const vector<vector<int> >& 
 AttributeFactory::GetAttributes()
 {
-  m_matAttri.resize(1,vector<int>(2*m_numEdge));
-  m_vecPtrAttributes[0]->GetAttributeByEdge(m_matAttri[0]);
+  m_matAttri.resize(2,vector<int>(2*m_numEdge));
+  m_vecPtrAttributes[0]->GetLabelByEdge(m_matAttri[0]); //index 0 is labels
+  m_vecPtrAttributes[0]->GetAttributeByEdge(m_matAttri[1]); // attributes start from 1
+
+#ifdef DEBUG
   for (int i = 0; i < 2*m_numEdge; i++) {
     cout << m_matAttri[0][i] << endl;
   }
+#endif
   return m_matAttri;
 }
 

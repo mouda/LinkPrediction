@@ -8,6 +8,7 @@ class Attribute
   public:
     Attribute();
     virtual ~Attribute();
+    virtual void GetLabelByEdge( vector<int>& ) = 0;
     virtual void GetAttributeByEdge( vector<int>& ) = 0;
   private:
 };

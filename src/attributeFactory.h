@@ -13,7 +13,7 @@ class AttributeFactory
         const int& numVertex, const int& numEdge);
     ~AttributeFactory();
 
-    vector<vector<int> >& GetAttributes();
+    const vector<vector<int> >& GetAttributes();
 
   private:
     BglGraph const * const  m_ptrGraph;

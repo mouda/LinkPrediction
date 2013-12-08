@@ -7,6 +7,8 @@ public:
   CommomFriendsAttribute(BglGraph const * const ptrGraph, 
       const int& numVertex, const int& numEdge);
   virtual ~CommomFriendsAttribute ();
+  /* Common Interface */
+  void GetLabelByEdge( vector<int>& );
   void GetAttributeByEdge( vector<int>& );
 
 private:
@@ -17,9 +19,11 @@ private:
   int  GetNumCommNeighbors(const BglVertex& selfVertex, 
       const vector<int>& vecOtherNeighbors);
 
-  /* data members */
+  /* constant data members */
   BglGraph const * const  m_ptrGraph;  
   const int               m_numVertex;
   const int               m_numEdge;
+  /* data members */
+  int                     m_maxCommNeighbors;
 };
 

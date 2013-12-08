@@ -14,8 +14,8 @@ SocialSystem::SocialSystem(const string& inputFileName,
   m_ptrAttributeFactory = new AttributeFactory(m_ptrGraph->GetBglGraph(), 
       m_ptrGraph->GetVertexNum(), m_ptrGraph->GetEdgeNum());
   m_ptrAttributeFactory->GetAttributes();
-  m_ptrSolver =           new SolverFactory;
   m_ptrProblem =          new ProblemFactory;
+  m_ptrSolver =           new SolverFactory;
 }
 
 SocialSystem::~SocialSystem()
@@ -26,3 +26,17 @@ SocialSystem::~SocialSystem()
   delete m_ptrSolver;
 }
 
+void
+SocialSystem::SetRemovedEdgeRatio( const double& numOfRemovedEdges  )
+{
+  m_ptrSolver->SetProblem();
+}
+
+double
+SocialSystem::ReportCorrectRatio()
+{
+  m_ptrSolver->SetTrainingInstance(m_ptrAttributeFactory->GetAttributes());
+  m_ptrSolver->Train();
+  m_ptrSolver->Inference();
+  return 0.0;
+}
