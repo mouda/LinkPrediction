@@ -4,7 +4,7 @@ CFLAGS=
 MPI=1
 SOURCES=main.cpp utility.cpp socialSystem.cpp graphFactory.cpp \
 	fileUtility.cpp problem.cpp problemFactory.cpp \
-	attribute.cpp attributeFactory.cpp \
+	attribute.cpp attributeFactory.cpp  commomFriendsAttribute.cpp \
 	solver.cpp solverFactory.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 #PREFIX=/home/share

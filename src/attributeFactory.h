@@ -1,27 +1,26 @@
-#include "attribute.h"
+#ifndef _ATTRIBUTEFACTORY_
+#define _ATTRIBUTEFACTORY_
 #include "graphFactory.h"
+#include "attribute.h"
 
 #include <Eigen/Core>
 
 class Attribute;
-class AttributeFactory: public Attribute
+class AttributeFactory
 {
   public:
     AttributeFactory( BglGraph const * const ptrGraph, 
         const int& numVertex, const int& numEdge);
     ~AttributeFactory();
-    vector<int>& GetAttributes();
+
+    vector<vector<int> >& GetAttributes();
 
   private:
-    void GetNeighbors(const BglVertex& , std::vector<int>& vecNeighbors); 
-    int  GetNumCommNeighbors( const BglVertex&, 
-        const std::vector<int>& vecNeighbors);
-    void SetLinkedAttribute();
-    void SetUnLinkedAttribute();
-
-    BglGraph const * const m_ptrGraph;
-    const int           m_numVertex;
-    const int           m_numEdge;
-    //Eigen::RowVectorXi  m_vecAttri; 
-    vector<int>         m_vecAttri;
+    BglGraph const * const  m_ptrGraph;
+    const int               m_numVertex;
+    const int               m_numEdge;
+    vector<Attribute*>      m_vecPtrAttributes;
+    vector<vector<int> >    m_matAttri;
 };
+
+#endif
