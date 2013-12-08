@@ -8,13 +8,13 @@ public:
       const int& numVertex, const int& numEdge);
   virtual ~CommomFriendsAttribute ();
   /* Common Interface */
-  void GetLabelByEdge( vector<int>& );
-  void GetAttributeByEdge( vector<int>& );
+  void GetLabelByEdge( vector<double>& );
+  void GetAttributeByEdge( vector<double>& );
 
 private:
   /* private functions */
-  void SetLinkedAttribute( vector<int>& vecAttributes);
-  void SetUnLinkedAttribute( vector<int>& vecAttributes);
+  void SetLinkedAttribute( vector<double>& vecAttributes);
+  void SetUnLinkedAttribute( vector<double>& vecAttributes);
   void GetNeighbors(const BglVertex& selfVertex, vector<int>& vecNeighbors);
   int  GetNumCommNeighbors(const BglVertex& selfVertex, 
       const vector<int>& vecOtherNeighbors);
@@ -24,6 +24,6 @@ private:
   const int               m_numVertex;
   const int               m_numEdge;
   /* data members */
-  int                     m_maxCommNeighbors;
+  double                  m_maxCommNeighbors;
 };
 

@@ -13,7 +13,7 @@ class SolverFactory: public Solver
     SolverFactory();
     ~SolverFactory();
 
-    void SetTrainingInstance( const vector<vector<int> >& instances );
+    void SetTrainingInstance( const vector<vector<double> >& instances );
     void Train();
     void SetProblem();
     void Inference();

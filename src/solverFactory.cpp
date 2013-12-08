@@ -10,7 +10,7 @@ using std::string;
 SolverFactory::SolverFactory()
 {
   // default values
-  m_param.svm_type = C_SVC;
+  m_param.svm_type = ONE_CLASS;
   m_param.kernel_type = RBF;
   m_param.degree = 3;
   m_param.gamma = 0;	// 1/num_features
@@ -32,10 +32,12 @@ SolverFactory::SolverFactory()
 
 SolverFactory::~SolverFactory()
 {
-  free(m_prob.y);
-  free(m_prob.x);
-  free(m_x_space);
-
+//  free(m_prob.y);
+//  free(m_prob.x);
+//  free(m_x_space);
+  delete [] m_prob.y;
+  delete [] m_prob.x;
+  delete [] m_x_space;
 }
 
 /* @brief    Setup the training instance
@@ -50,16 +52,19 @@ SolverFactory::~SolverFactory()
  * @reval
  */
 void
-SolverFactory::SetTrainingInstance(const vector<vector<int> >& instances )
+SolverFactory::SetTrainingInstance(const vector<vector<double> >& instances )
 {
   int numOfElements   = instances.size() * instances[0].size();//need one more space to store -1
   int numOfInstances  = instances[0].size() - 1;
   int numOfAttributes = instances.size() - 1;
 
   m_prob.l = instances[0].size();
-  m_prob.y = Malloc(double, m_prob.l); 
-  m_prob.x = Malloc(struct svm_node *, m_prob.l);
-  m_x_space = Malloc(struct svm_node, numOfElements);
+//  m_prob.y = Malloc(double, m_prob.l); 
+//  m_prob.x = Malloc(struct svm_node *, m_prob.l);
+//  m_x_space = Malloc(struct svm_node, numOfElements);
+  m_prob.y = new double [m_prob.l];
+  m_prob.x = new struct svm_node * [m_prob.l];
+  m_x_space = new struct svm_node [numOfElements];
   
   /*  */
   int elements, max_index, inst_max_index;
@@ -69,12 +74,11 @@ SolverFactory::SetTrainingInstance(const vector<vector<int> >& instances )
     
     inst_max_index = -1; // strtol gives 0 if wrong format, and precomputed kernel has <index> start from 0
     m_prob.x[i] = &m_x_space[j];
-
     m_prob.y[i] = instances[0][i]; 
     for(int k = 1; k < instances.size(); ++k) {
       m_x_space[j].index = k;
       inst_max_index = m_x_space[j].index;
-      m_x_space[j].value = static_cast<double>(instances[k][i]);
+      m_x_space[j].value = instances[k][i];
       ++j;
     }
     if(inst_max_index > max_index)

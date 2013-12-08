@@ -9,7 +9,7 @@ class Solver
   public:
     Solver();
     ~Solver();
-    virtual void SetTrainingInstance( const vector<vector<int> >& ) = 0;
+    virtual void SetTrainingInstance( const vector<vector<double> >& ) = 0;
     virtual void Train() = 0;
     virtual void SetProblem() = 0;
     virtual void Inference() = 0;

@@ -13,14 +13,14 @@ class AttributeFactory
         const int& numVertex, const int& numEdge);
     ~AttributeFactory();
 
-    const vector<vector<int> >& GetAttributes();
+    const vector<vector<double> >& GetAttributes();
 
   private:
     BglGraph const * const  m_ptrGraph;
     const int               m_numVertex;
     const int               m_numEdge;
     vector<Attribute*>      m_vecPtrAttributes;
-    vector<vector<int> >    m_matAttri;
+    vector<vector<double> > m_matAttri;
 };
 
 #endif

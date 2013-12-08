@@ -1,4 +1,5 @@
 #include "commomFriendsAttribute.h"
+#include <limits.h>
 
 CommomFriendsAttribute::CommomFriendsAttribute( BglGraph const * const ptrGraph, 
    const int& numVertex, const int& numEdge )
@@ -14,7 +15,7 @@ CommomFriendsAttribute::~CommomFriendsAttribute()
 }
 
 void
-CommomFriendsAttribute::GetAttributeByEdge( vector<int>& vecAttributes )
+CommomFriendsAttribute::GetAttributeByEdge( vector<double>& vecAttributes )
 {
   /* set attribute(link) up to double of linkage */
   vecAttributes.resize(2*m_numEdge);
@@ -22,13 +23,17 @@ CommomFriendsAttribute::GetAttributeByEdge( vector<int>& vecAttributes )
   SetLinkedAttribute(vecAttributes);
   /* construct un-linked edges' attribute */
   SetUnLinkedAttribute(vecAttributes);
+  /* normalize to 0.0 ~ 1.0 */
+  for (int i = 0; i < vecAttributes.size(); i++) {
+    vecAttributes[i] = vecAttributes[i] / m_maxCommNeighbors;
+  }
 }
 
 void
-CommomFriendsAttribute::GetLabelByEdge( vector<int>& vecLabels)
+CommomFriendsAttribute::GetLabelByEdge( vector<double>& vecLabels)
 {
   vecLabels.resize(2*m_numEdge);
-  vector<int>::iterator vecIter = vecLabels.begin();
+  vector<double>::iterator vecIter = vecLabels.begin();
   for (int i = 0; i < m_numEdge; ++i) ++vecIter;
   fill(vecLabels.begin(),vecIter,1);
   ++vecIter;
@@ -67,7 +72,7 @@ CommomFriendsAttribute::GetNumCommNeighbors(const BglVertex& selfVertex,
 }
 
 void
-CommomFriendsAttribute::SetLinkedAttribute( vector<int>& vecAttributes )
+CommomFriendsAttribute::SetLinkedAttribute( vector<double>& vecAttributes )
 {
   /* edge iterator */
   EdgeIter ep, ep_end;
@@ -75,6 +80,7 @@ CommomFriendsAttribute::SetLinkedAttribute( vector<int>& vecAttributes )
   BglVertexMap indices = get( vertex_index , *m_ptrGraph);
   vector<int> lhsNeighbor;
   int idx = 0;
+  double maxNeighbors = 0.0;
   for (tie(ep,ep_end) = edges(*m_ptrGraph); ep != ep_end; ++ep) {
     u = source(*ep,*m_ptrGraph);
     v = target(*ep,*m_ptrGraph);
@@ -83,29 +89,38 @@ CommomFriendsAttribute::SetLinkedAttribute( vector<int>& vecAttributes )
 #ifdef DEBUG
     cout << lhsNeighbor.size() <<' ' <<GetNumCommNeighbors(v,lhsNeighbor) << endl;
 #endif
-    vecAttributes[idx] = GetNumCommNeighbors(v,lhsNeighbor);
+    vecAttributes[idx] = (double)GetNumCommNeighbors(v,lhsNeighbor);
+    if (vecAttributes[idx] > maxNeighbors) {
+      maxNeighbors = vecAttributes[idx];
+    }
     ++idx;
   }
+  m_maxCommNeighbors = maxNeighbors;
 }
 
 void 
-CommomFriendsAttribute::SetUnLinkedAttribute( vector<int>& vecAttributes )
+CommomFriendsAttribute::SetUnLinkedAttribute( vector<double>& vecAttributes )
 {
   VertexIter vp, vp_end, ivp, ivp_end;
   OutEdgeIter ep, ep_end;
   vector<int> lhsNeighbors;
   int counter = 0;
+  bool exitLoop = false;
   for (tie(vp, vp_end) = vertices(*m_ptrGraph); vp != vp_end; ++vp) {
+    if(exitLoop) break;
     for (tie(ivp, ivp_end) = vertices(*m_ptrGraph); ivp != ivp_end; ++ivp) {
       if (*vp == *ivp ) continue; 
-      if (counter == m_numVertex) break; 
+      if (counter == m_numEdge) {
+        exitLoop = true;
+        break; 
+      }
       if (!edge(*vp,*ivp,*m_ptrGraph).second) {
         lhsNeighbors.clear();
         GetNeighbors(*vp,lhsNeighbors);
 #ifdef DEBUG
         cout << GetNumCommNeighbors(*ivp,lhsNeighbors) << endl;
 #endif
-        vecAttributes[m_numEdge+counter] = GetNumCommNeighbors(*ivp,lhsNeighbors);
+        vecAttributes[m_numEdge+counter] = (double)GetNumCommNeighbors(*ivp,lhsNeighbors);
         ++counter;
       }
     }
