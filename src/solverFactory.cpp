@@ -7,7 +7,8 @@ using std::cerr;
 using std::endl;
 using std::string;
 
-SolverFactory::SolverFactory()
+SolverFactory::SolverFactory( const string& modelFileName)
+  :m_modelFileName(modelFileName)
 {
   // default values
   m_param.svm_type = C_SVC;

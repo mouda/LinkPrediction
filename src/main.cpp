@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 
 #include "socialSystem.h"
 #include "utility.h"
@@ -19,8 +20,8 @@ using namespace std;
 int main( int argc, char* argv[] )
 {
 
-  if ( argc != 4 ) {
-    cout << "Usage: [input] [output] [percentage]" << endl;
+  if ( argc != 5 ) {
+    cout << "Usage: [input] [output] [percentage] [train/inference]" << endl;
     return 1;
   }
 //  boost::mpi::environment env(argc,argv);
@@ -28,6 +29,12 @@ int main( int argc, char* argv[] )
 
   string inputFileName(argv[1]);
   string outputFileName(argv[2]);
+  string strEdgeRemoveRatio(argv[3]);
+  string strFlag(argv[4]);
+  stringstream ss;
+  double valEdgeRemoveRatio = 0;
+  ss << strEdgeRemoveRatio;
+  ss >> valEdgeRemoveRatio;
 
   if (!FileExist(inputFileName)) {
     cerr << "Input file doesn't exist" << endl;
@@ -35,7 +42,15 @@ int main( int argc, char* argv[] )
   }
 
   SocialSystem mySocialSystem(inputFileName, outputFileName, 0);
-  mySocialSystem.SetRemovedEdgeRatio(5.0);
-  mySocialSystem.ReportCorrectRatio();
+  
+  if (strFlag == "train") {
+    mySocialSystem.Train();
+  }
+  else if (strFlag == "inference") {
+    if (!FileExist("model.mod")) {
+      cerr << "Error: model file doesn't exist" << endl;
+    } 
+    mySocialSystem.ReportCorrectRatio();
+  }
   return 0;
 }

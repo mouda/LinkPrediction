@@ -1,14 +1,14 @@
 CC=g++
 #CC=mpic++.mpich2
-CFLAGS=-O3
+CFLAGS=
 MPI=1
 SOURCES=main.cpp utility.cpp socialSystem.cpp graphFactory.cpp \
 	fileUtility.cpp problem.cpp problemFactory.cpp \
 	attribute.cpp attributeFactory.cpp  commomFriendsAttribute.cpp \
 	linkPredictSolver.cpp solverFactory.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
-#PREFIX=/home/share
-PREFIX=/opt
+PREFIX=/home/share
+#PREFIX=/opt
 INCLUDE=-I$(PREFIX)/armadillo39202/include/ \
 	-I$(PREFIX)/boost1550/include/ \
 	-I$(PREFIX)/libsvm-3.17/ \

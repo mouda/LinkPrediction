@@ -15,8 +15,9 @@ class SocialSystem
   public:
     SocialSystem(const string& inputFileName, const string& outputFileName, const int& in_wordID);
     ~SocialSystem();
-    void SetRemovedEdgeRatio( const double& numOfRemovedEdges );
     double ReportCorrectRatio();
+    void Train();
+    void SetRemovedEdgeRatio( const double& edgeRemovedRatio );
 
   private:
     GraphFactory      *m_ptrGraph;
