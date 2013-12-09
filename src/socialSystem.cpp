@@ -14,7 +14,8 @@ SocialSystem::SocialSystem(const string& inputFileName,
   m_ptrAttributeFactory = new AttributeFactory(m_ptrGraph->GetBglGraph(), 
       m_ptrGraph->GetVertexNum(), m_ptrGraph->GetEdgeNum());
   m_ptrAttributeFactory->GetAttributes();
-  m_ptrProblem =          new ProblemFactory;
+  m_ptrProblemFactory =   new ProblemFactory(m_ptrGraph->GetBglGraph(), 
+      m_ptrGraph->GetVertexNum(), m_ptrGraph->GetEdgeNum());
   m_ptrSolver =           new SolverFactory;
 }
 
@@ -22,7 +23,7 @@ SocialSystem::~SocialSystem()
 {
   delete m_ptrGraph;
   delete m_ptrAttributeFactory;
-  delete m_ptrProblem;
+  delete m_ptrProblemFactory;
   delete m_ptrSolver;
 }
 

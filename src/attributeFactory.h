@@ -13,6 +13,8 @@ class AttributeFactory
         const int& numVertex, const int& numEdge);
     ~AttributeFactory();
 
+    void SetLinkedInstancePair();
+    void SetUnLinkedInstancePair();
     const vector<vector<double> >& GetAttributes();
 
   private:
@@ -21,6 +23,10 @@ class AttributeFactory
     const int               m_numEdge;
     vector<Attribute*>      m_vecPtrAttributes;
     vector<vector<double> > m_matAttri;
+
+    /* for unified attributed generation */
+    vector<BglVertexPair>   m_vecLinkedPair;
+    vector<BglVertexPair>   m_vecUnLinkedPair;
 };
 
 #endif

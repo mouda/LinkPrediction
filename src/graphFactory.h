@@ -77,6 +77,8 @@ typedef BglGraph::edge_property_type                  BglEdgeWeight;
 typedef graph_traits<BglGraph>::edge_iterator         EdgeIter;
 typedef graph_traits<BglGraph>::vertex_iterator       VertexIter;
 typedef std::pair<EdgeIter,EdgeIter>                  EdgePair;
+// for attribute size control
+typedef std::pair<BglVertex,BglVertex>                BglVertexPair; 
 
 class GraphFactory 
 {

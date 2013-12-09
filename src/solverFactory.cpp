@@ -20,7 +20,7 @@ SolverFactory::SolverFactory()
   m_param.C = 1;
   m_param.eps = 1e-3;
   m_param.p = 0.1;
-  m_param.shrinking = 1;
+  m_param.shrinking = 0; //default
   m_param.probability = 0;
   m_param.nr_weight = 0;
   m_param.weight_label = NULL;

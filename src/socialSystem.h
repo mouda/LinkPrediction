@@ -6,8 +6,7 @@
 //#include <boost/graph/distributed/mpi_process_group.hpp>
 #include "graphFactory.h"
 #include "attributeFactory.h"
-#include "attribute.h"
-#include "problem.h"
+#include "problemFactory.h"
 #include "linkPredictSolver.h"
 
 using std::string;
@@ -22,7 +21,7 @@ class SocialSystem
   private:
     GraphFactory      *m_ptrGraph;
     AttributeFactory  *m_ptrAttributeFactory;
-    Problem           *m_ptrProblem;
+    ProblemFactory    *m_ptrProblemFactory;
     LinkPredictSolver *m_ptrSolver;
 
     /* const values */
