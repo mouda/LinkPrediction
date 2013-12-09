@@ -1,10 +1,9 @@
 #include "fileUtility.h"
 
-FileUtility::FileUtility( const string& m_inputFileName, const string& m_outputFileName, const int& wordId):
+FileUtility::FileUtility( const string& m_inputFileName, const int& wordId):
   m_wordId(wordId)
 {
   m_inputFile.open(m_inputFileName.c_str());
-  m_outputFile.open(m_outputFileName.c_str()); 
 
 #ifdef DEBUG
   string s;
@@ -36,7 +35,6 @@ FileUtility::FileUtility( const string& m_inputFileName, const string& m_outputF
 FileUtility::~FileUtility()
 {
   m_inputFile.close();
-  m_outputFile.close();
 }
 
 void

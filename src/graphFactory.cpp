@@ -6,7 +6,7 @@ GraphFactory::GraphFactory(const string& inputFileName,
   m_wordId(wordId), m_numEdge(0)
 
 {
-  m_ptrFileUtility = new FileUtility(inputFileName, outputFileName, wordId);
+  m_ptrFileUtility = new FileUtility(inputFileName, wordId);
 
   int vertexNum = m_ptrFileUtility->GetVertexNum();
   m_numVertex = vertexNum;

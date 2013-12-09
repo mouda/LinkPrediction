@@ -6,6 +6,7 @@
 #include <Eigen/Core>
 #include <Eigen/SparseCore>
 #include "problem.h"
+#include "fileUtility.h"
 #include "attribute.h"
 #include "graphFactory.h"
 
@@ -24,6 +25,7 @@ class ProblemFactory
     ~ProblemFactory();
 
     const vector<vector<double> >& GetProblemAttributes(const double& edgeRemovedRatio );
+    const vector<vector<double> >& GetProblemAttributesByFile( const string& testFileName);
 
   private:
     /* private methods */
@@ -34,6 +36,7 @@ class ProblemFactory
 
     /* constant data members */
     BglGraph const * const  m_ptrGraph;  
+    FileUtility             *m_ptrFileUtility; 
     const int               m_numVertex;
     const int               m_numEdge;
     int                     m_numDiscardEdge;

@@ -45,7 +45,6 @@ int main( int argc, char* argv[] )
   SocialSystem mySocialSystem(inputFileName, outputFileName, 0);
   
   vector<string> flagStrings = split(strFlag,':');
-  cout << flagStrings[0] << endl;
   if (flagStrings[0] == "train") {
     mySocialSystem.Train();
   }
@@ -53,7 +52,9 @@ int main( int argc, char* argv[] )
     if (!FileExist(outputFileName)) {
       cerr << "Error: model file doesn't exist" << endl;
     } 
-    cout << flagStrings[1] << endl; 
+    if (!FileExist(flagStrings[1])) {
+      cerr << "Error: testing file doesn't exist" << endl;
+    } 
     mySocialSystem.ReportCorrectRatio(flagStrings[1]);
   }
   return 0;

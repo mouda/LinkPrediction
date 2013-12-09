@@ -2,6 +2,9 @@
  * this module is used for handle file
  * 
  * */
+#ifndef _FILEUTILITY_
+#define _FILEUTILITY_
+
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -16,8 +19,7 @@ using namespace std;
 class FileUtility
 {
   public:
-    FileUtility( const string& inputFileName, const string& outputFileName, 
-        const int& wordId);
+    FileUtility( const string& inputFileName, const int& wordId);
     ~FileUtility();
 
     void ParseInput();
@@ -28,8 +30,8 @@ class FileUtility
 
   private:
     ifstream m_inputFile;
-    ofstream m_outputFile; 
     set<set<int> > m_edgeSet;
 
     const int      m_wordId;
 };
+#endif

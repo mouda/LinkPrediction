@@ -21,6 +21,13 @@ ProblemFactory::GetProblemAttributes(const double& edgeRemovedRatio )
   SetUnLinkedPair();
   return m_matAttri;
 }
+const vector<vector<double> >&
+ProblemFactory::GetProblemAttributesByFile( const string& testFileName)
+{
+  m_ptrFileUtility = new FileUtility(testFileName,0);
+
+  delete m_ptrFileUtility;
+}
 
 void
 ProblemFactory::SetProblemPairsByRatio( const double& ratio)
