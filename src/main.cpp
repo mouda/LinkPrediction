@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include <sstream>
 
 #include "socialSystem.h"
@@ -21,7 +22,7 @@ int main( int argc, char* argv[] )
 {
 
   if ( argc != 5 ) {
-    cout << "Usage: [input] [output] [percentage] [train/inference]" << endl;
+    cout << "Usage: [input] [output] [percentage] [train|inference:<test file>]" << endl;
     return 1;
   }
 //  boost::mpi::environment env(argc,argv);
@@ -43,14 +44,17 @@ int main( int argc, char* argv[] )
 
   SocialSystem mySocialSystem(inputFileName, outputFileName, 0);
   
-  if (strFlag == "train") {
+  vector<string> flagStrings = split(strFlag,':');
+  cout << flagStrings[0] << endl;
+  if (flagStrings[0] == "train") {
     mySocialSystem.Train();
   }
-  else if (strFlag == "inference") {
-    if (!FileExist("model.mod")) {
+  else if (flagStrings[0] == "inference") {
+    if (!FileExist(outputFileName)) {
       cerr << "Error: model file doesn't exist" << endl;
     } 
-    mySocialSystem.ReportCorrectRatio();
+    cout << flagStrings[1] << endl; 
+    mySocialSystem.ReportCorrectRatio(flagStrings[1]);
   }
   return 0;
 }

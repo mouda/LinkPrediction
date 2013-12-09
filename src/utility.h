@@ -7,6 +7,9 @@
 
 bool FileExist( const std::string& Name);
 
+std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems);
+
+std::vector<std::string> split(const std::string &s, char delim); 
 /* file operations */
 
 std::istream& Ignoreline(std::ifstream& in, std::ifstream::pos_type& pos);

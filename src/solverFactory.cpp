@@ -111,14 +111,13 @@ SolverFactory::SetTrainingInstance(const vector<vector<double> >& instances )
 void
 SolverFactory::Train()
 {
-  string modelFileName = "model.mod";
   if(m_cross_validation) {
     do_cross_validation();
   }
   else {
     m_model = svm_train(&m_prob,&m_param);
-    if(svm_save_model(modelFileName.c_str(),m_model)) {
-      fprintf(stderr, "can't save model to file %s\n", modelFileName.c_str());
+    if(svm_save_model(m_modelFileName.c_str(),m_model)) {
+      fprintf(stderr, "can't save model to file %s\n", m_modelFileName.c_str());
       exit(1);
     }
     svm_free_and_destroy_model(&m_model);
@@ -132,7 +131,7 @@ SolverFactory::SetProblem()
 }
 
 void
-SolverFactory::Inference()
+SolverFactory::Inference( const string& testFileName )
 {
 
 }

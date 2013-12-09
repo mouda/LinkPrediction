@@ -41,8 +41,8 @@ SocialSystem::Train()
   m_ptrSolver->Train();
 }
 double
-SocialSystem::ReportCorrectRatio()
+SocialSystem::ReportCorrectRatio( const string& testFileName)
 {
-  m_ptrSolver->Inference();
+  m_ptrSolver->Inference(testFileName);
   return 0.0;
 }
