@@ -1,16 +1,21 @@
 #include "problemFactory.h"
+#include "commomFriendsAttribute.h"
 
 
 ProblemFactory::ProblemFactory(BglGraph const * const ptrGraph, 
     const int& numVertex, const int& numEdge)
   :m_ptrGraph(ptrGraph), m_numVertex(numVertex), m_numEdge(numEdge) 
 {
-
+  Attribute * ptrAttri = 
+    new CommomFriendsAttribute(m_ptrGraph, m_numVertex, m_numEdge);
+  m_vecPtrAttributes.push_back(ptrAttri);
 }
 
 ProblemFactory::~ProblemFactory()
 {
-
+  for (int i = 0; i < m_vecPtrAttributes.size(); i++) {
+    delete m_vecPtrAttributes[i];
+  }
 }
 
 const vector<vector<double> >&
@@ -25,8 +30,24 @@ const vector<vector<double> >&
 ProblemFactory::GetProblemAttributesByFile( const string& testFileName)
 {
   m_ptrFileUtility = new FileUtility(testFileName,0);
-
+  int vertexNum = m_ptrFileUtility->GetVertexNum();
+  pair<int, int> edgePair;
+  m_vecTestPair.clear();
+  edgePair = m_ptrFileUtility->GetEdgePair();
+  m_vecTestPair.push_back(make_pair(vertex(edgePair.first, *m_ptrGraph), 
+        vertex(edgePair.second, *m_ptrGraph)
+        ));
+  while (edgePair.first >= 0 && edgePair.first < vertexNum ) {
+    edgePair = m_ptrFileUtility->GetEdgePair();
+    m_vecTestPair.push_back(make_pair(vertex(edgePair.first, *m_ptrGraph), 
+          vertex(edgePair.second, *m_ptrGraph)
+          ));
+  } 
+  m_matAttri.resize(2,vector<double>(m_vecTestPair.size()));
+  m_vecPtrAttributes[0]->GetProblemLabelByEdge(m_matAttri[0]); 
+  m_vecPtrAttributes[0]->GetProblemAttriByEdge(m_matAttri[1], m_vecTestPair ); 
   delete m_ptrFileUtility;
+  return m_matAttri;
 }
 
 void

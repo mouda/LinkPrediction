@@ -14,7 +14,7 @@ class LinkPredictSolver
     virtual void SetTrainingInstance( const vector<vector<double> >& ) = 0;
     virtual void Train() = 0;
     virtual void SetProblem() = 0;
-    virtual void Inference( const string& ) = 0;
+    virtual void Inference( const vector<vector<double> >&) = 0;
   private:
 
 };

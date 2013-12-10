@@ -43,6 +43,7 @@ class ProblemFactory
     vector<Attribute*>      m_vecPtrAttributes;
     vector<vector<double> > m_matAttri;
 
+    vector<BglVertexPair>   m_vecTestPair;
     //map<pair<int,int>,int >  m_mapProblemPairs;
     Eigen::SparseMatrix<int>  m_matProblemLinks;
     vector<BglVertexPair>   m_vecLinkedPairs;

@@ -14,8 +14,8 @@ fileName=sys.argv[1]
 fileSuffix=".txt"
 discardLinkNum=int(sys.argv[2]);
 inputFileName=filePath+fileName+fileSuffix
-outputTestName=filePath+fileName+"_test"+fileSuffix
-outputQueryName=filePath+fileName+"_query"+fileSuffix
+outputTestName=filePath+fileName+"_test_"+str(discardLinkNum)+fileSuffix
+outputQueryName=filePath+fileName+"_query_"+str(discardLinkNum)+fileSuffix
 
 inputFile = open(inputFileName);
 for line in inputFile:
@@ -40,7 +40,7 @@ while len(linkPairList) < discardLinkNum:
 
 testOutputFile = open(outputTestName,'w')
 queryOutputFile = open(outputQueryName,'w')
-print linkPairList
+print len(linkPairList)
 for line in inputFile:
     pair1 = 2*[int]
     pair2 = 2*[int]

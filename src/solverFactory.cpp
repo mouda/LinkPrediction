@@ -56,7 +56,6 @@ void
 SolverFactory::SetTrainingInstance(const vector<vector<double> >& instances )
 {
   int numOfElements   = instances.size() * instances[0].size();//need one more space to store -1
-  int numOfInstances  = instances[0].size() - 1;
   int numOfAttributes = instances.size() - 1;
 
   m_prob.l = instances[0].size();
@@ -131,9 +130,25 @@ SolverFactory::SetProblem()
 }
 
 void
-SolverFactory::Inference( const string& testFileName )
+SolverFactory::Inference( const vector<vector<double> >& instances )
 {
-
+  //need one more space to store -1
+  int numOfElements   = instances.size() * instances[0].size();
+  int numOfInstances  = instances[0].size();
+  int numOfAttributes = instances.size() - 1;
+#ifdef DEBUG
+  cout << "numOfElements:   " << numOfElements << endl;
+  cout << "numOfInstances:  " << numOfInstances << endl;
+  cout << "numOfAttributes: " << numOfAttributes << endl;
+  for (int i = 0; i < numOfInstances; i++) {
+    cout << instances[0][i] << ": " << instances[1][i] << endl;
+  }
+#endif
+  struct svm_model* model = 0; 
+  if((model = svm_load_model(m_modelFileName.c_str()) ) == 0 ) {
+    cerr << "can't open model file "<< m_modelFileName << endl;
+    exit(1);
+  }
 }
 
 void 

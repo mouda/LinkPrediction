@@ -36,14 +36,3 @@ AttributeFactory::GetAttributes()
 }
 
 
-void
-AttributeFactory::SetLinkedInstancePair()
-{
-
-}
-
-void
-AttributeFactory::SetUnLinkedInstancePair()
-{
-
-}

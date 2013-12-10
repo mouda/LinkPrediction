@@ -13,8 +13,6 @@ class AttributeFactory
         const int& numVertex, const int& numEdge);
     ~AttributeFactory();
 
-    void SetLinkedInstancePair();
-    void SetUnLinkedInstancePair();
     const vector<vector<double> >& GetAttributes();
 
   private:

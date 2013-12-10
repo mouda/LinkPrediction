@@ -41,6 +41,55 @@ CommomFriendsAttribute::GetLabelByEdge( vector<double>& vecLabels)
 }
 
 void 
+CommomFriendsAttribute::GetProblemLabelByEdge(vector<double>& vecLabels)
+{
+  fill(vecLabels.begin(),vecLabels.end(),1);
+}
+
+void 
+CommomFriendsAttribute::GetProblemAttriByEdge(vector<double>& vecAttributes
+    , const vector<BglVertexPair>& vecPairVertex)
+{
+  BglVertex u,v;
+  vector<int> lhsNeighbor;
+  int idx = 0;
+  double maxNumCommNeighbors = (double)GetMaxNumCommNeghbors(); 
+  for (int i = 0; i < vecPairVertex.size(); i++) {
+    u = vecPairVertex[i].first;
+    v = vecPairVertex[i].second;
+    lhsNeighbor.clear(); 
+    GetNeighbors(u,lhsNeighbor);
+    vecAttributes[idx] = (double)GetNumCommNeighbors(v,lhsNeighbor) / 
+      maxNumCommNeighbors;
+    ++idx;
+  }
+}
+
+int
+CommomFriendsAttribute::GetMaxNumCommNeghbors()
+{
+  /* edge iterator */
+  EdgeIter ep, ep_end;
+  BglVertex u,v;
+  BglVertexMap indices = get( vertex_index , *m_ptrGraph);
+  vector<int> lhsNeighbor;
+  int idx = 0;
+  double maxNeighbors = 0.0;
+  for (tie(ep,ep_end) = edges(*m_ptrGraph); ep != ep_end; ++ep) {
+    u = source(*ep,*m_ptrGraph);
+    v = target(*ep,*m_ptrGraph);
+    lhsNeighbor.clear(); 
+    GetNeighbors(u,lhsNeighbor);
+    double tmp =  (double)GetNumCommNeighbors(v,lhsNeighbor);
+    if (tmp > maxNeighbors) {
+      maxNeighbors = tmp;
+    }
+    ++idx;
+  }
+  return maxNeighbors;
+}
+
+void 
 CommomFriendsAttribute::GetNeighbors(const BglVertex& selfVertex, 
     std::vector<int>& vecNeighbors)
 {

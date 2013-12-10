@@ -10,14 +10,18 @@ public:
   /* Common Interface */
   void GetLabelByEdge( vector<double>& );
   void GetAttributeByEdge( vector<double>& );
+  void GetProblemLabelByEdge(vector<double>& );
+  void GetProblemAttriByEdge(vector<double>& , const vector<BglVertexPair>&);
 
 private:
   /* private functions */
   void SetLinkedAttribute( vector<double>& vecAttributes);
   void SetUnLinkedAttribute( vector<double>& vecAttributes);
+  int  GetMaxNumCommNeghbors();
   void GetNeighbors(const BglVertex& selfVertex, vector<int>& vecNeighbors);
   int  GetNumCommNeighbors(const BglVertex& selfVertex, 
       const vector<int>& vecOtherNeighbors);
+
 
   /* constant data members */
   BglGraph const * const  m_ptrGraph;  

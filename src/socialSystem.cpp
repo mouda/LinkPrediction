@@ -43,6 +43,8 @@ SocialSystem::Train()
 double
 SocialSystem::ReportCorrectRatio( const string& testFileName)
 {
-  m_ptrSolver->Inference(testFileName);
+  m_ptrSolver->Inference(
+      m_ptrProblemFactory->GetProblemAttributesByFile(testFileName)
+      );
   return 0.0;
 }

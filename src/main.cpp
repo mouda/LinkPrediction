@@ -21,8 +21,8 @@ using namespace std;
 int main( int argc, char* argv[] )
 {
 
-  if ( argc != 5 ) {
-    cout << "Usage: [input] [output] [percentage] [train|inference:<test file>]" << endl;
+  if ( argc != 4 ) {
+    cout << "Usage: [input] [output] [train|inference:<test file>]" << endl;
     return 1;
   }
 //  boost::mpi::environment env(argc,argv);
@@ -30,12 +30,7 @@ int main( int argc, char* argv[] )
 
   string inputFileName(argv[1]);
   string outputFileName(argv[2]);
-  string strEdgeRemoveRatio(argv[3]);
-  string strFlag(argv[4]);
-  stringstream ss;
-  double valEdgeRemoveRatio = 0;
-  ss << strEdgeRemoveRatio;
-  ss >> valEdgeRemoveRatio;
+  string strFlag(argv[3]);
 
   if (!FileExist(inputFileName)) {
     cerr << "Input file doesn't exist" << endl;

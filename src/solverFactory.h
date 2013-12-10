@@ -18,7 +18,7 @@ class SolverFactory: public LinkPredictSolver
     void SetTrainingInstance( const vector<vector<double> >& instances );
     void Train();
     void SetProblem();
-    void Inference( const string& testFileName);
+    void Inference( const vector<vector<double> > & instances );
 
   private:
     const string          m_modelFileName;
