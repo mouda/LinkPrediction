@@ -3,7 +3,7 @@ CC=g++
 CFLAGS=
 MPI=1
 SOURCES=main.cpp utility.cpp socialSystem.cpp graphFactory.cpp \
-	fileUtility.cpp problem.cpp problemFactory.cpp \
+	fileUtility.cpp problemFactory.cpp \
 	attribute.cpp attributeFactory.cpp  commomFriendsAttribute.cpp \
 	linkPredictSolver.cpp solverFactory.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
