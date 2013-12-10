@@ -5,7 +5,6 @@
 #include <map>
 #include <Eigen/Core>
 #include <Eigen/SparseCore>
-#include "problem.h"
 #include "fileUtility.h"
 #include "attribute.h"
 #include "graphFactory.h"
