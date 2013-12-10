@@ -145,10 +145,25 @@ SolverFactory::Inference( const vector<vector<double> >& instances )
   }
 #endif
   struct svm_model* model = 0; 
+  struct svm_node* arySvm_node = new svm_node [numOfAttributes+1];
   if((model = svm_load_model(m_modelFileName.c_str()) ) == 0 ) {
     cerr << "can't open model file "<< m_modelFileName << endl;
     exit(1);
   }
+  int rightCount = 0;
+  for (int i = 0; i < numOfInstances; ++i) {
+    for (int j = 0; j < numOfAttributes; ++j) {
+      arySvm_node[j].index = j+1;
+      arySvm_node[j].value = instances[j+1][i];
+    }
+    arySvm_node[numOfAttributes].index = -1;
+    int label = (int)svm_predict(model, arySvm_node);
+    if (label == instances[0][i]) {
+      ++rightCount;
+    }
+  }
+  cout << (double)rightCount/(double)numOfInstances << endl;
+  delete [] arySvm_node;
 }
 
 void 

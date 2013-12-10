@@ -7,8 +7,8 @@ SOURCES=main.cpp utility.cpp socialSystem.cpp graphFactory.cpp \
 	attribute.cpp attributeFactory.cpp  commomFriendsAttribute.cpp \
 	linkPredictSolver.cpp solverFactory.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
-#PREFIX=/home/share
-PREFIX=/opt
+PREFIX=/home/share
+#PREFIX=/opt
 INCLUDE=-I$(PREFIX)/armadillo39202/include/ \
 	-I$(PREFIX)/boost1550/include/ \
 	-I$(PREFIX)/libsvm-3.17/ \
