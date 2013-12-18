@@ -92,6 +92,9 @@ class GraphFactory
     BglGraph * GetBglGraph(){ return m_ptrBglGraph; }
 
 
+    bool RemoveEdge(const int& vlhs, const int& vrhs);
+    int  GetFirstNeighborById( const int& idx);
+
     void BFS(const int& startIdx);
     void dijkstra( const int& startIdx);
     void GetNeighbors( const int& idx, std::vector<int>& );

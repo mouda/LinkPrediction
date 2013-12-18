@@ -48,6 +48,10 @@ int main( int argc, char* argv[] )
   cout << outputTestFileName << endl;
   cout << outputQueryFileName << endl;
   GraphFactory myGraphFactory(inputFileName, "NULL",0);
+  cout << "vertex num: " << myGraphFactory.GetVertexNum() << endl;
+  cout << "edge num: " << myGraphFactory.GetEdgeNum() << endl;
+  srand (time(NULL));
+  cout << "random num: " << rand()%myGraphFactory.GetVertexNum() << endl;
 
   return 0;
 }

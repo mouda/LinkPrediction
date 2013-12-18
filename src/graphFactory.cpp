@@ -56,6 +56,34 @@ int GraphFactory::GetVertexId( const int& index)
   return indices[source];
 } 
 
+bool GraphFactory::RemoveEdge( const int& vlhs, const int& vrhs)
+{
+  BglVertex u, v;
+  if( !edge(
+        vertex(vlhs,*m_ptrBglGraph),
+        vertex(vrhs,*m_ptrBglGraph),
+        *m_ptrBglGraph).second ) {
+    return false;
+  }
+  else {
+    remove_edge(
+        vertex(vlhs, *m_ptrBglGraph),
+        vertex(vrhs, *m_ptrBglGraph),
+        *m_ptrBglGraph
+        );
+    return true;
+  }
+}
+
+int GraphFactory::GetFirstNeighborById( const int& idx )
+{
+  OutEdgeIter p, p_end;
+  BglVertexMap indices = get( vertex_index , *m_ptrBglGraph);
+  tie(p, p_end) = out_edges(vertex(idx, *m_ptrBglGraph), *m_ptrBglGraph);
+  BglVertex tar = target(*p,*m_ptrBglGraph);
+  return (int)indices[tar];
+}
+
 void GraphFactory::BFS( const int& index)
 {
   property_map<BglGraph, vertex_distance_t>::type distance =
@@ -90,6 +118,7 @@ void GraphFactory::GetNeighbors( const int& idx, std::vector<int>& neighbors )
     neighbors.push_back(indices[tar]);
   }
 } 
+
 
 void GraphFactory::PrintNeighbors( const int& idx )
 {
