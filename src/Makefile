@@ -6,7 +6,9 @@ SOURCES=main.cpp utility.cpp socialSystem.cpp graphFactory.cpp \
 	fileUtility.cpp problemFactory.cpp \
 	attribute.cpp attributeFactory.cpp  commomFriendsAttribute.cpp \
 	linkPredictSolver.cpp solverFactory.cpp
+GENSOURCE=genDataSet.cpp graphFactory.cpp fileUtility.cpp utility.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
+GENOBJECTS=$(GENSOURCE:.cpp=.o)
 PREFIX=/home/share
 #PREFIX=/opt
 INCLUDE=-I$(PREFIX)/armadillo39202/include/ \
@@ -35,7 +37,12 @@ LIB_FLAGS=-lsvm \
 BIN_PATH=../bin/
 
 
-all: linkPrediction
+all: linkPrediction 
+
+
+genDataSet: $(GENOBJECTS) 
+	@echo Building $@
+	@-$(CC)  $^ $(CFLAGS) $(INCLUDE) $(LIB_PATH) -o $(BIN_PATH)$@ $(LIB_FLAGS) 
 
 linkPrediction: $(OBJECTS)
 	@echo Building $@
