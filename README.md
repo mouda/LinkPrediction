@@ -5,11 +5,15 @@ Link Prediction
 
 TODO list:
 
-1. common friends
-2. dijkstra algorithm /* shortest path */
-3. random work algorithm
-4. classification algorithm
 
 HOWTO execute:
 
-mpirun -n $numberOfProcessors ./bin/linkPrediction input output 10
+1. Go to $PROJECT/src, complile the main program:
+	$ make
+2. Compile the testing data generator:
+	$ make getDataSet
+3. Execution flow, go to $PROJECT/bin/:
+	a. ./genDataSet [origin graph file] 1000 1000
+	b. ./linkPrediction [graph file] [model file] train:<train list file>  
+	c. ./linkPrediction [graph file] [model file] train:<query list file>  
+
