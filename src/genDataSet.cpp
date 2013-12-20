@@ -19,7 +19,9 @@ using namespace std;
 using namespace boost;
 
 typedef vector< string > split_vector_type;
-bool pairCompare(const std::pair<int, int>& firstElem, const std::pair<int, int>& secondElem) {
+
+bool pairCompare(const std::pair<int, int>& firstElem, 
+    const std::pair<int, int>& secondElem) {
     return firstElem.first < secondElem.first;
 }
 
@@ -116,6 +118,58 @@ int main( int argc, char* argv[] )
       << vecGraphPair[i].second << endl;
   }
   outputTestFile.close();
+
+  /* generate train data set */
+  fstream outputTrainFile;
+  outputTrainFile.open(outputTrainFileName.c_str(), ios::out); 
+  vector<pair<int, int> > vecTrainPair;
+  BglGraph myCheckList(myGraphFactory.GetVertexNum());
+
+  /* generate linked data*/
+  countUp = 0;
+  while( countUp < intTrainNum){
+    randId = rand()%myGraphFactory.GetVertexNum();
+    neighborId = myGraphFactory.GetFirstNeighborById(randId); 
+    if (neighborId != -1 && 
+        !edge(vertex(randId, myCheckList),
+          vertex(neighborId, myCheckList),
+          myCheckList).second ) {
+      
+      vecTrainPair.push_back(make_pair(randId,neighborId));
+      vecTrainPair.push_back(make_pair(neighborId,randId));
+      add_edge(
+          vertex(randId, myCheckList), 
+          vertex(neighborId, myCheckList),
+          BglEdgeWeight(1), 
+          myCheckList);
+      ++countUp;
+    }
+  }
+  /* generate unlinked data */
+  countUp = 0;
+  int randId2 = 0;
+  while ( countUp < intTrainNum) {
+    randId = rand()%myGraphFactory.GetVertexNum();
+    randId2 = rand()%myGraphFactory.GetVertexNum();
+    if (!edge(vertex(randId, myCheckList), vertex(randId2, myCheckList), myCheckList).second &&  
+        !edge(vertex(randId,*myPtrGraph), vertex(randId2,*myPtrGraph), *myPtrGraph ).second ) {
+      vecTrainPair.push_back(make_pair(randId,randId2));
+      vecTrainPair.push_back(make_pair(randId2,randId));
+      add_edge(
+          vertex(randId, myCheckList), 
+          vertex(randId2, myCheckList),
+          BglEdgeWeight(1), 
+          myCheckList);
+      ++countUp;
+    }
+  }
+  sort(vecTrainPair.begin(), vecTrainPair.end(), pairCompare);
+  /* output */
+  for (int i = 0; i < vecTrainPair.size(); i++) {
+    outputTrainFile << vecTrainPair[i].first << ' '
+      << vecTrainPair[i].second << endl;
+  }
+  outputTrainFile.close();
 
   return 0;
 }

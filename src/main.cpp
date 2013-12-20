@@ -22,7 +22,7 @@ int main( int argc, char* argv[] )
 {
 
   if ( argc != 4 ) {
-    cout << "Usage: [input] [output] [train|inference:<test file>]" << endl;
+    cout << "Usage: [input] [model] [train:<train file>|inference:<test file>]" << endl;
     return 1;
   }
 //  boost::mpi::environment env(argc,argv);
@@ -41,14 +41,20 @@ int main( int argc, char* argv[] )
   
   vector<string> flagStrings = split(strFlag,':');
   if (flagStrings[0] == "train") {
-    mySocialSystem.Train();
+    if (!FileExist(flagStrings[1])) {
+      cerr << "Error: train file doesn't exist" << endl;
+      return 1;
+    }
+    mySocialSystem.Train(flagStrings[1]);
   }
   else if (flagStrings[0] == "inference") {
     if (!FileExist(outputFileName)) {
       cerr << "Error: model file doesn't exist" << endl;
+      return 1;
     } 
     if (!FileExist(flagStrings[1])) {
       cerr << "Error: testing file doesn't exist" << endl;
+      return 1;
     } 
     mySocialSystem.ReportCorrectRatio(flagStrings[1]);
   }

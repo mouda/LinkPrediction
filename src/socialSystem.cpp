@@ -13,7 +13,7 @@ SocialSystem::SocialSystem(const string& inputFileName,
   m_ptrGraph =            new GraphFactory(inputFileName, outputFileName, in_worldID);
   m_ptrAttributeFactory = new AttributeFactory(m_ptrGraph->GetBglGraph(), 
       m_ptrGraph->GetVertexNum(), m_ptrGraph->GetEdgeNum());
-  m_ptrAttributeFactory->GetAttributes();
+  //m_ptrAttributeFactory->GetAttributes();
   m_ptrProblemFactory =   new ProblemFactory(m_ptrGraph->GetBglGraph(), 
       m_ptrGraph->GetVertexNum(), m_ptrGraph->GetEdgeNum());
   m_ptrSolver =           new SolverFactory(outputFileName);
@@ -35,9 +35,13 @@ SocialSystem::SetRemovedEdgeRatio( const double& edgeRemoveRatio  )
 }
 
 void
-SocialSystem::Train()
+SocialSystem::Train( const string& trainFileName)
 {
-  m_ptrSolver->SetTrainingInstance(m_ptrAttributeFactory->GetAttributes());
+  //m_ptrAttributeFactory->GetAttributesByFile(trainFileName);
+  //m_ptrSolver->SetTrainingInstance(m_ptrAttributeFactory->GetAttributes());
+  m_ptrSolver->SetTrainingInstance(
+      m_ptrAttributeFactory->GetAttributesByFile(trainFileName)
+      );
   m_ptrSolver->Train();
 }
 double

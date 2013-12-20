@@ -10,6 +10,7 @@ public:
   /* Common Interface */
   void GetLabelByEdge( vector<double>& );
   void GetAttributeByEdge( vector<double>& );
+  void GetTrainAttriByEdge(vector<double>& , const vector<BglVertexPair>&);
   void GetProblemLabelByEdge(vector<double>& );
   void GetProblemAttriByEdge(vector<double>& , const vector<BglVertexPair>&);
 

@@ -31,17 +31,37 @@ ProblemFactory::GetProblemAttributesByFile( const string& testFileName)
 {
   m_ptrFileUtility = new FileUtility(testFileName,0);
   int vertexNum = m_ptrFileUtility->GetVertexNum();
+  BglGraph myCheckList(vertexNum); 
+
   pair<int, int> edgePair;
   m_vecTestPair.clear();
+
   edgePair = m_ptrFileUtility->GetEdgePair();
   m_vecTestPair.push_back(make_pair(vertex(edgePair.first, *m_ptrGraph), 
         vertex(edgePair.second, *m_ptrGraph)
         ));
+  add_edge(
+      vertex(edgePair.first, myCheckList), 
+      vertex(edgePair.second, myCheckList),
+      BglEdgeWeight(1), 
+      myCheckList);
+
   while (edgePair.first >= 0 && edgePair.first < vertexNum ) {
     edgePair = m_ptrFileUtility->GetEdgePair();
-    m_vecTestPair.push_back(make_pair(vertex(edgePair.first, *m_ptrGraph), 
-          vertex(edgePair.second, *m_ptrGraph)
-          ));
+    if( !edge(vertex(edgePair.first, myCheckList),
+          vertex(edgePair.second, myCheckList),
+          myCheckList).second ) {
+
+      m_vecTestPair.push_back(make_pair(vertex(edgePair.first, *m_ptrGraph), 
+            vertex(edgePair.second, *m_ptrGraph)
+            ));
+
+      add_edge(
+          vertex(edgePair.first, myCheckList), 
+          vertex(edgePair.second, myCheckList), 
+          BglEdgeWeight(1),
+          myCheckList);
+    }
   } 
   m_matAttri.resize(2,vector<double>(m_vecTestPair.size()));
   m_vecPtrAttributes[0]->GetProblemLabelByEdge(m_matAttri[0]); 

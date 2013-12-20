@@ -1,6 +1,6 @@
 CC=g++
 #CC=mpic++.mpich2
-CFLAGS=
+CFLAGS=-g
 MPI=1
 SOURCES=main.cpp utility.cpp socialSystem.cpp graphFactory.cpp \
 	fileUtility.cpp problemFactory.cpp \

@@ -14,6 +14,13 @@ CommomFriendsAttribute::~CommomFriendsAttribute()
 
 }
 
+void 
+CommomFriendsAttribute::GetTrainAttriByEdge( vector<double>& vecAttributes, 
+    const vector<BglVertexPair>&)
+{
+
+}
+
 void
 CommomFriendsAttribute::GetAttributeByEdge( vector<double>& vecAttributes )
 {

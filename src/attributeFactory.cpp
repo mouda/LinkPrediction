@@ -35,4 +35,73 @@ AttributeFactory::GetAttributes()
   return m_matAttri;
 }
 
+const vector<vector<double> >&
+AttributeFactory::GetAttributesByFile( const string& fileName )
+{
+  m_ptrFileUtility = new FileUtility(fileName,0);
+  int vertexNum = m_ptrFileUtility->GetVertexNum();
+  BglGraph myCheckList(vertexNum); 
+  pair<int, int> edgePair;
+  m_vecTrainPair.clear();
+  edgePair = m_ptrFileUtility->GetEdgePair();
+  vector<int> vecLabelCheatSheet;
+
+  /* check exist, assign label setup attribute vector */
+  int nodeId = edgePair.first;
+  int nodeId2 = edgePair.second;
+  add_edge(
+      vertex(edgePair.first, myCheckList), 
+      vertex(edgePair.second, myCheckList),
+      BglEdgeWeight(1), 
+      myCheckList);
+  if (edge(vertex(nodeId, *m_ptrGraph), vertex(nodeId2,*m_ptrGraph),
+        *m_ptrGraph).second) {
+    vecLabelCheatSheet.push_back(1);
+  }
+  else {
+    vecLabelCheatSheet.push_back(2);
+  }
+  m_vecTrainPair.push_back(make_pair(vertex(nodeId, *m_ptrGraph), 
+        vertex(nodeId2, *m_ptrGraph)
+        ));
+
+  while (edgePair.first >= 0 && edgePair.first < vertexNum ) {
+    edgePair = m_ptrFileUtility->GetEdgePair();
+    nodeId = edgePair.first;
+    nodeId2 = edgePair.second;
+    if( !edge(vertex(edgePair.first, myCheckList),
+          vertex(edgePair.second, myCheckList),
+          myCheckList).second ) {
+      if (edge(vertex(nodeId, *m_ptrGraph), vertex(nodeId2,*m_ptrGraph),
+            *m_ptrGraph).second) {
+        vecLabelCheatSheet.push_back(1);
+      }
+      else {
+        vecLabelCheatSheet.push_back(2);
+      }
+      m_vecTrainPair.push_back(make_pair(vertex(edgePair.first, *m_ptrGraph), 
+            vertex(edgePair.second, *m_ptrGraph)
+            ));
+
+      add_edge(
+          vertex(edgePair.first, myCheckList), 
+          vertex(edgePair.second, myCheckList), 
+          BglEdgeWeight(1),
+          myCheckList);
+    }
+  } 
+
+  m_matAttri.resize(2,vector<double>(m_vecTrainPair.size()));
+  cout << m_vecTrainPair.size() << endl;
+  cout << vecLabelCheatSheet.size() << endl;
+  for (int i = 0; i < vecLabelCheatSheet.size(); i++) {
+    m_matAttri[0][i] = (double)vecLabelCheatSheet[i];
+  }
+  m_vecPtrAttributes[0]->GetProblemAttriByEdge(m_matAttri[1], m_vecTrainPair);
+  cout << m_matAttri[0].size() << endl;
+
+  delete m_ptrFileUtility;
+  return m_matAttri;
+}
+
 

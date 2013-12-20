@@ -2,6 +2,7 @@
 #define _ATTRIBUTEFACTORY_
 #include "graphFactory.h"
 #include "attribute.h"
+#include "fileUtility.h"
 
 #include <Eigen/Core>
 
@@ -14,6 +15,7 @@ class AttributeFactory
     ~AttributeFactory();
 
     const vector<vector<double> >& GetAttributes();
+    const vector<vector<double> >& GetAttributesByFile( const string& );
 
   private:
     BglGraph const * const  m_ptrGraph;
@@ -21,8 +23,11 @@ class AttributeFactory
     const int               m_numEdge;
     vector<Attribute*>      m_vecPtrAttributes;
     vector<vector<double> > m_matAttri;
+    FileUtility             *m_ptrFileUtility; 
+    
 
     /* for unified attributed generation */
+    vector<BglVertexPair>   m_vecTrainPair;
     vector<BglVertexPair>   m_vecLinkedPair;
     vector<BglVertexPair>   m_vecUnLinkedPair;
 };

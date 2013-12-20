@@ -57,6 +57,7 @@ SolverFactory::SetTrainingInstance(const vector<vector<double> >& instances )
 {
   int numOfElements   = instances.size() * instances[0].size();//need one more space to store -1
   int numOfAttributes = instances.size() - 1;
+  cout << instances[0].size() << endl;
 
   m_prob.l = instances[0].size();
 //  m_prob.y = Malloc(double, m_prob.l); 
@@ -136,14 +137,12 @@ SolverFactory::Inference( const vector<vector<double> >& instances )
   int numOfElements   = instances.size() * instances[0].size();
   int numOfInstances  = instances[0].size();
   int numOfAttributes = instances.size() - 1;
-#ifdef DEBUG
   cout << "numOfElements:   " << numOfElements << endl;
   cout << "numOfInstances:  " << numOfInstances << endl;
   cout << "numOfAttributes: " << numOfAttributes << endl;
   for (int i = 0; i < numOfInstances; i++) {
     cout << instances[0][i] << ": " << instances[1][i] << endl;
   }
-#endif
   struct svm_model* model = 0; 
   struct svm_node* arySvm_node = new svm_node [numOfAttributes+1];
   if((model = svm_load_model(m_modelFileName.c_str()) ) == 0 ) {
