@@ -71,6 +71,7 @@ bool GraphFactory::RemoveEdge( const int& vlhs, const int& vrhs)
         vertex(vrhs, *m_ptrBglGraph),
         *m_ptrBglGraph
         );
+    --m_numEdge;
     return true;
   }
 }
@@ -80,8 +81,13 @@ int GraphFactory::GetFirstNeighborById( const int& idx )
   OutEdgeIter p, p_end;
   BglVertexMap indices = get( vertex_index , *m_ptrBglGraph);
   tie(p, p_end) = out_edges(vertex(idx, *m_ptrBglGraph), *m_ptrBglGraph);
-  BglVertex tar = target(*p,*m_ptrBglGraph);
-  return (int)indices[tar];
+  if (p != p_end ) {
+    BglVertex tar = target(*p,*m_ptrBglGraph);
+    return (int)indices[tar];
+  }
+  else {
+    return -1;
+  }
 }
 
 void GraphFactory::BFS( const int& index)
