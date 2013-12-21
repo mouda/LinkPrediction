@@ -3,11 +3,12 @@
 !_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
-!_TAG_PROGRAM_VERSION	5.8	//
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 Attribute	attribute.cpp	/^Attribute::Attribute()$/;"	f	class:Attribute
 Attribute	attribute.h	/^class Attribute$/;"	c
 AttributeFactory	attributeFactory.cpp	/^AttributeFactory::AttributeFactory( BglGraph const * const ptrGraph, $/;"	f	class:AttributeFactory
 AttributeFactory	attributeFactory.h	/^class AttributeFactory$/;"	c
+BFS	LHNAttribute.cpp	/^LHNAttribute::BFS( const BglVertex& curVertex, vector<int>& vecNeighbors,$/;"	f	class:LHNAttribute
 BFS	graphFactory.cpp	/^void GraphFactory::BFS( const int& index)$/;"	f	class:GraphFactory
 BFS	graphFactory_mpi.cpp	/^void GraphFactory::BFS( const int& index)$/;"	f	class:GraphFactory
 BIN_PATH	Makefile	/^BIN_PATH=..\/bin\/$/;"	m
@@ -25,7 +26,7 @@ BglVertexMap	graphFactory.h	/^typedef property_map<BglGraph, vertex_index_t>::ty
 BglVertexMap	graphFactory_mpi.h	/^typedef property_map<BglGraph, vertex_index_t>::type  BglVertexMap;$/;"	t
 BglVertexPair	graphFactory.h	/^typedef std::pair<BglVertex,BglVertex>                BglVertexPair; $/;"	t
 CC	Makefile	/^CC=g++$/;"	m
-CFLAGS	Makefile	/^CFLAGS=-g$/;"	m
+CFLAGS	Makefile	/^CFLAGS=-O3$/;"	m
 CommomFriendsAttribute	commomFriendsAttribute.cpp	/^CommomFriendsAttribute::CommomFriendsAttribute( BglGraph const * const ptrGraph, $/;"	f	class:CommomFriendsAttribute
 CommomFriendsAttribute	commomFriendsAttribute.h	/^class CommomFriendsAttribute: public Attribute$/;"	c
 EdgeIter	graphFactory.h	/^typedef graph_traits<BglGraph>::edge_iterator         EdgeIter;$/;"	t
@@ -39,6 +40,7 @@ FileUtility	fileUtility.cpp	/^FileUtility::FileUtility( const string& m_inputFil
 FileUtility	fileUtility.h	/^class FileUtility$/;"	c
 GENOBJECTS	Makefile	/^GENOBJECTS=$(GENSOURCE:.cpp=.o)$/;"	m
 GENSOURCE	Makefile	/^GENSOURCE=genDataSet.cpp graphFactory.cpp fileUtility.cpp utility.cpp$/;"	m
+GetAttributeByEdge	LHNAttribute.cpp	/^LHNAttribute::GetAttributeByEdge( vector<double>& vecAttributes )$/;"	f	class:LHNAttribute
 GetAttributeByEdge	commomFriendsAttribute.cpp	/^CommomFriendsAttribute::GetAttributeByEdge( vector<double>& vecAttributes )$/;"	f	class:CommomFriendsAttribute
 GetAttributes	attributeFactory.cpp	/^AttributeFactory::GetAttributes()$/;"	f	class:AttributeFactory
 GetAttributesByFile	attributeFactory.cpp	/^AttributeFactory::GetAttributesByFile( const string& fileName )$/;"	f	class:AttributeFactory
@@ -46,17 +48,26 @@ GetBglGraph	graphFactory.h	/^    BglGraph * GetBglGraph(){ return m_ptrBglGraph;
 GetEdgeNum	graphFactory.h	/^    int GetEdgeNum(){ return m_numEdge; }$/;"	f	class:GraphFactory
 GetEdgePair	fileUtility.cpp	/^pair<int, int> FileUtility::GetEdgePair()$/;"	f	class:FileUtility
 GetFirstNeighborById	graphFactory.cpp	/^int GraphFactory::GetFirstNeighborById( const int& idx )$/;"	f	class:GraphFactory
+GetLabelByEdge	LHNAttribute.cpp	/^LHNAttribute::GetLabelByEdge( vector<double>& vecLabels)$/;"	f	class:LHNAttribute
 GetLabelByEdge	commomFriendsAttribute.cpp	/^CommomFriendsAttribute::GetLabelByEdge( vector<double>& vecLabels)$/;"	f	class:CommomFriendsAttribute
 GetLastLine	utility.cpp	/^std::string GetLastLine(std::ifstream& in)$/;"	f
+GetMaxNumCommNeghbors	LHNAttribute.cpp	/^LHNAttribute::GetMaxNumCommNeghbors()$/;"	f	class:LHNAttribute
 GetMaxNumCommNeghbors	commomFriendsAttribute.cpp	/^CommomFriendsAttribute::GetMaxNumCommNeghbors()$/;"	f	class:CommomFriendsAttribute
+GetMultiLevelCommNeighbors	LHNAttribute.cpp	/^LHNAttribute::GetMultiLevelCommNeighbors( const BglVertex& u, const BglVertex& v, $/;"	f	class:LHNAttribute
+GetNeighbors	LHNAttribute.cpp	/^LHNAttribute::GetNeighbors(const BglVertex& selfVertex, $/;"	f	class:LHNAttribute
 GetNeighbors	commomFriendsAttribute.cpp	/^CommomFriendsAttribute::GetNeighbors(const BglVertex& selfVertex, $/;"	f	class:CommomFriendsAttribute
 GetNeighbors	graphFactory.cpp	/^void GraphFactory::GetNeighbors( const int& idx, std::vector<int>& neighbors )$/;"	f	class:GraphFactory
 GetNeighbors	graphFactory_mpi.cpp	/^void GraphFactory::GetNeighbors( const int& idx, std::vector<int>& neighbors )$/;"	f	class:GraphFactory
+GetNumCommNeighbors	LHNAttribute.cpp	/^LHNAttribute::GetNumCommNeighbors(const BglVertex& selfVertex, $/;"	f	class:LHNAttribute
 GetNumCommNeighbors	commomFriendsAttribute.cpp	/^CommomFriendsAttribute::GetNumCommNeighbors(const BglVertex& selfVertex, $/;"	f	class:CommomFriendsAttribute
+GetProblemAttriByEdge	LHNAttribute.cpp	/^LHNAttribute::GetProblemAttriByEdge(vector<double>& vecAttributes$/;"	f	class:LHNAttribute
 GetProblemAttriByEdge	commomFriendsAttribute.cpp	/^CommomFriendsAttribute::GetProblemAttriByEdge(vector<double>& vecAttributes$/;"	f	class:CommomFriendsAttribute
 GetProblemAttributes	problemFactory.cpp	/^ProblemFactory::GetProblemAttributes(const double& edgeRemovedRatio )$/;"	f	class:ProblemFactory
-GetProblemAttributesByFile	problemFactory.cpp	/^ProblemFactory::GetProblemAttributesByFile( const string& testFileName)$/;"	f	class:ProblemFactory
+GetProblemAttributesByFile	problemFactory.cpp	/^ProblemFactory::GetProblemAttributesByFile( const string& testFileName, const bool& label)$/;"	f	class:ProblemFactory
+GetProblemLabelByEdge	LHNAttribute.cpp	/^LHNAttribute::GetProblemLabelByEdge(vector<double>& vecLabels)$/;"	f	class:LHNAttribute
 GetProblemLabelByEdge	commomFriendsAttribute.cpp	/^CommomFriendsAttribute::GetProblemLabelByEdge(vector<double>& vecLabels)$/;"	f	class:CommomFriendsAttribute
+GetSumInvDegree	LHNAttribute.cpp	/^LHNAttribute::GetSumInvDegree( const vector<int>& vecCommNeighbors)$/;"	f	class:LHNAttribute
+GetTrainAttriByEdge	LHNAttribute.cpp	/^LHNAttribute::GetTrainAttriByEdge( vector<double>& vecAttributes, $/;"	f	class:LHNAttribute
 GetTrainAttriByEdge	commomFriendsAttribute.cpp	/^CommomFriendsAttribute::GetTrainAttriByEdge( vector<double>& vecAttributes, $/;"	f	class:CommomFriendsAttribute
 GetVertex	fileUtility.cpp	/^unsigned int FileUtility::GetVertex()$/;"	f	class:FileUtility
 GetVertexId	graphFactory.cpp	/^int GraphFactory::GetVertexId( const int& index) $/;"	f	class:GraphFactory
@@ -70,6 +81,8 @@ GraphFactory	graphFactory_mpi.h	/^class GraphFactory: public Graph$/;"	c
 INCLUDE	Makefile	/^INCLUDE=-I$(PREFIX)\/armadillo39202\/include\/ \\$/;"	m
 Ignoreline	utility.cpp	/^std::istream& Ignoreline(std::ifstream& in, std::ifstream::pos_type& pos)$/;"	f
 Inference	solverFactory.cpp	/^SolverFactory::Inference( const vector<vector<double> >& instances )$/;"	f	class:SolverFactory
+LHNAttribute	LHNAttribute.cpp	/^LHNAttribute::LHNAttribute( BglGraph const * const ptrGraph, $/;"	f	class:LHNAttribute
+LHNAttribute	LHNAttribute.h	/^class LHNAttribute: public Attribute$/;"	c
 LIB_FLAGS	Makefile	/^LIB_FLAGS=-lsvm \\$/;"	m
 LIB_PATH	Makefile	/^LIB_PATH=-L$(PREFIX)\/armadillo39202\/lib\/ \\$/;"	m
 LinkPredictSolver	linkPredictSolver.cpp	/^LinkPredictSolver::LinkPredictSolver()$/;"	f	class:LinkPredictSolver
@@ -79,21 +92,23 @@ Malloc	solverFactory.h	7;"	d
 OBJECTS	Makefile	/^OBJECTS=$(SOURCES:.cpp=.o)$/;"	m
 OutEdgeIter	graphFactory.h	/^typedef graph_traits<BglGraph>::out_edge_iterator     OutEdgeIter;$/;"	t
 OutEdgeIter	graphFactory_mpi.h	/^typedef graph_traits<BglGraph>::out_edge_iterator     OutEdgeIter;$/;"	t
-PREFIX	Makefile	/^PREFIX=\/home\/share$/;"	m
+PREFIX	Makefile	/^PREFIX=\/opt$/;"	m
 ParseInput	fileUtility.cpp	/^FileUtility::ParseInput()$/;"	f	class:FileUtility
 PrintNeighbors	graphFactory.cpp	/^void GraphFactory::PrintNeighbors( const int& idx )$/;"	f	class:GraphFactory
 PrintNeighbors	graphFactory_mpi.cpp	/^void GraphFactory::PrintNeighbors( const int& idx )$/;"	f	class:GraphFactory
 ProblemFactory	problemFactory.cpp	/^ProblemFactory::ProblemFactory(BglGraph const * const ptrGraph, $/;"	f	class:ProblemFactory
 ProblemFactory	problemFactory.h	/^class ProblemFactory$/;"	c
 RemoveEdge	graphFactory.cpp	/^bool GraphFactory::RemoveEdge( const int& vlhs, const int& vrhs)$/;"	f	class:GraphFactory
-ReportCorrectRatio	socialSystem.cpp	/^SocialSystem::ReportCorrectRatio( const string& testFileName)$/;"	f	class:SocialSystem
+ReportCorrectRatio	socialSystem.cpp	/^SocialSystem::ReportCorrectRatio( const string& testFileName, const bool& label)$/;"	f	class:SocialSystem
 SOURCES	Makefile	/^SOURCES=main.cpp utility.cpp socialSystem.cpp graphFactory.cpp \\$/;"	m
+SetLinkedAttribute	LHNAttribute.cpp	/^LHNAttribute::SetLinkedAttribute( vector<double>& vecAttributes )$/;"	f	class:LHNAttribute
 SetLinkedAttribute	commomFriendsAttribute.cpp	/^CommomFriendsAttribute::SetLinkedAttribute( vector<double>& vecAttributes )$/;"	f	class:CommomFriendsAttribute
 SetLinkedPair	problemFactory.cpp	/^ProblemFactory::SetLinkedPair()$/;"	f	class:ProblemFactory
 SetProblem	solverFactory.cpp	/^SolverFactory::SetProblem()$/;"	f	class:SolverFactory
 SetProblemPairsByRatio	problemFactory.cpp	/^ProblemFactory::SetProblemPairsByRatio( const double& ratio)$/;"	f	class:ProblemFactory
 SetRemovedEdgeRatio	socialSystem.cpp	/^SocialSystem::SetRemovedEdgeRatio( const double& edgeRemoveRatio  )$/;"	f	class:SocialSystem
 SetTrainingInstance	solverFactory.cpp	/^SolverFactory::SetTrainingInstance(const vector<vector<double> >& instances )$/;"	f	class:SolverFactory
+SetUnLinkedAttribute	LHNAttribute.cpp	/^LHNAttribute::SetUnLinkedAttribute( vector<double>& vecAttributes )$/;"	f	class:LHNAttribute
 SetUnLinkedAttribute	commomFriendsAttribute.cpp	/^CommomFriendsAttribute::SetUnLinkedAttribute( vector<double>& vecAttributes )$/;"	f	class:CommomFriendsAttribute
 SetUnLinkedPair	problemFactory.cpp	/^ProblemFactory::SetUnLinkedPair()$/;"	f	class:ProblemFactory
 SocialSystem	socialSystem.cpp	/^SocialSystem::SocialSystem(const string& inputFileName, $/;"	f	class:SocialSystem
@@ -125,17 +140,22 @@ m_inputFile	fileUtility.h	/^    ifstream m_inputFile;$/;"	m	class:FileUtility
 m_matAttri	attributeFactory.h	/^    vector<vector<double> > m_matAttri;$/;"	m	class:AttributeFactory
 m_matAttri	problemFactory.h	/^    vector<vector<double> > m_matAttri;$/;"	m	class:ProblemFactory
 m_matProblemLinks	problemFactory.h	/^    Eigen::SparseMatrix<int>  m_matProblemLinks;$/;"	m	class:ProblemFactory
+m_maxCommNeighbors	LHNAttribute.h	/^  double                  m_maxCommNeighbors;$/;"	m	class:LHNAttribute
 m_maxCommNeighbors	commomFriendsAttribute.h	/^  double                  m_maxCommNeighbors;$/;"	m	class:CommomFriendsAttribute
 m_model	solverFactory.h	/^    struct svm_model      *m_model;$/;"	m	class:SolverFactory	typeref:struct:SolverFactory::svm_model
 m_modelFileName	solverFactory.h	/^    const string          m_modelFileName;$/;"	m	class:SolverFactory
 m_nodeId	graphFactory.h	/^  int m_nodeId;$/;"	m	struct:VertexProperty
 m_nodeId	graphFactory_mpi.h	/^  int m_nodeId;$/;"	m	struct:VertexProperty
 m_nr_fold	solverFactory.h	/^    int                   m_nr_fold;$/;"	m	class:SolverFactory
+m_numAttributes	attributeFactory.h	/^    int                     m_numAttributes;$/;"	m	class:AttributeFactory
+m_numAttributes	problemFactory.h	/^    int                     m_numAttributes;$/;"	m	class:ProblemFactory
 m_numDiscardEdge	problemFactory.h	/^    int                     m_numDiscardEdge;$/;"	m	class:ProblemFactory
+m_numEdge	LHNAttribute.h	/^  const int               m_numEdge;$/;"	m	class:LHNAttribute
 m_numEdge	attributeFactory.h	/^    const int               m_numEdge;$/;"	m	class:AttributeFactory
 m_numEdge	commomFriendsAttribute.h	/^  const int               m_numEdge;$/;"	m	class:CommomFriendsAttribute
 m_numEdge	graphFactory.h	/^    int         m_numEdge;$/;"	m	class:GraphFactory
 m_numEdge	problemFactory.h	/^    const int               m_numEdge;$/;"	m	class:ProblemFactory
+m_numVertex	LHNAttribute.h	/^  const int               m_numVertex;$/;"	m	class:LHNAttribute
 m_numVertex	attributeFactory.h	/^    const int               m_numVertex;$/;"	m	class:AttributeFactory
 m_numVertex	commomFriendsAttribute.h	/^  const int               m_numVertex;$/;"	m	class:CommomFriendsAttribute
 m_numVertex	graphFactory.h	/^    int         m_numVertex;$/;"	m	class:GraphFactory
@@ -149,6 +169,7 @@ m_ptrFileUtility	attributeFactory.h	/^    FileUtility             *m_ptrFileUtil
 m_ptrFileUtility	graphFactory.h	/^    FileUtility *m_ptrFileUtility;$/;"	m	class:GraphFactory
 m_ptrFileUtility	graphFactory_mpi.h	/^    FileUtility *m_ptrFileUtility;$/;"	m	class:GraphFactory
 m_ptrFileUtility	problemFactory.h	/^    FileUtility             *m_ptrFileUtility; $/;"	m	class:ProblemFactory
+m_ptrGraph	LHNAttribute.h	/^  BglGraph const * const  m_ptrGraph;  $/;"	m	class:LHNAttribute
 m_ptrGraph	attributeFactory.h	/^    BglGraph const * const  m_ptrGraph;$/;"	m	class:AttributeFactory
 m_ptrGraph	commomFriendsAttribute.h	/^  BglGraph const * const  m_ptrGraph;  $/;"	m	class:CommomFriendsAttribute
 m_ptrGraph	problemFactory.h	/^    BglGraph const * const  m_ptrGraph;  $/;"	m	class:ProblemFactory
@@ -184,6 +205,7 @@ split_vector_type	genDataSet.cpp	/^typedef vector< string > split_vector_type;$/
 ~FileUtility	fileUtility.cpp	/^FileUtility::~FileUtility()$/;"	f	class:FileUtility
 ~GraphFactory	graphFactory.cpp	/^GraphFactory::~GraphFactory()$/;"	f	class:GraphFactory
 ~GraphFactory	graphFactory_mpi.cpp	/^GraphFactory::~GraphFactory()$/;"	f	class:GraphFactory
+~LHNAttribute	LHNAttribute.cpp	/^LHNAttribute::~LHNAttribute()$/;"	f	class:LHNAttribute
 ~LinkPredictSolver	linkPredictSolver.cpp	/^LinkPredictSolver::~LinkPredictSolver()$/;"	f	class:LinkPredictSolver
 ~ProblemFactory	problemFactory.cpp	/^ProblemFactory::~ProblemFactory()$/;"	f	class:ProblemFactory
 ~SocialSystem	socialSystem.cpp	/^SocialSystem::~SocialSystem()$/;"	f	class:SocialSystem

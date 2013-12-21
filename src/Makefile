@@ -10,8 +10,8 @@ SOURCES=main.cpp utility.cpp socialSystem.cpp graphFactory.cpp \
 GENSOURCE=genDataSet.cpp graphFactory.cpp fileUtility.cpp utility.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 GENOBJECTS=$(GENSOURCE:.cpp=.o)
-PREFIX=/home/share
-#PREFIX=/opt
+#PREFIX=/home/share
+PREFIX=/opt
 INCLUDE=-I$(PREFIX)/armadillo39202/include/ \
 	-I$(PREFIX)/boost1550/include/ \
 	-I$(PREFIX)/libsvm-3.17/ \
@@ -53,4 +53,4 @@ linkPrediction: $(OBJECTS)
 	@echo Making $@
 	@-$(CC)  $< $(CFLAGS) $(INCLUDE) $(LIB_PATH)  -c -o $@ $(LIB_FLAGS)
 clean:
-	rm $(BIN_PATH)linkPrediction $(BIN_PATH)/genDataSet *.o
+	rm $(BIN_PATH)linkPrediction $(BIN_PATH)genDataSet *.o

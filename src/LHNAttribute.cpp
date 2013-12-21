@@ -60,6 +60,7 @@ LHNAttribute::GetProblemAttriByEdge(vector<double>& vecAttributes
 {
   BglVertex u,v;
   vector<int> lhsNeighbor;
+  vector<int> vecCommNeighbors;
   int idx = 0;
   double maxNumCommNeighbors = (double)GetMaxNumCommNeghbors(); 
   for (int i = 0; i < vecPairVertex.size(); i++) {
@@ -73,14 +74,18 @@ LHNAttribute::GetProblemAttriByEdge(vector<double>& vecAttributes
     lhsNeighbor.clear(); 
     GetNeighbors(u,lhsNeighbor);
     //double numCommNeighbor_origin = (double)GetNumCommNeighbors(v,lhsNeighbor);
-    double numCommNeighbor_2 = (double)GetMultiLevelCommNeighbors(u,v, 2);
-    double numCommNeighbor_1 = (double)GetMultiLevelCommNeighbors(u,v, 1);
-    //cout << "origin: " << numCommNeighbor_origin << " new: "  << numCommNeighbor  << endl;
+    vecCommNeighbors.clear();
+    double numCommNeighbor_2 = (double)GetMultiLevelCommNeighbors(u,v, vecCommNeighbors, 2);
+    double value = GetSumInvDegree(vecCommNeighbors);
 
     //vecAttributes[idx] = numCommNeighbor/pow(uOutDegree*vOutDegree,0.5);
-    vecAttributes[idx] =numCommNeighbor_1/numCommNeighbor_2;
-    cout << vecAttributes[idx] << endl;
+    //vecAttributes[idx] =numCommNeighbor_2/maxNumCommNeighbors;
+    vecAttributes[idx] = value;
 #ifdef DEBUG 
+    for (int i = 0; i < vecCommNeighbors.size(); i++) {
+      cout << vecCommNeighbors[i] << ' ';
+    }
+    cout << endl;
     cout << "u: " << out_degree(u,*m_ptrGraph) 
       << " v: " << out_degree(v,*m_ptrGraph) << ' '
      << GetNumCommNeighbors(v,lhsNeighbor) << ' '      << vecAttributes[idx]
@@ -148,7 +153,7 @@ LHNAttribute::GetNumCommNeighbors(const BglVertex& selfVertex,
 
 int
 LHNAttribute::GetMultiLevelCommNeighbors( const BglVertex& u, const BglVertex& v, 
-    const int level)
+    vector<int>& vecCommNeighbors, const int level)
 {
   vector<int> vecUNeighbor;
   vector<int> vecVNeighbor;
@@ -158,13 +163,18 @@ LHNAttribute::GetMultiLevelCommNeighbors( const BglVertex& u, const BglVertex& v
   sort(vecUNeighbor.begin(), vecUNeighbor.end());
   sort(vecVNeighbor.begin(), vecVNeighbor.end());
   int maxSize = vecUNeighbor.size() > vecVNeighbor.size()? vecUNeighbor.size():vecVNeighbor.size();
-  vector<int> vecCommNeighbor(maxSize);
+  vector<int> myVecCommNeighbors(maxSize);
+  myVecCommNeighbors.resize(maxSize);
   vector<int>::iterator it_end;
   it_end = set_intersection(vecUNeighbor.begin(), vecUNeighbor.end(), 
-      vecVNeighbor.begin(), vecVNeighbor.end(), vecCommNeighbor.begin());
-  //cout << vecUNeighbor.size() << ' ' << vecVNeighbor.size() <<' ' << maxSize <<' ' << distance(vecCommNeighbor.begin(),it_end) <<endl;
+      vecVNeighbor.begin(), vecVNeighbor.end(), myVecCommNeighbors.begin());
+  //cout << vecUNeighbor.size() << ' ' << vecVNeighbor.size() <<' ' << maxSize <<' ' << distance(myVecCommNeighbors.begin(),it_end) <<endl;
+  
+  vecCommNeighbors.resize(distance(myVecCommNeighbors.begin(), it_end));
+  copy(myVecCommNeighbors.begin(), it_end ,vecCommNeighbors.begin());
 
-  return distance(vecCommNeighbor.begin(),it_end) ;
+
+  return distance(myVecCommNeighbors.begin(),it_end) ;
 }
 
 void
@@ -182,6 +192,21 @@ LHNAttribute::BFS( const BglVertex& curVertex, vector<int>& vecNeighbors,
     BglVertex tar = target(*p,*m_ptrGraph);
     BFS(tar, vecNeighbors, level+1, levelLimit); 
   }
+}
+
+double
+LHNAttribute::GetSumInvDegree( const vector<int>& vecCommNeighbors)
+{
+  BglVertex u;
+  double degree = 0.0;
+  double sum = 0.0;
+  for (int i = 0; i < vecCommNeighbors.size(); i++) {
+    u = vertex(vecCommNeighbors[i],*m_ptrGraph);
+    degree = out_degree(u,*m_ptrGraph);
+    sum += 1/degree;
+  }
+
+  return sum;
 }
 
 void
