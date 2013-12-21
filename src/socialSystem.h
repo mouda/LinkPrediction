@@ -15,7 +15,7 @@ class SocialSystem
   public:
     SocialSystem(const string& inputFileName, const string& outputFileName, const int& in_wordID);
     ~SocialSystem();
-    double ReportCorrectRatio( const string& testFileName);
+    double ReportCorrectRatio( const string& testFileName, const bool& label);
     void Train( const string& trainFileName);
     void SetRemovedEdgeRatio( const double& edgeRemovedRatio );
 

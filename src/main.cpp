@@ -22,7 +22,7 @@ int main( int argc, char* argv[] )
 {
 
   if ( argc != 4 ) {
-    cout << "Usage: [input] [model] [train:<train file>|inference:<test file>]" << endl;
+    cout << "Usage: [input] [model] [train:<train file>|inference:<test file>:<true|false>]" << endl;
     return 1;
   }
 //  boost::mpi::environment env(argc,argv);
@@ -53,10 +53,22 @@ int main( int argc, char* argv[] )
       return 1;
     } 
     if (!FileExist(flagStrings[1])) {
-      cerr << "Error: testing file doesn't exist" << endl;
+      cerr << "Error: query file doesn't exist" << endl;
       return 1;
     } 
-    mySocialSystem.ReportCorrectRatio(flagStrings[1]);
+
+    if (flagStrings[2] == "true") {
+      mySocialSystem.ReportCorrectRatio(flagStrings[1], true);
+    }
+    else if (flagStrings[2] == "false") {
+      mySocialSystem.ReportCorrectRatio(flagStrings[1], false);
+    }
+    else {
+      cerr << "Error: unknown predice result" << endl;
+    }
+  }
+  else {
+    cerr << "Error: unknown option" << endl;
   }
   return 0;
 }

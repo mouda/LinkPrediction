@@ -51,10 +51,12 @@ int main( int argc, char* argv[] )
   ss.str("");
   ss << intQueryNum;
   string outputTestFileName  = ".."+vecTokens[1] + "_test_"+ss.str()+".txt";
-  string outputQueryFileName = ".."+vecTokens[1] + "_query_"+ss.str()+".txt";
+  string outputQueryTrueFileName = ".."+vecTokens[1] + "_query_true_"+ss.str()+".txt";
+  string outputQueryFalseFileName = ".."+vecTokens[1] + "_query_false_"+ss.str()+".txt";
   cout << outputTrainFileName << endl;
   cout << outputTestFileName << endl;
-  cout << outputQueryFileName << endl;
+  cout << outputQueryTrueFileName << endl;
+  cout << outputQueryFalseFileName << endl;
   GraphFactory myGraphFactory(inputFileName, "NULL",0);
   cout << "vertex num: " << myGraphFactory.GetVertexNum() << endl;
   cout << "edge num: " << myGraphFactory.GetEdgeNum() << endl;
@@ -79,26 +81,58 @@ int main( int argc, char* argv[] )
     }
   }
 
+#ifdef DEBUG
   cout << vecRemovedPair.size() << endl;
   cout << myGraphFactory.GetEdgeNum() << endl;
+#endif
 
-  /* output removed edges */ 
-  fstream outputQueryFile;
-  outputQueryFile.open(outputQueryFileName.c_str(), ios::out);
+  /* output removed edges (true pair) */ 
+  fstream outputQueryTrueFile;
+  outputQueryTrueFile.open(outputQueryTrueFileName.c_str(), ios::out);
   sort(vecRemovedPair.begin(),vecRemovedPair.end(), pairCompare);
   for (int i = 0; i < vecRemovedPair.size(); i++) {
 #ifdef DEBUG
     cout << vecRemovedPair[i].first << ' ' << vecRemovedPair[i].second << endl;
 #endif
-    outputQueryFile << vecRemovedPair[i].first << ' ' 
+    outputQueryTrueFile << vecRemovedPair[i].first << ' ' 
       << vecRemovedPair[i].second << endl;
   }
-  outputQueryFile.close();
+  outputQueryTrueFile.close();
 
-  /* output graph with removed edges */
+  /* output random select unlink edges (false pair) */
+  fstream outputQueryFalseFile;
+  outputQueryFalseFile.open(outputQueryFalseFileName.c_str(), ios::out);
+  BglGraph myOriginGraphCheckList(myGraphFactory.GetVertexNum());
+  vector<pair<int, int> > vecUnlinkPair;
+  BglGraph *myPtrGraph = myGraphFactory.GetBglGraph();
+  countUp = 0;
+  while ( countUp < intQueryNum) {
+    randId = rand()%myGraphFactory.GetVertexNum();
+    int randNeighbor = rand()%myGraphFactory.GetVertexNum();
+    if (!edge(vertex(randId, myOriginGraphCheckList), vertex(randNeighbor, myOriginGraphCheckList), myOriginGraphCheckList).second &&  
+        !edge(vertex(randId,*myPtrGraph), vertex(randNeighbor,*myPtrGraph), *myPtrGraph ).second ) {
+      vecUnlinkPair.push_back(make_pair(randId,randNeighbor));
+      vecUnlinkPair.push_back(make_pair(randNeighbor,randId));
+      add_edge(
+          vertex(randId, myOriginGraphCheckList), 
+          vertex(randNeighbor, myOriginGraphCheckList),
+          BglEdgeWeight(1), 
+          myOriginGraphCheckList);
+      ++countUp;
+    }
+  }
+  sort(vecUnlinkPair.begin(), vecUnlinkPair.end(), pairCompare);
+  /* output */
+  for (int i = 0; i < vecUnlinkPair.size(); i++) {
+    outputQueryFalseFile << vecUnlinkPair[i].first << ' '
+      << vecUnlinkPair[i].second << endl;
+  }
+  outputQueryFalseFile.close();
+
+
+  /* output graph with removed edges (train data)*/
   fstream outputTestFile;
   outputTestFile.open(outputTestFileName.c_str(), ios::out);
-  BglGraph *myPtrGraph = myGraphFactory.GetBglGraph();
   EdgeIter ep, ep_end;
   BglVertex u,v;
   BglVertexMap indices = get( vertex_index , *myPtrGraph);

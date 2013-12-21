@@ -27,7 +27,7 @@ ProblemFactory::GetProblemAttributes(const double& edgeRemovedRatio )
   return m_matAttri;
 }
 const vector<vector<double> >&
-ProblemFactory::GetProblemAttributesByFile( const string& testFileName)
+ProblemFactory::GetProblemAttributesByFile( const string& testFileName, const bool& label)
 {
   m_ptrFileUtility = new FileUtility(testFileName,0);
   int vertexNum = m_ptrFileUtility->GetVertexNum();
@@ -64,7 +64,16 @@ ProblemFactory::GetProblemAttributesByFile( const string& testFileName)
     }
   } 
   m_matAttri.resize(2,vector<double>(m_vecTestPair.size()));
-  m_vecPtrAttributes[0]->GetProblemLabelByEdge(m_matAttri[0]); 
+  if (label) {
+    for (int i = 0; i < m_vecTestPair.size(); i++) {
+      m_matAttri[0][i] = 1; 
+    }
+  }
+  else {
+    for (int i = 0; i < m_vecTestPair.size(); i++) {
+      m_matAttri[0][i] = 2; 
+    }
+  }
   m_vecPtrAttributes[0]->GetProblemAttriByEdge(m_matAttri[1], m_vecTestPair ); 
   delete m_ptrFileUtility;
   return m_matAttri;

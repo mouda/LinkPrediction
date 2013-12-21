@@ -24,7 +24,7 @@ class ProblemFactory
     ~ProblemFactory();
 
     const vector<vector<double> >& GetProblemAttributes(const double& edgeRemovedRatio );
-    const vector<vector<double> >& GetProblemAttributesByFile( const string& testFileName);
+    const vector<vector<double> >& GetProblemAttributesByFile( const string& testFileName, const bool& label);
 
   private:
     /* private methods */

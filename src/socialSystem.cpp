@@ -45,10 +45,10 @@ SocialSystem::Train( const string& trainFileName)
   m_ptrSolver->Train();
 }
 double
-SocialSystem::ReportCorrectRatio( const string& testFileName)
+SocialSystem::ReportCorrectRatio( const string& testFileName, const bool& label)
 {
   m_ptrSolver->Inference(
-      m_ptrProblemFactory->GetProblemAttributesByFile(testFileName)
+      m_ptrProblemFactory->GetProblemAttributesByFile(testFileName, label)
       );
   return 0.0;
 }
