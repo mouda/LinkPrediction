@@ -1,5 +1,6 @@
 #include "LHNAttribute.h"
 #include <limits.h>
+#include <math.h>
 
 LHNAttribute::LHNAttribute( BglGraph const * const ptrGraph, 
    const int& numVertex, const int& numEdge )
@@ -71,9 +72,11 @@ LHNAttribute::GetProblemAttriByEdge(vector<double>& vecAttributes
 
     lhsNeighbor.clear(); 
     GetNeighbors(u,lhsNeighbor);
-    double numCommNeighbor = (double)GetNumCommNeighbors(v,lhsNeighbor);
+    //double numCommNeighbor_origin = (double)GetNumCommNeighbors(v,lhsNeighbor);
+    double numCommNeighbor = (double)GetMultiLevelCommNeighbors(u,v, 2);
+    //cout << "origin: " << numCommNeighbor_origin << " new: "  << numCommNeighbor  << endl;
 
-    vecAttributes[idx] = numCommNeighbor/uOutDegree/vOutDegree;
+    vecAttributes[idx] = numCommNeighbor/pow(uOutDegree*vOutDegree,0.5);
 #ifdef DEBUG 
     cout << "u: " << out_degree(u,*m_ptrGraph) 
       << " v: " << out_degree(v,*m_ptrGraph) << ' '
@@ -138,6 +141,44 @@ LHNAttribute::GetNumCommNeighbors(const BglVertex& selfVertex,
     }
   }
   return numCommNeighbor;
+}
+
+int
+LHNAttribute::GetMultiLevelCommNeighbors( const BglVertex& u, const BglVertex& v, 
+    const int level)
+{
+  vector<int> vecUNeighbor;
+  vector<int> vecVNeighbor;
+  int initial = 0;
+  BFS(u, vecUNeighbor, initial, level);
+  BFS(v, vecVNeighbor, initial, level);
+  sort(vecUNeighbor.begin(), vecUNeighbor.end());
+  sort(vecVNeighbor.begin(), vecVNeighbor.end());
+  int maxSize = vecUNeighbor.size() > vecVNeighbor.size()? vecUNeighbor.size():vecVNeighbor.size();
+  vector<int> vecCommNeighbor(maxSize);
+  vector<int>::iterator it_end;
+  it_end = set_intersection(vecUNeighbor.begin(), vecUNeighbor.end(), 
+      vecVNeighbor.begin(), vecVNeighbor.end(), vecCommNeighbor.begin());
+  //cout << vecUNeighbor.size() << ' ' << vecVNeighbor.size() <<' ' << maxSize <<' ' << distance(vecCommNeighbor.begin(),it_end) <<endl;
+
+  return distance(vecCommNeighbor.begin(),it_end) ;
+}
+
+void
+LHNAttribute::BFS( const BglVertex& curVertex, vector<int>& vecNeighbors,
+    int level, const int& levelLimit )
+{
+  BglVertexMap indices = get( vertex_index , *m_ptrGraph);
+  vecNeighbors.push_back(indices[curVertex]);
+  if (level == levelLimit) {
+    return;
+  }
+  OutEdgeIter p, p_end;
+  for (tie(p, p_end) = out_edges(curVertex, *m_ptrGraph) ; p != p_end; ++p) {
+    BglVertex sou = source(*p,*m_ptrGraph);
+    BglVertex tar = target(*p,*m_ptrGraph);
+    BFS(tar, vecNeighbors, level+1, levelLimit); 
+  }
 }
 
 void

@@ -22,6 +22,8 @@ private:
   void GetNeighbors(const BglVertex& selfVertex, vector<int>& vecNeighbors);
   int  GetNumCommNeighbors(const BglVertex& selfVertex, 
       const vector<int>& vecOtherNeighbors);
+  int GetMultiLevelCommNeighbors( const BglVertex& u, const BglVertex& v, const int level);
+  void BFS( const BglVertex& curVertex, vector<int>& vecNeighbors, int level, const int& levelLimit );
 
 
   /* constant data members */
