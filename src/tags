@@ -1,0 +1,190 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Attribute	attribute.cpp	/^Attribute::Attribute()$/;"	f	class:Attribute
+Attribute	attribute.h	/^class Attribute$/;"	c
+AttributeFactory	attributeFactory.cpp	/^AttributeFactory::AttributeFactory( BglGraph const * const ptrGraph, $/;"	f	class:AttributeFactory
+AttributeFactory	attributeFactory.h	/^class AttributeFactory$/;"	c
+BFS	graphFactory.cpp	/^void GraphFactory::BFS( const int& index)$/;"	f	class:GraphFactory
+BFS	graphFactory_mpi.cpp	/^void GraphFactory::BFS( const int& index)$/;"	f	class:GraphFactory
+BIN_PATH	Makefile	/^BIN_PATH=..\/bin\/$/;"	m
+BglColorMap	graphFactory.h	/^typedef property_map<BglGraph, vertex_color_t>::type  BglColorMap;$/;"	t
+BglColorMap	graphFactory_mpi.h	/^typedef property_map<BglGraph, vertex_color_t>::type  BglColorMap;$/;"	t
+BglEdge	graphFactory.h	/^typedef graph_traits<BglGraph>::edge_descriptor       BglEdge;$/;"	t
+BglEdge	graphFactory_mpi.h	/^typedef graph_traits<BglGraph>::edge_descriptor       BglEdge;$/;"	t
+BglEdgeWeight	graphFactory.h	/^typedef BglGraph::edge_property_type                  BglEdgeWeight;$/;"	t
+BglEdgeWeight	graphFactory_mpi.h	/^typedef BglGraph::edge_property_type BglEdgeWeight;$/;"	t
+BglGraph	graphFactory.h	/^        > BglGraph;$/;"	t
+BglGraph	graphFactory_mpi.h	/^        > BglGraph;$/;"	t
+BglVertex	graphFactory.h	/^typedef graph_traits<BglGraph>::vertex_descriptor     BglVertex;$/;"	t
+BglVertex	graphFactory_mpi.h	/^typedef graph_traits<BglGraph>::vertex_descriptor     BglVertex;$/;"	t
+BglVertexMap	graphFactory.h	/^typedef property_map<BglGraph, vertex_index_t>::type  BglVertexMap;$/;"	t
+BglVertexMap	graphFactory_mpi.h	/^typedef property_map<BglGraph, vertex_index_t>::type  BglVertexMap;$/;"	t
+BglVertexPair	graphFactory.h	/^typedef std::pair<BglVertex,BglVertex>                BglVertexPair; $/;"	t
+CC	Makefile	/^CC=g++$/;"	m
+CFLAGS	Makefile	/^CFLAGS=-g$/;"	m
+CommomFriendsAttribute	commomFriendsAttribute.cpp	/^CommomFriendsAttribute::CommomFriendsAttribute( BglGraph const * const ptrGraph, $/;"	f	class:CommomFriendsAttribute
+CommomFriendsAttribute	commomFriendsAttribute.h	/^class CommomFriendsAttribute: public Attribute$/;"	c
+EdgeIter	graphFactory.h	/^typedef graph_traits<BglGraph>::edge_iterator         EdgeIter;$/;"	t
+EdgePair	graphFactory.h	/^typedef std::pair<EdgeIter,EdgeIter>                  EdgePair;$/;"	t
+EdgeProperty	graphFactory.h	/^  EdgeProperty(){ }$/;"	f	struct:EdgeProperty
+EdgeProperty	graphFactory.h	/^struct EdgeProperty$/;"	s
+EdgeProperty	graphFactory_mpi.h	/^  EdgeProperty(){ }$/;"	f	struct:EdgeProperty
+EdgeProperty	graphFactory_mpi.h	/^struct EdgeProperty$/;"	s
+FileExist	utility.cpp	/^bool FileExist( const std::string& Name)$/;"	f
+FileUtility	fileUtility.cpp	/^FileUtility::FileUtility( const string& m_inputFileName, const int& wordId):$/;"	f	class:FileUtility
+FileUtility	fileUtility.h	/^class FileUtility$/;"	c
+GENOBJECTS	Makefile	/^GENOBJECTS=$(GENSOURCE:.cpp=.o)$/;"	m
+GENSOURCE	Makefile	/^GENSOURCE=genDataSet.cpp graphFactory.cpp fileUtility.cpp utility.cpp$/;"	m
+GetAttributeByEdge	commomFriendsAttribute.cpp	/^CommomFriendsAttribute::GetAttributeByEdge( vector<double>& vecAttributes )$/;"	f	class:CommomFriendsAttribute
+GetAttributes	attributeFactory.cpp	/^AttributeFactory::GetAttributes()$/;"	f	class:AttributeFactory
+GetAttributesByFile	attributeFactory.cpp	/^AttributeFactory::GetAttributesByFile( const string& fileName )$/;"	f	class:AttributeFactory
+GetBglGraph	graphFactory.h	/^    BglGraph * GetBglGraph(){ return m_ptrBglGraph; }$/;"	f	class:GraphFactory
+GetEdgeNum	graphFactory.h	/^    int GetEdgeNum(){ return m_numEdge; }$/;"	f	class:GraphFactory
+GetEdgePair	fileUtility.cpp	/^pair<int, int> FileUtility::GetEdgePair()$/;"	f	class:FileUtility
+GetFirstNeighborById	graphFactory.cpp	/^int GraphFactory::GetFirstNeighborById( const int& idx )$/;"	f	class:GraphFactory
+GetLabelByEdge	commomFriendsAttribute.cpp	/^CommomFriendsAttribute::GetLabelByEdge( vector<double>& vecLabels)$/;"	f	class:CommomFriendsAttribute
+GetLastLine	utility.cpp	/^std::string GetLastLine(std::ifstream& in)$/;"	f
+GetMaxNumCommNeghbors	commomFriendsAttribute.cpp	/^CommomFriendsAttribute::GetMaxNumCommNeghbors()$/;"	f	class:CommomFriendsAttribute
+GetNeighbors	commomFriendsAttribute.cpp	/^CommomFriendsAttribute::GetNeighbors(const BglVertex& selfVertex, $/;"	f	class:CommomFriendsAttribute
+GetNeighbors	graphFactory.cpp	/^void GraphFactory::GetNeighbors( const int& idx, std::vector<int>& neighbors )$/;"	f	class:GraphFactory
+GetNeighbors	graphFactory_mpi.cpp	/^void GraphFactory::GetNeighbors( const int& idx, std::vector<int>& neighbors )$/;"	f	class:GraphFactory
+GetNumCommNeighbors	commomFriendsAttribute.cpp	/^CommomFriendsAttribute::GetNumCommNeighbors(const BglVertex& selfVertex, $/;"	f	class:CommomFriendsAttribute
+GetProblemAttriByEdge	commomFriendsAttribute.cpp	/^CommomFriendsAttribute::GetProblemAttriByEdge(vector<double>& vecAttributes$/;"	f	class:CommomFriendsAttribute
+GetProblemAttributes	problemFactory.cpp	/^ProblemFactory::GetProblemAttributes(const double& edgeRemovedRatio )$/;"	f	class:ProblemFactory
+GetProblemAttributesByFile	problemFactory.cpp	/^ProblemFactory::GetProblemAttributesByFile( const string& testFileName)$/;"	f	class:ProblemFactory
+GetProblemLabelByEdge	commomFriendsAttribute.cpp	/^CommomFriendsAttribute::GetProblemLabelByEdge(vector<double>& vecLabels)$/;"	f	class:CommomFriendsAttribute
+GetTrainAttriByEdge	commomFriendsAttribute.cpp	/^CommomFriendsAttribute::GetTrainAttriByEdge( vector<double>& vecAttributes, $/;"	f	class:CommomFriendsAttribute
+GetVertex	fileUtility.cpp	/^unsigned int FileUtility::GetVertex()$/;"	f	class:FileUtility
+GetVertexId	graphFactory.cpp	/^int GraphFactory::GetVertexId( const int& index) $/;"	f	class:GraphFactory
+GetVertexId	graphFactory_mpi.cpp	/^int GraphFactory::GetVertexId( const int& index) $/;"	f	class:GraphFactory
+GetVertexNum	fileUtility.cpp	/^int FileUtility::GetVertexNum()$/;"	f	class:FileUtility
+GetVertexNum	graphFactory.h	/^    int GetVertexNum(){ return m_numVertex; }$/;"	f	class:GraphFactory
+GraphFactory	graphFactory.cpp	/^GraphFactory::GraphFactory(const string& inputFileName, $/;"	f	class:GraphFactory
+GraphFactory	graphFactory.h	/^class GraphFactory $/;"	c
+GraphFactory	graphFactory_mpi.cpp	/^GraphFactory::GraphFactory(const string& inputFileName, $/;"	f	class:GraphFactory
+GraphFactory	graphFactory_mpi.h	/^class GraphFactory: public Graph$/;"	c
+INCLUDE	Makefile	/^INCLUDE=-I$(PREFIX)\/armadillo39202\/include\/ \\$/;"	m
+Ignoreline	utility.cpp	/^std::istream& Ignoreline(std::ifstream& in, std::ifstream::pos_type& pos)$/;"	f
+Inference	solverFactory.cpp	/^SolverFactory::Inference( const vector<vector<double> >& instances )$/;"	f	class:SolverFactory
+LIB_FLAGS	Makefile	/^LIB_FLAGS=-lsvm \\$/;"	m
+LIB_PATH	Makefile	/^LIB_PATH=-L$(PREFIX)\/armadillo39202\/lib\/ \\$/;"	m
+LinkPredictSolver	linkPredictSolver.cpp	/^LinkPredictSolver::LinkPredictSolver()$/;"	f	class:LinkPredictSolver
+LinkPredictSolver	linkPredictSolver.h	/^class LinkPredictSolver$/;"	c
+MPI	Makefile	/^MPI=1$/;"	m
+Malloc	solverFactory.h	7;"	d
+OBJECTS	Makefile	/^OBJECTS=$(SOURCES:.cpp=.o)$/;"	m
+OutEdgeIter	graphFactory.h	/^typedef graph_traits<BglGraph>::out_edge_iterator     OutEdgeIter;$/;"	t
+OutEdgeIter	graphFactory_mpi.h	/^typedef graph_traits<BglGraph>::out_edge_iterator     OutEdgeIter;$/;"	t
+PREFIX	Makefile	/^PREFIX=\/home\/share$/;"	m
+ParseInput	fileUtility.cpp	/^FileUtility::ParseInput()$/;"	f	class:FileUtility
+PrintNeighbors	graphFactory.cpp	/^void GraphFactory::PrintNeighbors( const int& idx )$/;"	f	class:GraphFactory
+PrintNeighbors	graphFactory_mpi.cpp	/^void GraphFactory::PrintNeighbors( const int& idx )$/;"	f	class:GraphFactory
+ProblemFactory	problemFactory.cpp	/^ProblemFactory::ProblemFactory(BglGraph const * const ptrGraph, $/;"	f	class:ProblemFactory
+ProblemFactory	problemFactory.h	/^class ProblemFactory$/;"	c
+RemoveEdge	graphFactory.cpp	/^bool GraphFactory::RemoveEdge( const int& vlhs, const int& vrhs)$/;"	f	class:GraphFactory
+ReportCorrectRatio	socialSystem.cpp	/^SocialSystem::ReportCorrectRatio( const string& testFileName)$/;"	f	class:SocialSystem
+SOURCES	Makefile	/^SOURCES=main.cpp utility.cpp socialSystem.cpp graphFactory.cpp \\$/;"	m
+SetLinkedAttribute	commomFriendsAttribute.cpp	/^CommomFriendsAttribute::SetLinkedAttribute( vector<double>& vecAttributes )$/;"	f	class:CommomFriendsAttribute
+SetLinkedPair	problemFactory.cpp	/^ProblemFactory::SetLinkedPair()$/;"	f	class:ProblemFactory
+SetProblem	solverFactory.cpp	/^SolverFactory::SetProblem()$/;"	f	class:SolverFactory
+SetProblemPairsByRatio	problemFactory.cpp	/^ProblemFactory::SetProblemPairsByRatio( const double& ratio)$/;"	f	class:ProblemFactory
+SetRemovedEdgeRatio	socialSystem.cpp	/^SocialSystem::SetRemovedEdgeRatio( const double& edgeRemoveRatio  )$/;"	f	class:SocialSystem
+SetTrainingInstance	solverFactory.cpp	/^SolverFactory::SetTrainingInstance(const vector<vector<double> >& instances )$/;"	f	class:SolverFactory
+SetUnLinkedAttribute	commomFriendsAttribute.cpp	/^CommomFriendsAttribute::SetUnLinkedAttribute( vector<double>& vecAttributes )$/;"	f	class:CommomFriendsAttribute
+SetUnLinkedPair	problemFactory.cpp	/^ProblemFactory::SetUnLinkedPair()$/;"	f	class:ProblemFactory
+SocialSystem	socialSystem.cpp	/^SocialSystem::SocialSystem(const string& inputFileName, $/;"	f	class:SocialSystem
+SocialSystem	socialSystem.h	/^class SocialSystem $/;"	c
+SolverFactory	solverFactory.cpp	/^SolverFactory::SolverFactory( const string& modelFileName)$/;"	f	class:SolverFactory
+SolverFactory	solverFactory.h	/^class SolverFactory: public LinkPredictSolver$/;"	c
+Train	socialSystem.cpp	/^SocialSystem::Train( const string& trainFileName)$/;"	f	class:SocialSystem
+Train	solverFactory.cpp	/^SolverFactory::Train()$/;"	f	class:SolverFactory
+VertexIter	graphFactory.h	/^typedef graph_traits<BglGraph>::vertex_iterator       VertexIter;$/;"	t
+VertexProperty	graphFactory.h	/^  VertexProperty(){ }$/;"	f	struct:VertexProperty
+VertexProperty	graphFactory.h	/^  VertexProperty(const int& id):m_nodeId(id){ }$/;"	f	struct:VertexProperty
+VertexProperty	graphFactory.h	/^struct VertexProperty $/;"	s
+VertexProperty	graphFactory_mpi.h	/^  VertexProperty(){ }$/;"	f	struct:VertexProperty
+VertexProperty	graphFactory_mpi.h	/^  VertexProperty(const int& id):m_nodeId(id){ }$/;"	f	struct:VertexProperty
+VertexProperty	graphFactory_mpi.h	/^struct VertexProperty $/;"	s
+_ATTRIBUTEFACTORY_	attributeFactory.h	2;"	d
+_ATTRIBUTE_	attribute.h	2;"	d
+_FILEUTILITY_	fileUtility.h	6;"	d
+_GRAPHFACTORY_	graphFactory.h	7;"	d
+_LPSOLVER_	linkPredictSolver.h	2;"	d
+_PROBLEMFACTORY_	problemFactory.h	2;"	d
+_UTILITY_	utility.h	2;"	d
+dijkstra	graphFactory.cpp	/^void GraphFactory::dijkstra( const int& startIdx)$/;"	f	class:GraphFactory
+dijkstra	graphFactory_mpi.cpp	/^void GraphFactory::dijkstra( const int& startIdx)$/;"	f	class:GraphFactory
+do_cross_validation	solverFactory.cpp	/^SolverFactory::do_cross_validation()$/;"	f	class:SolverFactory
+m_cross_validation	solverFactory.h	/^    int                   m_cross_validation;$/;"	m	class:SolverFactory
+m_edgeSet	fileUtility.h	/^    set<set<int> > m_edgeSet;$/;"	m	class:FileUtility
+m_inputFile	fileUtility.h	/^    ifstream m_inputFile;$/;"	m	class:FileUtility
+m_matAttri	attributeFactory.h	/^    vector<vector<double> > m_matAttri;$/;"	m	class:AttributeFactory
+m_matAttri	problemFactory.h	/^    vector<vector<double> > m_matAttri;$/;"	m	class:ProblemFactory
+m_matProblemLinks	problemFactory.h	/^    Eigen::SparseMatrix<int>  m_matProblemLinks;$/;"	m	class:ProblemFactory
+m_maxCommNeighbors	commomFriendsAttribute.h	/^  double                  m_maxCommNeighbors;$/;"	m	class:CommomFriendsAttribute
+m_model	solverFactory.h	/^    struct svm_model      *m_model;$/;"	m	class:SolverFactory	typeref:struct:SolverFactory::svm_model
+m_modelFileName	solverFactory.h	/^    const string          m_modelFileName;$/;"	m	class:SolverFactory
+m_nodeId	graphFactory.h	/^  int m_nodeId;$/;"	m	struct:VertexProperty
+m_nodeId	graphFactory_mpi.h	/^  int m_nodeId;$/;"	m	struct:VertexProperty
+m_nr_fold	solverFactory.h	/^    int                   m_nr_fold;$/;"	m	class:SolverFactory
+m_numDiscardEdge	problemFactory.h	/^    int                     m_numDiscardEdge;$/;"	m	class:ProblemFactory
+m_numEdge	attributeFactory.h	/^    const int               m_numEdge;$/;"	m	class:AttributeFactory
+m_numEdge	commomFriendsAttribute.h	/^  const int               m_numEdge;$/;"	m	class:CommomFriendsAttribute
+m_numEdge	graphFactory.h	/^    int         m_numEdge;$/;"	m	class:GraphFactory
+m_numEdge	problemFactory.h	/^    const int               m_numEdge;$/;"	m	class:ProblemFactory
+m_numVertex	attributeFactory.h	/^    const int               m_numVertex;$/;"	m	class:AttributeFactory
+m_numVertex	commomFriendsAttribute.h	/^  const int               m_numVertex;$/;"	m	class:CommomFriendsAttribute
+m_numVertex	graphFactory.h	/^    int         m_numVertex;$/;"	m	class:GraphFactory
+m_numVertex	problemFactory.h	/^    const int               m_numVertex;$/;"	m	class:ProblemFactory
+m_param	solverFactory.h	/^    struct svm_parameter  m_param;		\/\/ set by parse_command_line$/;"	m	class:SolverFactory	typeref:struct:SolverFactory::svm_parameter
+m_prob	solverFactory.h	/^    struct svm_problem    m_prob;		\/\/ set by read_problem$/;"	m	class:SolverFactory	typeref:struct:SolverFactory::svm_problem
+m_ptrAttributeFactory	socialSystem.h	/^    AttributeFactory  *m_ptrAttributeFactory;$/;"	m	class:SocialSystem
+m_ptrBglGraph	graphFactory.h	/^    BglGraph    *m_ptrBglGraph;$/;"	m	class:GraphFactory
+m_ptrBglGraph	graphFactory_mpi.h	/^    BglGraph    *m_ptrBglGraph;$/;"	m	class:GraphFactory
+m_ptrFileUtility	attributeFactory.h	/^    FileUtility             *m_ptrFileUtility; $/;"	m	class:AttributeFactory
+m_ptrFileUtility	graphFactory.h	/^    FileUtility *m_ptrFileUtility;$/;"	m	class:GraphFactory
+m_ptrFileUtility	graphFactory_mpi.h	/^    FileUtility *m_ptrFileUtility;$/;"	m	class:GraphFactory
+m_ptrFileUtility	problemFactory.h	/^    FileUtility             *m_ptrFileUtility; $/;"	m	class:ProblemFactory
+m_ptrGraph	attributeFactory.h	/^    BglGraph const * const  m_ptrGraph;$/;"	m	class:AttributeFactory
+m_ptrGraph	commomFriendsAttribute.h	/^  BglGraph const * const  m_ptrGraph;  $/;"	m	class:CommomFriendsAttribute
+m_ptrGraph	problemFactory.h	/^    BglGraph const * const  m_ptrGraph;  $/;"	m	class:ProblemFactory
+m_ptrGraph	socialSystem.h	/^    GraphFactory      *m_ptrGraph;$/;"	m	class:SocialSystem
+m_ptrProblemFactory	socialSystem.h	/^    ProblemFactory    *m_ptrProblemFactory;$/;"	m	class:SocialSystem
+m_ptrSolver	socialSystem.h	/^    LinkPredictSolver *m_ptrSolver;$/;"	m	class:SocialSystem
+m_vecLinkedPair	attributeFactory.h	/^    vector<BglVertexPair>   m_vecLinkedPair;$/;"	m	class:AttributeFactory
+m_vecLinkedPairs	problemFactory.h	/^    vector<BglVertexPair>   m_vecLinkedPairs;$/;"	m	class:ProblemFactory
+m_vecPtrAttributes	attributeFactory.h	/^    vector<Attribute*>      m_vecPtrAttributes;$/;"	m	class:AttributeFactory
+m_vecPtrAttributes	problemFactory.h	/^    vector<Attribute*>      m_vecPtrAttributes;$/;"	m	class:ProblemFactory
+m_vecTestPair	problemFactory.h	/^    vector<BglVertexPair>   m_vecTestPair;$/;"	m	class:ProblemFactory
+m_vecTrainPair	attributeFactory.h	/^    vector<BglVertexPair>   m_vecTrainPair;$/;"	m	class:AttributeFactory
+m_vecUnLinkedPair	attributeFactory.h	/^    vector<BglVertexPair>   m_vecUnLinkedPair;$/;"	m	class:AttributeFactory
+m_vecUnLinkedPairs	problemFactory.h	/^    vector<BglVertexPair>   m_vecUnLinkedPairs;$/;"	m	class:ProblemFactory
+m_wordId	fileUtility.h	/^    const int      m_wordId;$/;"	m	class:FileUtility
+m_wordId	graphFactory.h	/^    const int   m_wordId;$/;"	m	class:GraphFactory
+m_wordId	graphFactory_mpi.h	/^    const int   m_wordId;$/;"	m	class:GraphFactory
+m_worldId	socialSystem.h	/^    const int         m_worldId;$/;"	m	class:SocialSystem
+m_x_space	solverFactory.h	/^    struct svm_node       *m_x_space;$/;"	m	class:SolverFactory	typeref:struct:SolverFactory::svm_node
+main	genDataSet.cpp	/^int main( int argc, char* argv[] )$/;"	f
+main	main.cpp	/^int main( int argc, char* argv[] )$/;"	f
+pairCompare	genDataSet.cpp	/^bool pairCompare(const std::pair<int, int>& firstElem, $/;"	f
+serialize	graphFactory.h	/^    void serialize(Archiver& ar, const unsigned int \/* version*\/) {$/;"	f	struct:EdgeProperty
+serialize	graphFactory.h	/^    void serialize(Archiver& ar, const unsigned int \/* version*\/) {$/;"	f	struct:VertexProperty
+serialize	graphFactory_mpi.h	/^    void serialize(Archiver& ar, const unsigned int \/* version*\/) {$/;"	f	struct:EdgeProperty
+serialize	graphFactory_mpi.h	/^    void serialize(Archiver& ar, const unsigned int \/* version*\/) {$/;"	f	struct:VertexProperty
+split	utility.cpp	/^std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems) {$/;"	f
+split	utility.cpp	/^std::vector<std::string> split(const std::string &s, char delim) {$/;"	f
+split_vector_type	genDataSet.cpp	/^typedef vector< string > split_vector_type;$/;"	t	file:
+~Attribute	attribute.cpp	/^Attribute::~Attribute()$/;"	f	class:Attribute
+~AttributeFactory	attributeFactory.cpp	/^AttributeFactory::~AttributeFactory()$/;"	f	class:AttributeFactory
+~CommomFriendsAttribute	commomFriendsAttribute.cpp	/^CommomFriendsAttribute::~CommomFriendsAttribute()$/;"	f	class:CommomFriendsAttribute
+~FileUtility	fileUtility.cpp	/^FileUtility::~FileUtility()$/;"	f	class:FileUtility
+~GraphFactory	graphFactory.cpp	/^GraphFactory::~GraphFactory()$/;"	f	class:GraphFactory
+~GraphFactory	graphFactory_mpi.cpp	/^GraphFactory::~GraphFactory()$/;"	f	class:GraphFactory
+~LinkPredictSolver	linkPredictSolver.cpp	/^LinkPredictSolver::~LinkPredictSolver()$/;"	f	class:LinkPredictSolver
+~ProblemFactory	problemFactory.cpp	/^ProblemFactory::~ProblemFactory()$/;"	f	class:ProblemFactory
+~SocialSystem	socialSystem.cpp	/^SocialSystem::~SocialSystem()$/;"	f	class:SocialSystem
+~SolverFactory	solverFactory.cpp	/^SolverFactory::~SolverFactory()$/;"	f	class:SolverFactory
