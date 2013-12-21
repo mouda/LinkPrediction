@@ -14,6 +14,8 @@ HOWTO execute:
 	$ make getDataSet
 3. Execution flow, go to $PROJECT/bin/:
 	a. ./genDataSet [origin graph file] 1000 1000
-	b. ./linkPrediction [graph file] [model file] train:<train list file>  
-	c. ./linkPrediction [graph file] [model file] train:<query list file>  
+4. Train the data:
+	b. ./linkPrediction [graph file] [model file] train:<train list file>:true  
+5. Evalutate the model:
+	c. ./linkPrediction [graph file] [model file] infrence:<query list file>:false
 
