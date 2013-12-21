@@ -73,10 +73,13 @@ LHNAttribute::GetProblemAttriByEdge(vector<double>& vecAttributes
     lhsNeighbor.clear(); 
     GetNeighbors(u,lhsNeighbor);
     //double numCommNeighbor_origin = (double)GetNumCommNeighbors(v,lhsNeighbor);
-    double numCommNeighbor = (double)GetMultiLevelCommNeighbors(u,v, 2);
+    double numCommNeighbor_2 = (double)GetMultiLevelCommNeighbors(u,v, 2);
+    double numCommNeighbor_1 = (double)GetMultiLevelCommNeighbors(u,v, 1);
     //cout << "origin: " << numCommNeighbor_origin << " new: "  << numCommNeighbor  << endl;
 
-    vecAttributes[idx] = numCommNeighbor/pow(uOutDegree*vOutDegree,0.5);
+    //vecAttributes[idx] = numCommNeighbor/pow(uOutDegree*vOutDegree,0.5);
+    vecAttributes[idx] =numCommNeighbor_1/numCommNeighbor_2;
+    cout << vecAttributes[idx] << endl;
 #ifdef DEBUG 
     cout << "u: " << out_degree(u,*m_ptrGraph) 
       << " v: " << out_degree(v,*m_ptrGraph) << ' '
