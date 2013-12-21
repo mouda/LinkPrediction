@@ -38,6 +38,7 @@ class ProblemFactory
     FileUtility             *m_ptrFileUtility; 
     const int               m_numVertex;
     const int               m_numEdge;
+    int                     m_numAttributes;
     int                     m_numDiscardEdge;
     vector<Attribute*>      m_vecPtrAttributes;
     vector<vector<double> > m_matAttri;

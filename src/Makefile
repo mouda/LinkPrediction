@@ -5,6 +5,7 @@ MPI=1
 SOURCES=main.cpp utility.cpp socialSystem.cpp graphFactory.cpp \
 	fileUtility.cpp problemFactory.cpp \
 	attribute.cpp attributeFactory.cpp  commomFriendsAttribute.cpp \
+	LHNAttribute.cpp \
 	linkPredictSolver.cpp solverFactory.cpp
 GENSOURCE=genDataSet.cpp graphFactory.cpp fileUtility.cpp utility.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
@@ -52,4 +53,4 @@ linkPrediction: $(OBJECTS)
 	@echo Making $@
 	@-$(CC)  $< $(CFLAGS) $(INCLUDE) $(LIB_PATH)  -c -o $@ $(LIB_FLAGS)
 clean:
-	rm $(BIN_PATH)linkPrediction *.o
+	rm $(BIN_PATH)linkPrediction $(BIN_PATH)/genDataSet *.o

@@ -21,6 +21,7 @@ class AttributeFactory
     BglGraph const * const  m_ptrGraph;
     const int               m_numVertex;
     const int               m_numEdge;
+    int                     m_numAttributes;
     vector<Attribute*>      m_vecPtrAttributes;
     vector<vector<double> > m_matAttri;
     FileUtility             *m_ptrFileUtility; 

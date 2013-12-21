@@ -1,5 +1,6 @@
 #include "problemFactory.h"
 #include "commomFriendsAttribute.h"
+#include "LHNAttribute.h"
 
 
 ProblemFactory::ProblemFactory(BglGraph const * const ptrGraph, 
@@ -8,7 +9,11 @@ ProblemFactory::ProblemFactory(BglGraph const * const ptrGraph,
 {
   Attribute * ptrAttri = 
     new CommomFriendsAttribute(m_ptrGraph, m_numVertex, m_numEdge);
+  Attribute * ptrAttri_1 = 
+    new LHNAttribute(m_ptrGraph, m_numVertex, m_numEdge);
+  m_numAttributes = 2;
   m_vecPtrAttributes.push_back(ptrAttri);
+  m_vecPtrAttributes.push_back(ptrAttri_1);
 }
 
 ProblemFactory::~ProblemFactory()
@@ -63,7 +68,7 @@ ProblemFactory::GetProblemAttributesByFile( const string& testFileName, const bo
           myCheckList);
     }
   } 
-  m_matAttri.resize(2,vector<double>(m_vecTestPair.size()));
+  m_matAttri.resize(m_numAttributes+1,vector<double>(m_vecTestPair.size()));
   if (label) {
     for (int i = 0; i < m_vecTestPair.size(); i++) {
       m_matAttri[0][i] = 1; 
@@ -74,7 +79,10 @@ ProblemFactory::GetProblemAttributesByFile( const string& testFileName, const bo
       m_matAttri[0][i] = 2; 
     }
   }
-  m_vecPtrAttributes[0]->GetProblemAttriByEdge(m_matAttri[1], m_vecTestPair ); 
+  //m_vecPtrAttributes[0]->GetProblemAttriByEdge(m_matAttri[1], m_vecTestPair ); 
+  for (int i = 0; i < m_vecPtrAttributes.size(); i++) {
+    m_vecPtrAttributes[i]->GetProblemAttriByEdge(m_matAttri[i+1], m_vecTestPair);
+  }
   delete m_ptrFileUtility;
   return m_matAttri;
 }
