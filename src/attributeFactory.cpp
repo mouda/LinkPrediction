@@ -8,12 +8,11 @@ AttributeFactory::AttributeFactory( BglGraph const * const ptrGraph,
     const int& numVertex, const int& numEdge)
   :m_ptrGraph(ptrGraph), m_numVertex(numVertex), m_numEdge(numEdge) 
 {
-//  Attribute * ptrAttri = 
-//    new CommomFriendsAttribute(m_ptrGraph, m_numVertex, m_numEdge);
+  Attribute * ptrAttri = 
+    new CommomFriendsAttribute(m_ptrGraph, m_numVertex, m_numEdge);
   Attribute * ptrAttri_1 = 
     new LHNAttribute(m_ptrGraph, m_numVertex, m_numEdge);
-  m_numAttributes = 1;
-//  m_vecPtrAttributes.push_back(ptrAttri);
+  m_vecPtrAttributes.push_back(ptrAttri);
   m_vecPtrAttributes.push_back(ptrAttri_1);
 }
 
@@ -96,7 +95,7 @@ AttributeFactory::GetAttributesByFile( const string& fileName )
     }
   } 
 
-  m_matAttri.resize(m_numAttributes+1,vector<double>(m_vecTrainPair.size()));
+  m_matAttri.resize(m_vecPtrAttributes.size()+1,vector<double>(m_vecTrainPair.size()));
 #ifdef DEBUG
   cout << m_vecTrainPair.size() << endl;
   cout << vecLabelCheatSheet.size() << endl;

@@ -92,7 +92,7 @@ class GraphFactory
     BglGraph * GetBglGraph(){ return m_ptrBglGraph; }
 
 
-    bool RemoveEdge(const int& vlhs, const int& vrhs);
+    bool RemoveEdge(const int& vlhs, const int& vrhs, const int degreeLimit);
     int  GetFirstNeighborById( const int& idx);
 
     void BFS(const int& startIdx);

@@ -56,9 +56,11 @@ int GraphFactory::GetVertexId( const int& index)
   return indices[source];
 } 
 
-bool GraphFactory::RemoveEdge( const int& vlhs, const int& vrhs)
+bool GraphFactory::RemoveEdge( const int& vlhs, const int& vrhs, const int degreeLimit)
 {
   BglVertex u, v;
+  u = vertex(vlhs, *m_ptrBglGraph);
+  v = vertex(vrhs, *m_ptrBglGraph);
   if( !edge(
         vertex(vlhs,*m_ptrBglGraph),
         vertex(vrhs,*m_ptrBglGraph),
@@ -66,13 +68,16 @@ bool GraphFactory::RemoveEdge( const int& vlhs, const int& vrhs)
     return false;
   }
   else {
-    remove_edge(
-        vertex(vlhs, *m_ptrBglGraph),
-        vertex(vrhs, *m_ptrBglGraph),
-        *m_ptrBglGraph
-        );
-    --m_numEdge;
-    return true;
+    if ( (out_degree(u, *m_ptrBglGraph) > degreeLimit) &&  (out_degree(v, *m_ptrBglGraph) > degreeLimit)) {
+      remove_edge(
+          vertex(vlhs, *m_ptrBglGraph),
+          vertex(vrhs, *m_ptrBglGraph),
+          *m_ptrBglGraph
+          );
+      --m_numEdge;
+      return true;
+    }
+    return false;
   }
 }
 
