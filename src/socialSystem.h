@@ -18,6 +18,8 @@ class SocialSystem
     double ReportCorrectRatio( const string& testFileName, const bool& label);
     void Train( const string& trainFileName);
     void SetRemovedEdgeRatio( const double& edgeRemovedRatio );
+    void PrintTrainInstance( const string& trainFileName);
+    void PrintTestInstance( const string& testFileName, const bool& label);
 
   private:
     GraphFactory      *m_ptrGraph;
