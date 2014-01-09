@@ -62,7 +62,7 @@ LHNAttribute::GetProblemAttriByEdge(vector<double>& vecAttributes
   vector<int> lhsNeighbor;
   vector<int> vecCommNeighbors;
   int idx = 0;
-  double maxNumCommNeighbors = (double)GetMaxNumCommNeghbors(); 
+//  double maxNumCommNeighbors = (double)GetMaxNumCommNeghbors(); 
   for (int i = 0; i < vecPairVertex.size(); i++) {
     u = vecPairVertex[i].first;
     v = vecPairVertex[i].second;
@@ -77,6 +77,7 @@ LHNAttribute::GetProblemAttriByEdge(vector<double>& vecAttributes
     vecCommNeighbors.clear();
     double numCommNeighbor_2 = (double)GetMultiLevelCommNeighbors(u,v, vecCommNeighbors, 2);
     double value = GetSumInvDegree(vecCommNeighbors);
+//    cout <<  vecCommNeighbors.size() << endl;
 
     //vecAttributes[idx] = numCommNeighbor/pow(uOutDegree*vOutDegree,0.5);
     //vecAttributes[idx] =numCommNeighbor_2/maxNumCommNeighbors;
@@ -109,6 +110,30 @@ LHNAttribute::GetMaxNumCommNeghbors()
   for (tie(ep,ep_end) = edges(*m_ptrGraph); ep != ep_end; ++ep) {
     u = source(*ep,*m_ptrGraph);
     v = target(*ep,*m_ptrGraph);
+    lhsNeighbor.clear(); 
+    GetNeighbors(u,lhsNeighbor);
+    double tmp =  (double)GetNumCommNeighbors(v,lhsNeighbor);
+    if (tmp > maxNeighbors) {
+      maxNeighbors = tmp;
+    }
+    ++idx;
+  }
+  return maxNeighbors;
+}
+
+int
+LHNAttribute::GetMaxNumCommNeghborsByEdge(const vector<BglVertexPair>&  vecPairVertex)
+{
+  /* edge iterator */
+  EdgeIter ep, ep_end;
+  BglVertex u,v;
+  BglVertexMap indices = get( vertex_index , *m_ptrGraph);
+  vector<int> lhsNeighbor;
+  int idx = 0;
+  double maxNeighbors = 0.0;
+  for (int i = 0; i < vecPairVertex.size(); i++) {
+    u = vecPairVertex[i].first;
+    v = vecPairVertex[i].second;
     lhsNeighbor.clear(); 
     GetNeighbors(u,lhsNeighbor);
     double tmp =  (double)GetNumCommNeighbors(v,lhsNeighbor);

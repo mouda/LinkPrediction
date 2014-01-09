@@ -74,7 +74,7 @@ int main( int argc, char* argv[] )
     randId = rand()%myGraphFactory.GetVertexNum();
     neighborId = myGraphFactory.GetFirstNeighborById(randId); 
     if (neighborId != -1) {
-      if (myGraphFactory.RemoveEdge(randId,neighborId,10)) {
+      if (myGraphFactory.RemoveEdge(randId,neighborId,5)) {
         vecRemovedPair.push_back(make_pair(randId,neighborId));
         vecRemovedPair.push_back(make_pair(neighborId,randId));
         ++countUp;

@@ -96,6 +96,30 @@ CommomFriendsAttribute::GetMaxNumCommNeghbors()
   return maxNeighbors;
 }
 
+int
+CommomFriendsAttribute::GetMaxNumCommNeghborsByEdge(const vector<BglVertexPair>&  vecPairVertex)
+{
+  /* edge iterator */
+  EdgeIter ep, ep_end;
+  BglVertex u,v;
+  BglVertexMap indices = get( vertex_index , *m_ptrGraph);
+  vector<int> lhsNeighbor;
+  int idx = 0;
+  double maxNeighbors = 0.0;
+  for (int i = 0; i < vecPairVertex.size(); i++) {
+    u = vecPairVertex[i].first;
+    v = vecPairVertex[i].second;
+    lhsNeighbor.clear(); 
+    GetNeighbors(u,lhsNeighbor);
+    double tmp =  (double)GetNumCommNeighbors(v,lhsNeighbor);
+    if (tmp > maxNeighbors) {
+      maxNeighbors = tmp;
+    }
+    ++idx;
+  }
+  return maxNeighbors;
+}
+
 void 
 CommomFriendsAttribute::GetNeighbors(const BglVertex& selfVertex, 
     std::vector<int>& vecNeighbors)
