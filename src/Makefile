@@ -10,8 +10,8 @@ SOURCES=main.cpp utility.cpp socialSystem.cpp graphFactory.cpp \
 GENSOURCE=genDataSet.cpp graphFactory.cpp fileUtility.cpp utility.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 GENOBJECTS=$(GENSOURCE:.cpp=.o)
-#PREFIX=/home/share
-PREFIX=/opt
+PREFIX=/home/share
+#PREFIX=/opt
 INCLUDE=-I$(PREFIX)/armadillo39202/include/ \
 	-I$(PREFIX)/boost1550/include/ \
 	-I$(PREFIX)/libsvm-3.17/ \
@@ -26,6 +26,7 @@ LIB_PATH=-L$(PREFIX)/armadillo39202/lib/ \
 #LIB_FLAGS=-lsvm -larmadillo  -lboost_regex -lboost_filesystem -lboost_system -lboost_graph -lboost_graph_parallel -lboost_serialization 
 LIB_FLAGS=-lsvm \
 	  -larmadillo \
+	  -lboost_program_options\
 	  -lboost_regex \
 	  -lboost_filesystem \
 	  -lboost_system \
