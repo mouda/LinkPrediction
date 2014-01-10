@@ -96,8 +96,10 @@ AttributeFactory::GetAttributesByFile( const string& fileName )
   } 
 
   m_matAttri.resize(m_vecPtrAttributes.size()+1,vector<double>(m_vecTrainPair.size()));
+#ifdef DEBUG 
   cout << m_vecTrainPair.size() << endl;
   cout << vecLabelCheatSheet.size() << endl;
+#endif
   for (int i = 0; i < vecLabelCheatSheet.size(); i++) {
     m_matAttri[0][i] = (double)vecLabelCheatSheet[i];
   }

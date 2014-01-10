@@ -63,6 +63,7 @@ LHNAttribute::GetProblemAttriByEdge(vector<double>& vecAttributes
   vector<int> vecCommNeighbors;
   int idx = 0;
 //  double maxNumCommNeighbors = (double)GetMaxNumCommNeghbors(); 
+  double maxRAScore = (double)GetMaxRAScore(1);
   for (int i = 0; i < vecPairVertex.size(); i++) {
     u = vecPairVertex[i].first;
     v = vecPairVertex[i].second;
@@ -75,13 +76,13 @@ LHNAttribute::GetProblemAttriByEdge(vector<double>& vecAttributes
     GetNeighbors(u,lhsNeighbor);
     //double numCommNeighbor_origin = (double)GetNumCommNeighbors(v,lhsNeighbor);
     vecCommNeighbors.clear();
-    double numCommNeighbor_2 = (double)GetMultiLevelCommNeighbors(u,v, vecCommNeighbors, 2);
+    double numCommNeighbor_2 = (double)GetMultiLevelCommNeighbors(u,v, vecCommNeighbors, 1);
     double value = GetSumInvDegree(vecCommNeighbors);
 //    cout <<  vecCommNeighbors.size() << endl;
 
     //vecAttributes[idx] = numCommNeighbor/pow(uOutDegree*vOutDegree,0.5);
-    //vecAttributes[idx] =numCommNeighbor_2/maxNumCommNeighbors;
-    vecAttributes[idx] = value;
+    //vecAttributes[idx] = numCommNeighbor_2/maxNumCommNeighbors;
+    vecAttributes[idx] = value/maxRAScore;
 #ifdef DEBUG 
     for (int i = 0; i < vecCommNeighbors.size(); i++) {
       cout << vecCommNeighbors[i] << ' ';
@@ -89,12 +90,33 @@ LHNAttribute::GetProblemAttriByEdge(vector<double>& vecAttributes
     cout << endl;
     cout << "u: " << out_degree(u,*m_ptrGraph) 
       << " v: " << out_degree(v,*m_ptrGraph) << ' '
-     << GetNumCommNeighbors(v,lhsNeighbor) << ' '      << vecAttributes[idx]
-      <<endl;   
+      << GetNumCommNeighbors(v,lhsNeighbor) << ' '      << vecAttributes[idx]
+      << endl;   
 #endif
 
     ++idx;
   }
+}
+
+double
+LHNAttribute::GetMaxRAScore( const int level)
+{
+  vector<int> vecCommNeighbors;
+  double maxValues = 0.0;
+  EdgeIter ep, ep_end;
+  BglVertex u,v;
+  for (tie(ep,ep_end) = edges(*m_ptrGraph); ep != ep_end; ++ep) {
+    u = source(*ep,*m_ptrGraph);
+    v = target(*ep,*m_ptrGraph);
+    vecCommNeighbors.clear();
+    double numCommNeighbor = (double)GetMultiLevelCommNeighbors(u,v, vecCommNeighbors, level);
+    double value = GetSumInvDegree(vecCommNeighbors);
+    if (value > maxValues) {
+      maxValues = value;
+    }
+  }
+
+  return maxValues;  
 }
 
 int
