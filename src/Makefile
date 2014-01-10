@@ -4,13 +4,13 @@ MPI=1
 SOURCES=main.cpp utility.cpp socialSystem.cpp graphFactory.cpp \
 	fileUtility.cpp problemFactory.cpp \
 	attribute.cpp attributeFactory.cpp  commomFriendsAttribute.cpp \
-	LHNAttribute.cpp \
+	LHNAttribute.cpp multiLevelCommonNeighbor.cpp\
 	linkPredictSolver.cpp solverFactory.cpp
 GENSOURCE=genDataSet.cpp graphFactory.cpp fileUtility.cpp utility.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 GENOBJECTS=$(GENSOURCE:.cpp=.o)
-PREFIX=/home/share
-#PREFIX=/opt
+#PREFIX=/home/share
+PREFIX=/opt
 INCLUDE=-I$(PREFIX)/armadillo39202/include/ \
 	-I$(PREFIX)/boost1550/include/ \
 	-I$(PREFIX)/libsvm-3.17/ \

@@ -19,6 +19,7 @@ private:
   void SetLinkedAttribute( vector<double>& vecAttributes);
   void SetUnLinkedAttribute( vector<double>& vecAttributes);
   int  GetMaxNumCommNeghbors();
+  int  GetMaxNumCommNeghbors(const int level);
   int  GetMaxNumCommNeghborsByEdge( const vector<BglVertexPair>& vecNeighbors);
   double GetMaxRAScore( const int level);
   void GetNeighbors(const BglVertex& selfVertex, vector<int>& vecNeighbors);

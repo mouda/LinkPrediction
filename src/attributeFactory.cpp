@@ -1,6 +1,7 @@
 #include "attributeFactory.h"
 #include "commomFriendsAttribute.h"
 #include "LHNAttribute.h"
+#include "multiLevelCommonNeighbor.h"
 #include <algorithm>
 
 
@@ -9,7 +10,7 @@ AttributeFactory::AttributeFactory( BglGraph const * const ptrGraph,
   :m_ptrGraph(ptrGraph), m_numVertex(numVertex), m_numEdge(numEdge) 
 {
 //  Attribute * ptrAttri = 
-//    new CommomFriendsAttribute(m_ptrGraph, m_numVertex, m_numEdge);
+//    new MultiLevelCommonNeighbor(m_ptrGraph, m_numVertex, m_numEdge);
   Attribute * ptrAttri_1 = 
     new LHNAttribute(m_ptrGraph, m_numVertex, m_numEdge);
 //  m_vecPtrAttributes.push_back(ptrAttri);

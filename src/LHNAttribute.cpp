@@ -63,7 +63,10 @@ LHNAttribute::GetProblemAttriByEdge(vector<double>& vecAttributes
   vector<int> vecCommNeighbors;
   int idx = 0;
 //  double maxNumCommNeighbors = (double)GetMaxNumCommNeghbors(); 
-  double maxRAScore = (double)GetMaxRAScore(1);
+  int level = 2.0;
+  //double maxRAScore = (double)GetMaxRAScore(level);
+  double maxRAScore = 1.0;
+
   for (int i = 0; i < vecPairVertex.size(); i++) {
     u = vecPairVertex[i].first;
     v = vecPairVertex[i].second;
@@ -76,9 +79,8 @@ LHNAttribute::GetProblemAttriByEdge(vector<double>& vecAttributes
     GetNeighbors(u,lhsNeighbor);
     //double numCommNeighbor_origin = (double)GetNumCommNeighbors(v,lhsNeighbor);
     vecCommNeighbors.clear();
-    double numCommNeighbor_2 = (double)GetMultiLevelCommNeighbors(u,v, vecCommNeighbors, 1);
+    double numCommNeighbor_2 = (double)GetMultiLevelCommNeighbors(u,v, vecCommNeighbors, level);
     double value = GetSumInvDegree(vecCommNeighbors);
-//    cout <<  vecCommNeighbors.size() << endl;
 
     //vecAttributes[idx] = numCommNeighbor/pow(uOutDegree*vOutDegree,0.5);
     //vecAttributes[idx] = numCommNeighbor_2/maxNumCommNeighbors;
