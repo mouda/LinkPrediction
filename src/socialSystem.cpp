@@ -13,7 +13,6 @@ SocialSystem::SocialSystem(const string& inputFileName,
   m_ptrGraph =            new GraphFactory(inputFileName, outputFileName, in_worldID);
   m_ptrAttributeFactory = new AttributeFactory(m_ptrGraph->GetBglGraph(), 
       m_ptrGraph->GetVertexNum(), m_ptrGraph->GetEdgeNum());
-  //m_ptrAttributeFactory->GetAttributes();
   m_ptrProblemFactory =   new ProblemFactory(m_ptrGraph->GetBglGraph(), 
       m_ptrGraph->GetVertexNum(), m_ptrGraph->GetEdgeNum());
   m_ptrSolver =           new SolverFactory(outputFileName);
@@ -37,8 +36,6 @@ SocialSystem::SetRemovedEdgeRatio( const double& edgeRemoveRatio  )
 void
 SocialSystem::Train( const string& trainFileName)
 {
-  //m_ptrAttributeFactory->GetAttributesByFile(trainFileName);
-  //m_ptrSolver->SetTrainingInstance(m_ptrAttributeFactory->GetAttributes());
   m_ptrSolver->SetTrainingInstance(
       m_ptrAttributeFactory->GetAttributesByFile(trainFileName)
       );
@@ -67,16 +64,13 @@ SocialSystem::PrintTrainInstance( const string& trainFileName)
   for (int i = 0; i < matData[0].size(); ++i) {
     for (int j = matData.size()-1 ; j >= 0 ; --j) {
       if (j == 0) {
-//        cout << matData[j][i]; 
         instanceFile << matData[j][i];
       }
       else {
-//        cout << matData[j][i] << ','; 
         instanceFile << matData[j][i] << ',';
       }
     }
     instanceFile << endl;
-//    cout << endl;
   }
   instanceFile.close();
 }
