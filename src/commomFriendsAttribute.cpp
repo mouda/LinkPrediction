@@ -70,6 +70,33 @@ CommomFriendsAttribute::GetProblemAttriByEdge(vector<double>& vecAttributes
       maxNumCommNeighbors;
     ++idx;
   }
+  /*  
+  BglVertex u,v;
+  vector<int> lhsNeighbor;
+  vector<int> vecCommNeighbors;
+  int idx = 0;
+  int level = 1;
+  double maxRAScore = 1.0;
+
+  for (int i = 0; i < vecPairVertex.size(); i++) {
+    u = vecPairVertex[i].first;
+    v = vecPairVertex[i].second;
+    double uOutDegree = out_degree(u,*m_ptrGraph);
+    if (uOutDegree < 1) uOutDegree = 1;
+    double vOutDegree = out_degree(v,*m_ptrGraph);
+    if (vOutDegree < 1) vOutDegree = 1;
+
+    double numCommNeighbor_2 = (double)GetMultiLevelCommNeighbors(u,v, vecCommNeighbors, level);
+//    double value = GetSumInvDegree(vecCommNeighbors);
+
+    vecAttributes[idx] = numCommNeighbor_2;
+#ifdef DEBUG 
+    cout << "u: " << out_degree(u,*m_ptrGraph) 
+      << " v: " << out_degree(v,*m_ptrGraph) << ' ' << endl;   
+#endif
+
+    ++idx;
+  }*/
 }
 
 int
@@ -131,6 +158,65 @@ CommomFriendsAttribute::GetNeighbors(const BglVertex& selfVertex,
     BglVertex tar = target(*p,*m_ptrGraph);
     vecNeighbors.push_back(indices[tar]);
   }
+}
+
+int
+CommomFriendsAttribute::GetMultiLevelCommNeighbors( const BglVertex& u, const BglVertex& v, 
+    vector<int>& vecCommNeighbors, const int level)
+{
+  vector<int> vecUNeighbor;
+  vector<int> vecVNeighbor;
+  int initial = 0;
+  BFS(u, vecUNeighbor, initial, level);
+  BFS(v, vecVNeighbor, initial, level);
+  sort(vecUNeighbor.begin(), vecUNeighbor.end());
+  sort(vecVNeighbor.begin(), vecVNeighbor.end());
+  int maxSize = vecUNeighbor.size() > vecVNeighbor.size()? vecUNeighbor.size():vecVNeighbor.size();
+  vector<int> myVecCommNeighbors(maxSize);
+  myVecCommNeighbors.resize(maxSize);
+  vector<int>::iterator it_end;
+  it_end = set_intersection(vecUNeighbor.begin(), vecUNeighbor.end(), 
+      vecVNeighbor.begin(), vecVNeighbor.end(), myVecCommNeighbors.begin());
+  //cout << vecUNeighbor.size() << ' ' << vecVNeighbor.size() <<' ' << maxSize <<' ' << distance(myVecCommNeighbors.begin(),it_end) <<endl;
+  
+  vecCommNeighbors.resize(distance(myVecCommNeighbors.begin(), it_end));
+  copy(myVecCommNeighbors.begin(), it_end ,vecCommNeighbors.begin());
+
+
+  return distance(myVecCommNeighbors.begin(),it_end) ;
+}
+
+void
+CommomFriendsAttribute::BFS( const BglVertex& curVertex, vector<int>& vecNeighbors,
+
+    int level, const int& levelLimit )
+{
+  BglVertexMap indices = get( vertex_index , *m_ptrGraph);
+  vecNeighbors.push_back(indices[curVertex]);
+  if (level == levelLimit) {
+    return;
+  }
+  OutEdgeIter p, p_end;
+  for (tie(p, p_end) = out_edges(curVertex, *m_ptrGraph) ; p != p_end; ++p) {
+    BglVertex sou = source(*p,*m_ptrGraph);
+    BglVertex tar = target(*p,*m_ptrGraph);
+    BFS(tar, vecNeighbors, level+1, levelLimit); 
+  }
+}
+
+double
+CommomFriendsAttribute::GetSumInvDegree( const vector<int>& vecCommNeighbors)
+{
+  BglVertex u;
+  double degree = 0.0;
+  double sum = 0.0;
+  for (int i = 0; i < vecCommNeighbors.size(); i++) {
+    u = vertex(vecCommNeighbors[i],*m_ptrGraph);
+    degree = out_degree(u,*m_ptrGraph);
+    sum += 1/degree;
+  }
+
+  return sum;
 }
 
 int 

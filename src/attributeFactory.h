@@ -11,7 +11,7 @@ class AttributeFactory
 {
   public:
     AttributeFactory( BglGraph const * const ptrGraph, 
-        const int& numVertex, const int& numEdge);
+        const int& numVertex, const int& numEdge, const string& );
     ~AttributeFactory();
 
     const vector<vector<double> >& GetAttributes();

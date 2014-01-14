@@ -20,7 +20,7 @@ using std::map;
 class ProblemFactory
 {
   public:
-    ProblemFactory(BglGraph const * const ptrGraph, const int& numVertex, const int& numEdge);
+    ProblemFactory(BglGraph const * const ptrGraph, const int& numVertex, const int& numEdge, const string&);
     ~ProblemFactory();
 
     const vector<vector<double> >& GetProblemAttributes(const double& edgeRemovedRatio );

@@ -57,7 +57,7 @@ int main( int argc, char* argv[] )
   cout << outputTestFileName << endl;
   cout << outputQueryTrueFileName << endl;
   cout << outputQueryFalseFileName << endl;
-  GraphFactory myGraphFactory(inputFileName, "NULL",0);
+  GraphFactory myGraphFactory(inputFileName, "NULL",15);
   cout << "vertex num: " << myGraphFactory.GetVertexNum() << endl;
   cout << "edge num: " << myGraphFactory.GetEdgeNum() << endl;
   srand (time(NULL));

@@ -13,7 +13,7 @@ using std::string;
 class SocialSystem 
 {
   public:
-    SocialSystem(const string& inputFileName, const string& outputFileName, const int& in_wordID);
+    SocialSystem(const string& inputFileName, const string& outputFileName, const string& strAttrFlag);
     ~SocialSystem();
     double ReportCorrectRatio( const string& testFileName, const bool& label);
     void Train( const string& trainFileName);
@@ -26,7 +26,5 @@ class SocialSystem
     AttributeFactory  *m_ptrAttributeFactory;
     ProblemFactory    *m_ptrProblemFactory;
     LinkPredictSolver *m_ptrSolver;
-
-    /* const values */
-    const int         m_worldId;
+    string            m_strAttrFlag;
 };

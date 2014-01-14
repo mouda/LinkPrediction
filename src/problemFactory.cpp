@@ -1,19 +1,31 @@
 #include "problemFactory.h"
 #include "commomFriendsAttribute.h"
-#include "LHNAttribute.h"
-#include "multiLevelCommonNeighbor.h"
+#include "resourceAllocation.h"
+#include "RACScore.h"
 
 
 ProblemFactory::ProblemFactory(BglGraph const * const ptrGraph, 
-    const int& numVertex, const int& numEdge)
+    const int& numVertex, const int& numEdge, const string& strAttrFlag)
   :m_ptrGraph(ptrGraph), m_numVertex(numVertex), m_numEdge(numEdge) 
 {
 //  Attribute * ptrAttri = 
 //    new MultiLevelCommonNeighbor(m_ptrGraph, m_numVertex, m_numEdge);
   Attribute * ptrAttri_1 = 
-    new LHNAttribute(m_ptrGraph, m_numVertex, m_numEdge);
+    new ResourceAllocation(m_ptrGraph, m_numVertex, m_numEdge);
 //  m_vecPtrAttributes.push_back(ptrAttri);
-  m_vecPtrAttributes.push_back(ptrAttri_1);
+//  m_vecPtrAttributes.push_back(ptrAttri_1);
+  if (strAttrFlag == "CN") {
+    Attribute* ptrAttr = new CommomFriendsAttribute(m_ptrGraph, m_numVertex, m_numEdge);
+    m_vecPtrAttributes.push_back(ptrAttr);
+  }
+  else if (strAttrFlag == "RA") {
+    Attribute* ptrAttr = new ResourceAllocation(m_ptrGraph, m_numVertex, m_numEdge);
+    m_vecPtrAttributes.push_back(ptrAttr);
+  }
+  else if (strAttrFlag == "RAC") {
+    Attribute* ptrAttr = new RACScore(m_ptrGraph, m_numVertex, m_numEdge);
+    m_vecPtrAttributes.push_back(ptrAttr);
+  }
 }
 
 ProblemFactory::~ProblemFactory()

@@ -8,13 +8,23 @@
 
 SocialSystem::SocialSystem(const string& inputFileName, 
     const string& outputFileName,
-    const int& in_worldID):m_worldId(in_worldID)
+    const string& strAttrFlag):
+  m_strAttrFlag(strAttrFlag)
 {
-  m_ptrGraph =            new GraphFactory(inputFileName, outputFileName, in_worldID);
-  m_ptrAttributeFactory = new AttributeFactory(m_ptrGraph->GetBglGraph(), 
-      m_ptrGraph->GetVertexNum(), m_ptrGraph->GetEdgeNum());
-  m_ptrProblemFactory =   new ProblemFactory(m_ptrGraph->GetBglGraph(), 
-      m_ptrGraph->GetVertexNum(), m_ptrGraph->GetEdgeNum());
+  m_ptrGraph =            new GraphFactory(inputFileName, outputFileName, 0);
+
+  m_ptrAttributeFactory = 
+    new AttributeFactory(m_ptrGraph->GetBglGraph(), 
+      m_ptrGraph->GetVertexNum(), 
+      m_ptrGraph->GetEdgeNum(), 
+      m_strAttrFlag
+      );
+  m_ptrProblemFactory =   
+    new ProblemFactory(m_ptrGraph->GetBglGraph(), 
+      m_ptrGraph->GetVertexNum(), 
+      m_ptrGraph->GetEdgeNum(),
+      m_strAttrFlag 
+      );
   m_ptrSolver =           new SolverFactory(outputFileName);
 }
 

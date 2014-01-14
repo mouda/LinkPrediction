@@ -23,6 +23,10 @@ private:
   void GetNeighbors(const BglVertex& selfVertex, vector<int>& vecNeighbors);
   int  GetNumCommNeighbors(const BglVertex& selfVertex, 
       const vector<int>& vecOtherNeighbors);
+  int GetMultiLevelCommNeighbors( const BglVertex& u, const BglVertex& v, 
+      vector<int>& vecNeighbors, const int level);
+  double GetSumInvDegree(const vector<int>& vecCommNeighbors); 
+  void BFS( const BglVertex& curVertex, vector<int>& vecCommNeighbors, int level, const int& levelLimit );
 
 
   /* constant data members */

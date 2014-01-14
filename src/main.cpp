@@ -28,6 +28,7 @@ int main( int argc, char* argv[] )
       ("model,m", po::value<string>(), "Model file name")
       ("train,t", po::value<string>(), "Train file name")
       ("inference,i", po::value<string>(), "Tnference file name")
+      ("similarity,s", po::value<string>(), "Similarity score")
       ("answer,a", po::value<bool>(), "Answer, true or false")
       ("print,p", "Use this option to print instance");
     po::variables_map vm;
@@ -39,7 +40,7 @@ int main( int argc, char* argv[] )
       return 0;
     }
 
-    if (vm.count("train") && vm.size() == 3) {
+    if (vm.count("train") && vm.size() == 4) {
 
       if (!vm.count("model")) {
         cerr << "You must provide model file"<<endl;
@@ -49,9 +50,14 @@ int main( int argc, char* argv[] )
         cerr << "You must provide graph file"<<endl;
       }
 
+      if (!vm.count("similarity")) {
+        cerr << "You must provide similarity score type" << endl;
+      }
+
       inputFileName = vm["graph"].as<string>();
       outputFileName = vm["model"].as<string>();
       trainFileName = vm["train"].as<string>();
+      string strAttrFlag = vm["similarity"].as<string>();
       if (!FileExist(inputFileName)) {
         cerr << "Graph file ``" << inputFileName << "'' doesn't exist" << endl;
         return 1;
@@ -61,16 +67,19 @@ int main( int argc, char* argv[] )
         return 1;
       }
 
-      SocialSystem mySocialSystem(inputFileName, outputFileName, 0);
+      SocialSystem mySocialSystem(inputFileName, outputFileName, strAttrFlag);
       mySocialSystem.Train(trainFileName);
     }
-    else if (vm.count("inference") && (vm.size() == 4 || vm.size() == 5)) {
+    else if (vm.count("inference") && (vm.size() == 5 || vm.size() == 6)) {
 
       if (!vm.count("model")) {
         cerr << "You must provide model file"<<endl;
       }
       if (!vm.count("graph")) {
         cerr << "You must provide graph file"<<endl;
+      }
+      if (!vm.count("similarity")) {
+        cerr << "You must provide similarity score type" << endl;
       }
 
       outputFileName = vm["model"].as<string>();
@@ -91,8 +100,9 @@ int main( int argc, char* argv[] )
       }
 
       boolAnswerFlag =  vm["answer"].as<bool>();
+      string strAttrFlag = vm["similarity"].as<string>();
 
-      SocialSystem mySocialSystem(inputFileName, outputFileName, 0);
+      SocialSystem mySocialSystem(inputFileName, outputFileName, strAttrFlag);
       if (!vm.count("print")) {
         mySocialSystem.ReportCorrectRatio(inferenceFileName, boolAnswerFlag);
       }
