@@ -28,14 +28,15 @@ bool pairCompare(const std::pair<int, int>& firstElem,
 int main( int argc, char* argv[] )
 {
 
-  if ( argc != 4 ) {
-    cout << "Usage: [input] [query number] [train number]" << endl;
+  if ( argc != 5 ) {
+    cout << "Usage: [input] [query number] [train number] [idx]" << endl;
     return 1;
   }
 
   string inputFileName(argv[1]);
   int intQueryNum = atoi(argv[2]);
   int intTrainNum = atoi(argv[3]);
+  string strIndex(argv[4]);
 
   if (!FileExist(inputFileName)) {
     cerr << "Input file doesn't exist" << endl;
@@ -44,27 +45,23 @@ int main( int argc, char* argv[] )
 
   split_vector_type vecTokens;
   split( vecTokens, inputFileName, is_any_of("\."), token_compress_on );
-  stringstream ss;
+  stringstream ss, ss1;
 
   ss << intTrainNum;
-  string outputTrainFileName = ".."+vecTokens[1] + "_train_"+ss.str()+".txt";
-  ss.str("");
-  ss << intQueryNum;
-  string outputTestFileName  = ".."+vecTokens[1] + "_test_"+ss.str()+".txt";
-  string outputQueryTrueFileName = ".."+vecTokens[1] + "_query_true_"+ss.str()+".txt";
-  string outputQueryFalseFileName = ".."+vecTokens[1] + "_query_false_"+ss.str()+".txt";
+  ss1 << intQueryNum;
+  string outputTrainFileName = ".."+vecTokens[1] + "_train_"+ss.str()+"_"+ss1.str()+"_"+strIndex+".txt";
+  string outputTestFileName  = ".."+vecTokens[1] + "_test_"+ss.str()+"_"+ss1.str()+"_"+strIndex+".txt";
+  string outputQueryTrueFileName = ".."+vecTokens[1] + "_query_true_"+ss1.str()+"_"+strIndex+".txt";
+  string outputQueryFalseFileName = ".."+vecTokens[1] + "_query_false_"+ss1.str()+"_"+strIndex+".txt";
   cout << outputTrainFileName << endl;
   cout << outputTestFileName << endl;
   cout << outputQueryTrueFileName << endl;
   cout << outputQueryFalseFileName << endl;
-  GraphFactory myGraphFactory(inputFileName, "NULL",15);
+  GraphFactory myGraphFactory(inputFileName, "NULL",0);
   cout << "vertex num: " << myGraphFactory.GetVertexNum() << endl;
   cout << "edge num: " << myGraphFactory.GetEdgeNum() << endl;
   srand (time(NULL));
-  cout << "random num: " << rand()%myGraphFactory.GetVertexNum() << endl;
   int randId = rand()%myGraphFactory.GetVertexNum();
-  cout << "first neighbor  " << myGraphFactory.GetFirstNeighborById(randId) 
-    << " of(" << randId <<")" << endl;
 
   /* remove edges */
   int countUp = 0;

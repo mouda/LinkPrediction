@@ -62,9 +62,7 @@ ResourceAllocation::GetProblemAttriByEdge(vector<double>& vecAttributes
   vector<int> lhsNeighbor;
   vector<int> vecCommNeighbors;
   int idx = 0;
-//  double maxNumCommNeighbors = (double)GetMaxNumCommNeghbors(); 
-  int level = 2.0;
-  //double maxRAScore = (double)GetMaxRAScore(level);
+  int level = 1.0;
   double maxRAScore = 1.0;
 
   for (int i = 0; i < vecPairVertex.size(); i++) {
@@ -82,9 +80,7 @@ ResourceAllocation::GetProblemAttriByEdge(vector<double>& vecAttributes
     double numCommNeighbor_2 = (double)GetMultiLevelCommNeighbors(u,v, vecCommNeighbors, level);
     double value = GetSumInvDegree(vecCommNeighbors);
 
-    //vecAttributes[idx] = numCommNeighbor/pow(uOutDegree*vOutDegree,0.5);
-    //vecAttributes[idx] = numCommNeighbor_2/maxNumCommNeighbors;
-    vecAttributes[idx] = value/maxRAScore;
+    vecAttributes[idx] = value;
 #ifdef DEBUG 
     for (int i = 0; i < vecCommNeighbors.size(); i++) {
       cout << vecCommNeighbors[i] << ' ';

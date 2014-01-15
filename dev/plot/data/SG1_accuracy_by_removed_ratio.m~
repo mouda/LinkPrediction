@@ -1,0 +1,3 @@
+close all;
+clear
+dlmread('data/SG1_p_10_CN_false.txt');
