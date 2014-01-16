@@ -4,6 +4,9 @@ SG3_sorted_edges=2842283
 
 Data="SG3_sorted"
 
+#Data="SG1"
+
+suffix="random"
 FLAGS="CN RA RAC"
 TrainInstances="20000"
 for (( i = 5; i <= 20; i=i+5 )); do
@@ -28,9 +31,9 @@ for (( i = 5; i <= 20; i=i+5 )); do
     echo Directory is `pwd`' >> ./run_temp.sh
     echo " 
     ../bin/linkPrediction -g ../input/P3_friend/${Data}_test_${TrainInstances}_${removeEdges}_${j}.txt -m model_${Data}/${Data}_p_${i}_idx_${j}_flag_${token}.model \
-    -i ../input/P3_friend/${Data}_query_true_${removeEdges}_${j}.txt -a true -s ${token} >> result_${Data}/${Data}_p_${i}_${token}_true_${j}.txt
+    -i ../input/P3_friend/${Data}_query_true_${removeEdges}_${j}.txt -a true -s ${token} >> result_${Data}_${suffix}/${Data}_p_${i}_${token}_true_${j}.txt
     ../bin/linkPrediction -g ../input/P3_friend/${Data}_test_${TrainInstances}_${removeEdges}_${j}.txt -m model_${Data}/${Data}_p_${i}_idx_${j}_flag_${token}.model \
-    -i ../input/P3_friend/${Data}_query_false_${removeEdges}_${j}.txt -a false -s ${token} >> result_${Data}/${Data}_p_${i}_${token}_false_${j}.txt
+    -i ../input/P3_friend/${Data}_query_false_${removeEdges}_${j}.txt -a false -s ${token} >> result_${Data}_${suffix}/${Data}_p_${i}_${token}_false_${j}.txt
     " >> ./run_temp.sh
     echo '
     echo End time is `date`

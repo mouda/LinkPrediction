@@ -2,7 +2,11 @@ SG1_edges=291637
 SG2_edges=5622665
 SG3_sorted_edges=2842283
 
-Data="SG3_sorted"
+#Data="SG3_sorted"
+#Data="SG1"
+Data="SG2"
+suffix="random"
+
 
 FLAGS="CN RA RAC"
 TrainInstances="20000"
@@ -29,7 +33,7 @@ for (( i = 5; i <= 20; i=i+5 )); do
     echo Directory is `pwd`' >> ./run_temp.sh
     echo " 
     ../bin/linkPrediction -g ../input/P3_friend/${Data}_test_${TrainInstances}_${removeEdges}_${j}.txt \
-    -m model_${Data}/${Data}_p_${i}_idx_${j}_flag_${token}.model -t ../input/P3_friend/${Data}_train_${TrainInstances}_${removeEdges}_${j}.txt -s ${token} 
+    -m model_${Data}_${suffix}/${Data}_p_${i}_idx_${j}_flag_${token}.model -t ../input/P3_friend/${Data}_train_${TrainInstances}_${removeEdges}_${j}.txt -s ${token} 
     " >> ./run_temp.sh
     echo '
     echo End time is `date`

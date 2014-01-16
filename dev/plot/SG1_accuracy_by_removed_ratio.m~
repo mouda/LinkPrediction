@@ -2,10 +2,27 @@ close all;
 clear
 CN_true = zeros(4,10);
 CN_false = zeros(4,10);
+CN=zeros(4,10,2);
 RA_true = zeros(4,10);
 RA_false = zeros(4,10);
+RA=zeros(4,10,2);
 RAC_true = zeros(4,10);
 RAC_false = zeros(4,10);
+RAC=zeros(4,10,2);
+strFlag = {'CN','RA','RAC'};
+strAnswer = {'true','false'};
+for p = 1:4
+    for i = 1:3
+        for j = 1:2
+            strFile=sprintf('data_SG1_random/SG1_random_p_%d_%s_%s.txt',p*5,strFlag{i},strAnswer{j});
+            if i == 1
+                CN(i,:,j)=dlmread
+            else i ==2
+                RA(i,:,j)=
+            end
+        end
+    end
+end
 
 CN_true(1,:) = dlmread('data/SG1_p_5_CN_true.txt');
 CN_false(1,:) = dlmread('data/SG1_p_5_CN_false.txt');
@@ -35,16 +52,23 @@ RA_false(4,:) = dlmread('data/SG1_p_20_RA_false.txt');
 RAC_true(4,:) = dlmread('data/SG1_p_20_RAC_true.txt');
 RAC_false(4,:) = dlmread('data/SG1_p_20_RAC_false.txt');
 
-CN_accuracy = CN_true + CN_false,2))/2;
-RA_accuracy = (mean(RA_true,2) + mean(RA_false,2))/2;
-RAC_accuracy = (mean(RAC_true,2) + mean(RAC_false,2))/2;
+CN_accuracy = (CN_true + CN_false)/2;
+RA_accuracy = (RA_true + RA_false)/2;
+RAC_accuracy = (RAC_true + RAC_false)/2;
 x = [5 10 15 20];
 
-str=sprintf('Common Neighbor',hn(2));
-errorbar(x,CN_accuracy,std(FinalRatioKM2i),'o-.','LineWidth',1.5,'Color','r','DisplayName',str,'MarkerSize',10); hold on;
-str=sprintf('Resource Allocation',hn(2));
-errorbar(x,RA_accuracy,std(FinalRatioKM4b),'^--','LineWidth',1.5,'Color','k','DisplayName',str,'MarkerSize',10); hold on;
-str=sprintf('Resource Allocation with Community',hn(2));
-errorbar(xx,RAC_accuracy,std(FinalRatioKMs),'*-','LineWidth',1.5,'Color',[0.5 0.5 1],'DisplayName',str,'MarkerSize',10); hold on;
+str=sprintf('Common Neighbor');
+%errorbar(x,mean(CN_accuracy,2),std(CN_accuracy'),'o-.','LineWidth',1.5,'Color','r','DisplayName',str,'MarkerSize',10); hold on;
+plot(x,mean(CN_accuracy,2),'o-.','LineWidth',1.5,'Color','r','DisplayName',str,'MarkerSize',10); hold on;
+str=sprintf('Resource Allocation');
+%errorbar(x,mean(RA_accuracy,2),std(RA_accuracy'),'^--','LineWidth',1.5,'Color','k','DisplayName',str,'MarkerSize',10); hold on;
+plot(x,mean(RA_accuracy,2),'^--','LineWidth',1.5,'Color','k','DisplayName',str,'MarkerSize',10); hold on;
+str=sprintf('Resource Allocation with Community');
+%errorbar(x,mean(RAC_accuracy,2),std(RAC_accuracy'),'*-','LineWidth',1.5,'Color',[0.5 0.5 1],'DisplayName',str,'MarkerSize',10); hold off;
+plot(x,mean(RAC_accuracy,2),'*-','LineWidth',1.5,'Color',[0.5 0.5 1],'DisplayName',str,'MarkerSize',10); hold off;
 
+legend('show');
+xlabel('Edge removed ratio (%)');
+ylabel('Predict accuracy (%)');
+title('Performance of SG1');
 grid on;
