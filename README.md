@@ -13,9 +13,10 @@ HOWTO execute:
 2. Compile the testing data generator:
 	$ make getDataSet
 3. Execution flow, go to $PROJECT/bin/:
-	a. ./genDataSet [origin graph file] 1000 1000
-4. Train the data:
-	b. ./linkPrediction [graph file] [model file] train:<train list file>:true  
-5. Evalutate the model:
-	c. ./linkPrediction [graph file] [model file] infrence:<query list file>:false
+	a. ./genDataSet [graph file] [number of removed edges] [train instance number] [index]  
+4. Train the data, option ``-s'' is used to specisfy similarity score, 
+   we provide Common Neighbor (CN), Resource Allocation(RA), and Resource Allocation with Community (RAC) here:
+    	b. ./linkPrediction -g [graph file] -m [model file] -t [train file] -s [CN|RA|RAC]
+5. Evalutate the model, note that we need to provide the same score option as training procedure:
+    	c. ./linkPrediction -g [graph file] -m [model file] -i [inference file] -s [CN|RA|RAC] 
 
